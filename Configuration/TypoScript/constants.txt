@@ -1,0 +1,14 @@
+plugin.tx_pxacookiebar {
+	view {
+		# cat=plugin.tx_pxacookiebar/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:pxa_cookie_bar/Resources/Private/Templates/
+		# cat=plugin.tx_pxacookiebar/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:pxa_cookie_bar/Resources/Private/Partials/
+		# cat=plugin.tx_pxacookiebar/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:pxa_cookie_bar/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_pxacookiebar//a; type=string; label=Default storage PID
+		storagePid = 
+	}
+}

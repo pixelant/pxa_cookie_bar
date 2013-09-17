@@ -1,0 +1,55 @@
+plugin.tx_pxacookiebar {
+	view {
+		templateRootPath = {$plugin.tx_pxacookiebar.view.templateRootPath}
+		partialRootPath = {$plugin.tx_pxacookiebar.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_pxacookiebar.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_pxacookiebar.persistence.storagePid}
+	}
+	features {
+		# uncomment the following line to enable the new Property Mapper.
+		# rewrittenPropertyMapper = 1
+	}
+}
+
+plugin.tx_pxacookiebar._CSS_DEFAULT_STYLE (
+	textarea.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	input.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	.tx-pxa-cookie-bar table {
+		border-collapse:separate;
+		border-spacing:10px;
+	}
+
+	.tx-pxa-cookie-bar table th {
+		font-weight:bold;
+	}
+
+	.tx-pxa-cookie-bar table td {
+		vertical-align:top;
+	}
+)
+
+#page.includeJSFooterlibs.requireLib = EXT:pxa_cookie_bar/Resources/Public/Js/require.js
+page.includeJSFooterlibs.cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Js/pxa_cookie_warning.js
+page.includeCSS.cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Css/bar.css
+page.headerData.100 = TEXT 
+page.headerData.100 {
+data = TSFE:sys_language_uid
+wrap = <script> var cookie_bar_url="/?type=314638125&L=|"; </script>
+}
+
+cookieWarning = PAGE
+cookieWarning.typeNum = 314638125
+cookieWarning.config.no_cache = 1
+cookieWarning.config.disableAllHeaderCode = 1
+
+cookieWarning.5 < tt_content.list.20.pxacookiebar_pxacookiebar

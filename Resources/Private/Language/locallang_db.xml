@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'pxa_cookie_bar'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+            
+			<label index="tx_pxacookiebar_domain_model_cookiewarning">Cookiewarning</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.page">Link on page with detail information</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.linktext">Link text</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.warningmessage">Warning message about cookies</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.linkurl">External link with detail information</label>
+			
+		</languageKey>
+	<languageKey index="en" type="array">
+            
+			<label index="tx_pxacookiebar_domain_model_cookiewarning">Cookiewarning</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.page">Link on page with detail information</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.linktext">Link text</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.warningmessage">Warning message about cookies</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.linkurl">External link with detail information</label>
+		
+		</languageKey>
+	<languageKey index="da" type="array">
+            
+			<label index="tx_pxacookiebar_domain_model_cookiewarning">Cookiewarning</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.page">Link on page with detail information</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.linktext">Link text</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.warningmessage">Warning message about cookies</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.linkurl">External link with detail information</label>
+
+		</languageKey>
+		<languageKey index="dk" type="array">
+            
+			<label index="tx_pxacookiebar_domain_model_cookiewarning">Cookiewarning</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.page">Link on page with detail information</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.linktext">Link text</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.warningmessage">Warning message about cookies</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.linkurl">External link with detail information</label>
+
+		</languageKey>
+		<languageKey index="se" type="array">
+            
+			<label index="tx_pxacookiebar_domain_model_cookiewarning">Cookiewarning</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.page">Link on page with detail information</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.linktext">Link text</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.warningmessage">Warning message about cookies</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.linkurl">External link with detail information</label>
+
+		</languageKey>
+		<languageKey index="sv" type="array">
+            
+			<label index="tx_pxacookiebar_domain_model_cookiewarning">Cookiewarning</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.page">Link on page with detail information</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.linktext">Link text</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.warningmessage">Warning message about cookies</label>
+			<label index="tx_pxacookiebar_domain_model_cookiewarning.linkurl">External link with detail information</label>
+			
+		</languageKey>
+		</data>
+</T3locallang>

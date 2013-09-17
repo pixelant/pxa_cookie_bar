@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for the Cookie bar extension in the FRONTEND</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="pxacookiebar.message">This website uses cookies. By continuing to browse this website you are agreeing to our use of cookies. Find out more by reading our privacy policy.</label>
+			<label index="pxacookiebar.readmore">Read more</label>
+		</languageKey>
+		<languageKey index="en" type="array">
+			<label index="pxacookiebar.message">This website uses cookies. By continuing to browse this website you are agreeing to our use of cookies. Find out more by reading our privacy policy.</label>
+			<label index="pxacookiebar.readmore">Read more</label>
+		</languageKey>
+		<languageKey index="sv" type="array">
+			<label index="pxacookiebar.message">Denna webbplats använder cookies. Genom att fortsätta att surfa på denna webbplats samtycker du till vår användning av cookies. Ta reda på mer genom att läsa vår sekretesspolicy.</label>
+			<label index="pxacookiebar.readmore">Läs mer</label>
+		</languageKey>
+		<languageKey index="se" type="array">
+			<label index="pxacookiebar.message">Denna webbplats använder cookies. Genom att fortsätta att surfa på denna webbplats samtycker du till vår användning av cookies. Ta reda på mer genom att läsa vår sekretesspolicy.</label>
+			<label index="pxacookiebar.readmore">Läs mer</label>
+		</languageKey>
+		<languageKey index="da" type="array">
+			<label index="pxacookiebar.message">Vi bruger cookies på denne hjemmeside. Hvis du klikker videre på hjemmesiden, har du accepteret vores brug af cookies.</label>
+			<label index="pxacookiebar.readmore">Læs mere om vores brug af cookies</label>
+		</languageKey>
+	<languageKey index="dk" type="array">
+			<label index="pxacookiebar.message">Vi bruger cookies på denne hjemmeside. Hvis du klikker videre på hjemmesiden, har du accepteret vores brug af cookies.</label>
+			<label index="pxacookiebar.readmore">Læs mere om vores brug af cookies</label>
+		</languageKey>
+		<languageKey index="ru" type="array">
+			<label index="pxacookiebar.message">Цей сайт використовує "cookies". Продововжуючи використовувати цей сайт, Ви погоджуєтесь використовувати "cookies". Дізнатись більше можна прочитавши нашу політику конфіденційності.</label>
+			<label index="pxacookiebar.readmore">Читати більше</label>
+		</languageKey>
+		<languageKey index="ua" type="array">
+			<label index="pxacookiebar.message">Цей сайт використовує "cookies". Продововжуючи використовувати цей сайт, Ви погоджуєтесь використовувати "cookies". Дізнатись більше можна прочитавши нашу політику конфіденційності.</label>
+			<label index="pxacookiebar.readmore">Читати більше</label>
+		</languageKey>
+	</data>
+</T3locallang>

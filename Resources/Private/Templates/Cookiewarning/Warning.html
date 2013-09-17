@@ -1,0 +1,60 @@
+<f:layout name="Default" />
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+ 
+   <f:if condition="{show} == 1">
+    <div id="pxa-cookie-mess" class="top-message-wrap" style="display: block;">
+        <div class="cookie-warning">
+            <div class="cookie-container">
+                <div class="cookie-row">
+                        <p>
+                            <f:if condition="{message}">
+                                <f:then>
+                                    {message}
+                                </f:then>
+                                <f:else>
+                                    <f:translate key="pxacookiebar.message" />
+                                </f:else>
+                            </f:if>
+                            <f:if condition="{moretext}">
+                                <f:then>
+                                    <f:if condition="{page}">
+                                    <f:then>
+                                    <f:link.page pageUid="{page}">{moretext}</f:link.page>
+                                    </f:then>
+                                    <f:else>
+                                    <f:link.external uri="{linkurl}">{moretext}</f:link.external>
+                                    </f:else>
+                                    </f:if>
+                                </f:then>
+                                <f:else>
+                                    <f:if condition="{page}">
+                                    <f:then>
+                                    <f:link.page pageUid="{page}"><f:translate key="pxacookiebar.readmore" /></f:link.page>
+                                    </f:then>
+                                    <f:else>
+                                    <f:link.external uri="{linkurl}"><f:translate key="pxacookiebar.readmore" /></f:link.external>
+                                    </f:else>
+                                    </f:if>
+                                </f:else>
+                            </f:if>
+                            
+                            <a class="btn-close" onClick="hide_cookie_warning()">x</a>
+                        </p>
+               </div>
+            </div>
+        </div>
+    </div>
+    </f:if>
+</f:section>
