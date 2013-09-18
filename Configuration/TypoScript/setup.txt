@@ -13,6 +13,8 @@ plugin.tx_pxacookiebar {
 	}
 }
 
+[globalVar = LIT:1 = {$plugin.tx_pxacookiebar.showBar}]
+
 plugin.tx_pxacookiebar._CSS_DEFAULT_STYLE (
 	textarea.f3-form-error {
 		background-color:#FF9F9F;
@@ -53,3 +55,5 @@ cookieWarning.config.no_cache = 1
 cookieWarning.config.disableAllHeaderCode = 1
 
 cookieWarning.5 < tt_content.list.20.pxacookiebar_pxacookiebar
+
+[global]
