@@ -8,9 +8,13 @@ function create(htmlStr) {
     return frag;
 }
 
-function hide_cookie_warning(){
-var e = document.getElementById("pxa-cookie-mess");
-e.style.cssText = "display:none";
+function hide_cookie_warning(accept){
+  if(accept == 'accept') {
+    xmlhttp_fwb.open("GET",location+'?type=314638125&tx_pxacookiebar_pxacookiebar[action]=closeWarning&tx_pxacookiebar_pxacookiebar[controller]=Cookiewarning',true);
+    xmlhttp_fwb.send();
+  }
+  var e = document.getElementById("pxa-cookie-mess");
+  e.style.cssText = "display:none";
 }
 
 function sendReq(){
@@ -29,8 +33,6 @@ xmlhttp.onreadystatechange=function()
     {
     response = create(xmlhttp.responseText);
     document.body.insertBefore(response, document.body.childNodes[0]);
-    xmlhttp_fwb.open("GET",cookie_bar_url+'&tx_pxacookiebar_pxacookiebar[action]=closeWarning&tx_pxacookiebar_pxacookiebar[controller]=Cookiewarning',true);
-	xmlhttp_fwb.send();
 	}
   }
 xmlhttp.open("GET",cookie_bar_url,true);

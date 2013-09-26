@@ -47,22 +47,12 @@ class Tx_PxaCookieBar_Domain_Model_Cookiewarning extends Tx_Extbase_DomainObject
 	 */
 	protected $linktext;
 
-
 	/**
 	 * page
 	 *
 	 * @var \integer
 	 */
 	protected $page;
-
-	/**
-	 * linkurl
-	 *
-	 * @var \string
-	 * @validate NotEmpty
-	 */
-	protected $linkurl;
-
 
 	/**
 	 * Returns the warningmessage
@@ -120,26 +110,5 @@ class Tx_PxaCookieBar_Domain_Model_Cookiewarning extends Tx_Extbase_DomainObject
 	public function setPage($page) {
 		$this->page = $page;
 	}
-
-
-	/**
-	 * Returns the linkurl
-	 *
-	 * @return \string $linkurl
-	 */
-	public function getLinkurl() {
-		return $this->linkurl;
-	}
-
-	/**
-	 * Sets the linkurl
-	 *
-	 * @param \string $linkurl
-	 * @return void
-	 */
-	public function setLinkurl($linkurl) {
-		$this->linkurl = $linkurl;
-	}
-	
 }
 ?>

@@ -17,4 +17,13 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	)
 );
 
+if (TYPO3_MODE == 'FE') {
+		if($GLOBALS['TYPO3_CONF_VARS']['SYS']['compat_version'] >= 6.0) {
+  			$GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects']['TYPO3\\CMS\\Frontend\\Authentication\\FrontendUserAuthentication'] = array(
+       'className' => 'TYPO3\\PxaCookieBar\\Frontend\\FrontendUserAuthentication'
+       );
+  	} else {
+  		$TYPO3_CONF_VARS['FE']['XCLASS']['tslib/class.tslib_feuserauth.php'] = t3lib_extMgm::extPath($_EXTKEY, 'Classes/UserAuth/class.ux_tslib_feUserAuth.php');
+  	}
+}
 ?>

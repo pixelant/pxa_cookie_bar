@@ -63,7 +63,6 @@ class Tx_PxaCookieBar_Controller_CookiewarningController extends Tx_Extbase_MVC_
 		if ($mess) {
 			$this->view->assign('message',$mess->getWarningmessage());
 			$this->view->assign('moretext',$mess->getLinktext());
-			$this->view->assign('linkurl',$mess->getLinkurl());
 			$this->view->assign('page',$mess->getPage());
 			}
 		}

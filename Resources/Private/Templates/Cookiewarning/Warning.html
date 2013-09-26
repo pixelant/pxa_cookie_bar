@@ -29,28 +29,17 @@ Otherwise your changes will be overwritten the next time you save the extension 
                             </f:if>
                             <f:if condition="{moretext}">
                                 <f:then>
-                                    <f:if condition="{page}">
-                                    <f:then>
                                     <f:link.page pageUid="{page}">{moretext}</f:link.page>
-                                    </f:then>
-                                    <f:else>
-                                    <f:link.external uri="{linkurl}">{moretext}</f:link.external>
-                                    </f:else>
-                                    </f:if>
                                 </f:then>
                                 <f:else>
-                                    <f:if condition="{page}">
-                                    <f:then>
                                     <f:link.page pageUid="{page}"><f:translate key="pxacookiebar.readmore" /></f:link.page>
-                                    </f:then>
-                                    <f:else>
-                                    <f:link.external uri="{linkurl}"><f:translate key="pxacookiebar.readmore" /></f:link.external>
-                                    </f:else>
-                                    </f:if>
                                 </f:else>
                             </f:if>
-                            
-                            <a class="btn-close" onClick="hide_cookie_warning()">x</a>
+
+                            <a id="accept-cookie" onClick="hide_cookie_warning('accept');" class="agree-buttons"><f:translate key="pxacookiebar.accept"/></a>
+                            <a id="decline-cookie" onClick="hide_cookie_warning(0);" class="agree-buttons"><f:translate key="pxacookiebar.decline"/></a>
+
+                            <a class="btn-close" onClick="hide_cookie_warning(0);">x</a>
                         </p>
                </div>
             </div>

@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_pxacookiebar_domain_model_cookiewarning'] = array(
 	'ctrl' => $TCA['tx_pxacookiebar_domain_model_cookiewarning']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, warningmessage, linktext, page,linkurl',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, warningmessage, linktext, page',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, warningmessage, linktext, page,linkurl,--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, warningmessage, linktext, page,--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -117,7 +117,7 @@ $TCA['tx_pxacookiebar_domain_model_cookiewarning'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 10,
-				'eval' => 'trim',
+				'eval' => 'trim,required',
 				'wizards' => array(
                 		  '_PADDING' => 2,
                 		  'link' => array(
@@ -132,15 +132,6 @@ $TCA['tx_pxacookiebar_domain_model_cookiewarning'] = array(
                			  	),
         		),
         )
-		),
-		'linkurl' => array(
-			'exclude' => 0,
-			'label' => 'LLL:EXT:pxa_cookie_bar/Resources/Private/Language/locallang_db.xml:tx_pxacookiebar_domain_model_cookiewarning.linkurl',
-			'config' => array(
-				'type' => 'input',
-				'size' => 100,
-				'eval' => 'trim'
-			),
 		),
 	),
 );
