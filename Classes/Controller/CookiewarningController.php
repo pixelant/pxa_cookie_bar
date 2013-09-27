@@ -57,7 +57,7 @@ class Tx_PxaCookieBar_Controller_CookiewarningController extends Tx_Extbase_MVC_
 		   $this->view->assign('show','0');}
 		else{
 		// unset cookies
-		if (isset($_SERVER['HTTP_COOKIE'])) {
+		if (isset($_SERVER['HTTP_COOKIE']) && intval($this->settings['disableCookies'])) {
 		    $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
 		    foreach($cookies as $cookie) {
 		        $parts = explode('=', $cookie);
@@ -68,6 +68,10 @@ class Tx_PxaCookieBar_Controller_CookiewarningController extends Tx_Extbase_MVC_
 		    }
 		}
 		
+		if(!intval($this->settings['disableCookies'])) {
+			setcookie('pxa_cookie_warning', 1,time()+60*60*24*30*12,'/');
+		}
+
 		$this->view->assign('show','1');
 		//$mess = $this->cookiewarningRepository->findByUid($this->settings['messUid']);
 		$messages = $this->cookiewarningRepository->findSomething();
@@ -89,6 +93,5 @@ class Tx_PxaCookieBar_Controller_CookiewarningController extends Tx_Extbase_MVC_
 		setcookie('pxa_cookie_warning', 1,time()+60*60*24*30*12,'/');
 		return TRUE;
 	}
-
 }
 ?>

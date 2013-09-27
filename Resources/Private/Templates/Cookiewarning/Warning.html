@@ -35,11 +35,17 @@ Otherwise your changes will be overwritten the next time you save the extension 
                                     <f:link.page pageUid="{page}"><f:translate key="pxacookiebar.readmore" /></f:link.page>
                                 </f:else>
                             </f:if>
-
-                            <a id="accept-cookie" onClick="hide_cookie_warning('accept');" class="agree-buttons"><f:translate key="pxacookiebar.accept"/></a>
-                            <a id="decline-cookie" onClick="hide_cookie_warning(0);" class="agree-buttons"><f:translate key="pxacookiebar.decline"/></a>
-
-                            <a class="btn-close" onClick="hide_cookie_warning(0);">x</a>
+                        
+                            <f:if condition="{settings.disableCookies} == 1">
+                              <f:then>
+                                <a id="accept-cookie" onClick="hide_cookie_warning('accept');" class="agree-buttons"><f:translate key="pxacookiebar.accept"/></a>
+                                <a id="decline-cookie" onClick="hide_cookie_warning(0);" class="agree-buttons"><f:translate key="pxacookiebar.decline"/></a>
+                              </f:then>
+                              <f:else>
+                                <a class="btn-close" onClick="hide_cookie_warning(0);">x</a>
+                              </f:else>
+                            </f:if>    
+                                                    
                         </p>
                </div>
             </div>
