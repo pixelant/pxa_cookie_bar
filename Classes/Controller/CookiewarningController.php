@@ -43,7 +43,7 @@ class Tx_PxaCookieBar_Controller_CookiewarningController extends Tx_Extbase_MVC_
 	 * @return void
 	 */
 	protected function initializeAction() {
-		$this->cookiewarningRepository = t3lib_div::makeInstance('Tx_PxaCookieBar_Domain_Repository_CookiewarningRepository');
+		$this->cookiewarningRepository = $this->objectManager->get('Tx_PxaCookieBar_Domain_Repository_CookiewarningRepository');	
     }
 
 

@@ -38,7 +38,8 @@ class Tx_PxaCookieBar_Domain_Repository_CookiewarningRepository extends Tx_Extba
     public function initializeObject() {
          $defaultQuerySettings = $this->objectManager->get('Tx_Extbase_Persistence_Typo3QuerySettings');
          $defaultQuerySettings->setRespectStoragePage(TRUE);
-         $defaultQuerySettings->setRespectEnableFields(TRUE);
+         if(t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version) < 6002000)
+            $defaultQuerySettings->setRespectEnableFields(TRUE);
          $defaultQuerySettings->setRespectSysLanguage(TRUE);
         }
  
