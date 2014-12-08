@@ -56,31 +56,34 @@ class Tx_PxaCookieBar_Controller_CookiewarningController extends Tx_Extbase_MVC_
 		if($_COOKIE['pxa_cookie_warning']) {
 		   $this->view->assign('show','0');}
 		else{
-		// unset cookies
-		if (isset($_SERVER['HTTP_COOKIE']) && intval($this->settings['disableCookies'])) {
-		    $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
-		    foreach($cookies as $cookie) {
-		        $parts = explode('=', $cookie);
-		        $name = trim($parts[0]);
-		        setcookie($name, '', time()-1000);
-		        setcookie($name, '', time()-1000, '/');
-		        setcookie($name, '', time()-1000, '/',substr($_SERVER['SERVER_NAME'],3));
-		    }
-		}
-		
-		if(!intval($this->settings['disableCookies'])) {
-			setcookie('pxa_cookie_warning', 1,time()+60*60*24*30*12,'/');
-		}
-
-		$this->view->assign('show','1');
-		//$mess = $this->cookiewarningRepository->findByUid($this->settings['messUid']);
-		$messages = $this->cookiewarningRepository->findSomething();
-		$mess = $messages->getFirst();
-		if ($mess) {
-			$this->view->assign('message',$mess->getWarningmessage());
-			$this->view->assign('moretext',$mess->getLinktext());
-			$this->view->assign('page',$mess->getPage());
+			// unset cookies
+			if (isset($_SERVER['HTTP_COOKIE']) && intval($this->settings['disableCookies'])) {
+			    $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
+			    foreach($cookies as $cookie) {
+			        $parts = explode('=', $cookie);
+			        $name = trim($parts[0]);
+			        setcookie($name, '', time()-1000);
+			        setcookie($name, '', time()-1000, '/');
+			        setcookie($name, '', time()-1000, '/',substr($_SERVER['SERVER_NAME'],3));
+			    }
 			}
+			
+			if(!intval($this->settings['disableCookies'])) {
+				setcookie('pxa_cookie_warning', 1,time()+60*60*24*30*12,'/');
+			}
+
+			$this->view->assign('show','1');
+			//$mess = $this->cookiewarningRepository->findByUid($this->settings['messUid']);
+			$messages = $this->cookiewarningRepository->findSomething();
+			$mess = $messages->getFirst();
+			if ($mess) {
+				$this->view->assign('message',$mess->getWarningmessage());
+				$this->view->assign('moretext',$mess->getLinktext());
+				$this->view->assign('page',$mess->getPage());
+			} else {
+				$this->view->assign('page',$this->settings['page']);
+			}
+
 		}
 	}
 

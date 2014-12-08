@@ -11,4 +11,8 @@ plugin.tx_pxacookiebar {
 		# cat=plugin.tx_pxacookiebar//a; type=string; label=Default storage PID
 		storagePid = 
 	}
+	settings {
+		disableCookies = 0
+		page =
+	}
 }
