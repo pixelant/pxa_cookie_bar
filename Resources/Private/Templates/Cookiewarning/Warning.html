@@ -29,10 +29,24 @@ Otherwise your changes will be overwritten the next time you save the extension 
                             </f:if>
                             <f:if condition="{moretext}">
                                 <f:then>
-                                    <f:link.page pageUid="{page}">{moretext}</f:link.page>
+                                    <f:if condition="{settings.targetBlank}">
+                                        <f:then>
+                                            <f:link.page pageUid="{page}" target="_blank">{moretext}</f:link.page>
+                                        </f:then>
+                                        <f:else>
+                                            <f:link.page pageUid="{page}">{moretext}</f:link.page>
+                                        </f:else>
+                                    </f:if>
                                 </f:then>
                                 <f:else>
-                                    <f:link.page pageUid="{page}"><f:translate key="pxacookiebar.readmore" /></f:link.page>
+                                    <f:if condition="{settings.targetBlank}">
+                                        <f:then>
+                                            <f:link.page pageUid="{page}" target="_blank"><f:translate key="pxacookiebar.readmore" /></f:link.page>
+                                        </f:then>
+                                        <f:else>
+                                            <f:link.page pageUid="{page}"><f:translate key="pxacookiebar.readmore" /></f:link.page>
+                                        </f:else>
+                                    </f:if>
                                 </f:else>
                             </f:if>
                         

@@ -14,6 +14,7 @@ plugin.tx_pxacookiebar {
 	settings {
 		disableCookies = {$plugin.tx_pxacookiebar.settings.disableCookies}
 		page = {$plugin.tx_pxacookiebar.settings.page}
+		targetBlank = {$plugin.tx_pxacookiebar.settings.targetBlank}
 	}
 }
 
@@ -24,8 +25,22 @@ page.includeJSFooterlibs.cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Js/
 page.includeCSS.cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Css/bar.css
 page.headerData.100 = TEXT 
 page.headerData.100 {
-data = TSFE:sys_language_uid
-wrap = <script> var cookie_bar_url="?type=314638125&L=|"; </script>
+	data = TSFE:sys_language_uid
+	wrap = <script> var cookie_bar_url="?type=314638125&L=|"; </script>
+}
+
+page.headerData.97 = TEXT
+page.headerData.97 {
+  typolink{
+    parameter.data = TSFE:id
+    additionalParams = &type=314638125&tx_pxacookiebar_pxacookiebar[action]=closeWarning
+    addQueryString = 1
+    addQueryString.method = GET
+    useCacheHash = 1
+    forceAbsoluteUrl = 1
+    returnLast = url
+  }
+  wrap = <script> var close_cookie_url="|"; </script>
 }
 
 cookieWarning = PAGE

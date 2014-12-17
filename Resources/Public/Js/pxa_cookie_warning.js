@@ -10,7 +10,7 @@ function create(htmlStr) {
 
 function hide_cookie_warning(accept){
   if(accept == 'accept') {
-    xmlhttp_fwb.open("GET",location+'?type=314638125&tx_pxacookiebar_pxacookiebar[action]=closeWarning&tx_pxacookiebar_pxacookiebar[controller]=Cookiewarning',true);
+    xmlhttp_fwb.open("GET",close_cookie_url,true);
     xmlhttp_fwb.send();
   }
   var e = document.getElementById("pxa-cookie-mess");
@@ -18,25 +18,24 @@ function hide_cookie_warning(accept){
 }
 
 function sendReq(){
-var xmlhttp;
-if (window.XMLHttpRequest){
-   xmlhttp=new XMLHttpRequest();
-   xmlhttp_fwb= new XMLHttpRequest();
+  var xmlhttp;
+  if (window.XMLHttpRequest) {
+     xmlhttp=new XMLHttpRequest();
+     xmlhttp_fwb= new XMLHttpRequest();
   }
-else{
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  xmlhttp_fwb= new ActiveXObject("Microsoft.XMLHTTP");
+  else {
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    xmlhttp_fwb= new ActiveXObject("Microsoft.XMLHTTP");
   }
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-    response = create(xmlhttp.responseText);
-    document.body.insertBefore(response, document.body.childNodes[0]);
-	}
+  xmlhttp.onreadystatechange=function()  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+        response = create(xmlhttp.responseText);
+        document.body.insertBefore(response, document.body.childNodes[0]);
+  	}
   }
-xmlhttp.open("GET",cookie_bar_url,true);
-xmlhttp.send();
+
+  xmlhttp.open("GET",cookie_bar_url,true);
+  xmlhttp.send();
 
 }
 
