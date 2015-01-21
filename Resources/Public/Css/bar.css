@@ -6,7 +6,16 @@
   width: 100%;
   color: #ffffff;
 }
-.top-message-wrap p {
+.bottom-message-wrap {
+  position: fixed;
+  bottom: 0;
+  z-index: 2000;
+  width: 100%;
+  color: #ffffff;
+}
+
+
+#pxa-cookie-mess p {
   color: #82787d;
   margin: 0;
   font-size: 11px;
@@ -16,11 +25,11 @@
   padding-right: 30px;
 }
 
-.top-message-wrap .cookie-container{
+#pxa-cookie-mess .cookie-container{
   padding: 0 20px;
 }
 
-.top-message-wrap .cookie-container .btn-close{
+#pxa-cookie-mess .cookie-container .btn-close{
   float: right;
   cursor: pointer;
   text-decoration: none;
@@ -32,13 +41,13 @@
   top: 0px;
   right: 0px;
 }
-.top-message-wrap .cookie-container .btn-close:hover{
+#pxa-cookie-mess .cookie-container .btn-close:hover{
 padding: 3px 5px 4px 5px;
 margin: -1px;
 color: #000000;
 
 }
-.top-message-wrap .cookie-container .agree-buttons{
+#pxa-cookie-mess .cookie-container .agree-buttons{
   cursor: pointer;
   text-decoration: none;
   border: 1px solid;
@@ -47,21 +56,25 @@ color: #000000;
   position: relative;
   top: 4px;
 }
-.top-message-wrap .cookie-container #accept-cookie{
+#pxa-cookie-mess .cookie-container #accept-cookie{
   color: #6FB536;
   margin-left: 40px;
 }
-.top-message-wrap .cookie-container #accept-cookie:hover{
+
+#pxa-cookie-mess .cookie-container #accept-cookie:hover{
   color: #609C30;
 }
-.top-message-wrap .cookie-container #decline-cookie{
+
+#pxa-cookie-mess .cookie-container #decline-cookie{
   color: #F14A29;
   margin-left: 10px;
 }
-.top-message-wrap .cookie-container #decline-cookie:hover{
+
+#pxa-cookie-mess .cookie-container #decline-cookie:hover{
   color: #C43E23;
 }
-.top-message-wrap .cookie-warning {
+
+#pxa-cookie-mess .cookie-warning {
   padding: 10px 0 15px 0;
   background-image:-webkit-linear-gradient(-90deg,rgb(254,254,254) 0%,rgb(248,248,248) 68%,rgb(230,230,230) 100%);
   background-image:-ms-linear-gradient(-90deg,rgb(254,254,254) 0%,rgb(248,248,248) 68%,rgb(230,230,230) 100%);
@@ -69,7 +82,8 @@ color: #000000;
   -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#fffefefe,endColorstr=#ffe6e6e6,GradientType=0)";
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#fffefefe,endColorstr=#ffe6e6e6,GradientType=0);
 }
-.top-message-wrap .cookie-warning .close {
+
+#pxa-cookie-mess .cookie-warning .close {
   margin: 2px 0 0 10px;
   font-size: 16px;
 }

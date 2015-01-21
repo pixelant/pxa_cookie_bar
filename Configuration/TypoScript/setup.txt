@@ -21,7 +21,7 @@ plugin.tx_pxacookiebar {
 
 
 #page.includeJSFooterlibs.requireLib = EXT:pxa_cookie_bar/Resources/Public/Js/require.js
-page.includeJSFooterlibs.cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Js/pxa_cookie_warning.js
+page.includeJSFooter.cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Js/pxa_cookie_warning.js
 page.includeCSS.cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Css/bar.css
 page.headerData.100 = TEXT 
 page.headerData.100 {
@@ -49,3 +49,9 @@ cookieWarning.config.no_cache = 1
 cookieWarning.config.disableAllHeaderCode = 1
 
 cookieWarning.5 < tt_content.list.20.pxacookiebar_pxacookiebar
+
+[globalVar = LIT:bottomFix = {$plugin.tx_pxacookiebar.settings.position}]
+plugin.tx_pxacookiebar.settings.wrapperClasses = bottom-message-wrap
+[else]
+plugin.tx_pxacookiebar.settings.wrapperClasses = top-message-wrap
+[global]

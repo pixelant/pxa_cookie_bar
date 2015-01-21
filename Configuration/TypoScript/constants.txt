@@ -15,5 +15,6 @@ plugin.tx_pxacookiebar {
 		disableCookies = 0
 		page =
 		targetBlank = 0
+		position = top
 	}
 }
