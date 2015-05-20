@@ -33,8 +33,8 @@ function sendReq(){
         document.body.insertBefore(response, document.body.childNodes[0]);
   	}
   }
-
-  xmlhttp.open("GET",cookie_bar_url,true);
+  var timestamp = new Date().getTime();
+  xmlhttp.open("GET",cookie_bar_url+'&ts='+timestamp,true);
   xmlhttp.send();
 
 }
