@@ -6,7 +6,7 @@ CREATE TABLE tx_pxacookiebar_domain_model_cookiewarning (
 uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
-	warningmessage varchar(255) DEFAULT '' NOT NULL,
+	warningmessage text NOT NULL,
 	linktext varchar(255) DEFAULT '' NOT NULL,
 	page int(11) DEFAULT '0' NOT NULL,
 	linkurl varchar(255) DEFAULT '' NOT NULL,
