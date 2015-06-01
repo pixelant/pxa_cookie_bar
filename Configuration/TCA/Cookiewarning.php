@@ -97,8 +97,7 @@ $TCA['tx_pxacookiebar_domain_model_cookiewarning'] = array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:pxa_cookie_bar/Resources/Private/Language/locallang_db.xml:tx_pxacookiebar_domain_model_cookiewarning.warningmessage',
 			'config' => array(
-				'type' => 'input',
-				'size' => 120,
+				'type' => 'text',
 				'eval' => 'trim'
 			),
 		),
