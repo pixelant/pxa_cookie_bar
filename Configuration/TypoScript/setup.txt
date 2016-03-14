@@ -26,7 +26,7 @@ page.includeCSS.cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Css/bar.css
 page.headerData.100 = TEXT 
 page.headerData.100 {
 	data = TSFE:sys_language_uid
-	wrap = <script> var cookie_bar_url="?type=314638125&L=|"; </script>
+	wrap = <script> var cookie_bar_url="/?type=314638125&L=|"; </script>
 }
 
 page.headerData.97 = TEXT
