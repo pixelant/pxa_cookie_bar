@@ -23,7 +23,7 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
      * @return mixed
      */
     public function render() {
-        if(boolval($this->arguments['targetBlank'])) {
+        if((boolean)$this->arguments['targetBlank']) {
             $this->arguments['configuration']['parameter'] .= ' _blank';
         }
 
