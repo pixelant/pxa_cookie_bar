@@ -1,69 +1,53 @@
-<f:layout name="Default" />
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:pxa="http://typo3.org/ns/Pixelant/PxaCookieBar/ViewHelpers">
 
-This Template is responsible for creating a table of domain objects.
+    <f:layout name="Default"/>
 
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        List.html: keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
-<f:section name="main">
- 
-   <f:if condition="{show} == 1">
-    <div id="pxa-cookie-mess" class="{settings.wrapperClasses}" style="display: block;">
-        <div class="cookie-warning">
-            <div class="cookie-container">
-                <div class="cookie-row">
+    <f:section name="main">
+        <div id="pxa-cookie-mess" class="{settings.wrapperClasses}">
+            <div class="cookie-warning">
+                <div class="cookie-container">
+                    <div class="cookie-row">
                         <p>
                             <f:if condition="{message}">
                                 <f:then>
-                                    <f:format.html>{message}</f:format.html>
+                                    <f:format.nl2br>{message}</f:format.nl2br>
                                 </f:then>
                                 <f:else>
-                                    <f:translate key="pxacookiebar.message" />
+                                    <f:translate key="pxacookiebar.message"/>
                                 </f:else>
                             </f:if>
                             <f:if condition="{moretext}">
                                 <f:then>
-                                    <f:if condition="{settings.targetBlank}">
-                                        <f:then>
-                                            <f:link.page pageUid="{page}" target="_blank">{moretext}</f:link.page>
-                                        </f:then>
-                                        <f:else>
-                                            <f:link.page pageUid="{page}">{moretext}</f:link.page>
-                                        </f:else>
-                                    </f:if>
+                                    <pxa:link configuration="{parameter: page}" targetBlank="{settings.targetBlank}">{moretext}</pxa:link>
                                 </f:then>
                                 <f:else>
-                                    <f:if condition="{settings.targetBlank}">
-                                        <f:then>
-                                            <f:link.page pageUid="{page}" target="_blank"><f:translate key="pxacookiebar.readmore" /></f:link.page>
-                                        </f:then>
-                                        <f:else>
-                                            <f:link.page pageUid="{page}"><f:translate key="pxacookiebar.readmore" /></f:link.page>
-                                        </f:else>
-                                    </f:if>
+                                    <pxa:link configuration="{parameter: page}" targetBlank="{settings.targetBlank}"><f:translate key="pxacookiebar.readmore"/></pxa:link>
                                 </f:else>
                             </f:if>
-                        
-                            <f:if condition="{settings.disableCookies} == 1">
-                              <f:then>
-                                <a id="accept-cookie" onClick="hide_cookie_warning('accept');" class="agree-buttons"><f:translate key="pxacookiebar.accept"/></a>
-                                <a id="decline-cookie" onClick="hide_cookie_warning(0);" class="agree-buttons"><f:translate key="pxacookiebar.decline"/></a>
-                              </f:then>
-                              <f:else>
-                                <a class="btn-close" onClick="hide_cookie_warning(0);">x</a>
-                              </f:else>
-                            </f:if>    
-                                                    
+
+                            <f:if condition="{settings.disableCookies}">
+                                <f:then>
+                                    <a id="accept-cookie" onClick="hide_cookie_warning('accept');"
+                                       class="agree-buttons">
+                                        <f:translate key="pxacookiebar.accept"/>
+                                    </a>
+                                    <a id="decline-cookie" onClick="hide_cookie_warning(0);" class="agree-buttons">
+                                        <f:translate key="pxacookiebar.decline"/>
+                                    </a>
+                                </f:then>
+                                <f:else>
+                                    <a class="btn-close" onClick="hide_cookie_warning(0);">x</a>
+                                </f:else>
+                            </f:if>
                         </p>
-               </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    </f:if>
-</f:section>
+    </f:section>
+</div>
+
+
+

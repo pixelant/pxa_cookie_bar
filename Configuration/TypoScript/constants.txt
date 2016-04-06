@@ -11,10 +11,25 @@ plugin.tx_pxacookiebar {
 		# cat=plugin.tx_pxacookiebar//a; type=string; label=Default storage PID
 		storagePid = 
 	}
+}
+# Settings for cookies
+plugin.tx_pxacookiebar {
+
+	# customsubcategory=solrpxacookiebar=Cookie bar seetings
 	settings {
+		# cat=plugin.tx_pxacookiebar/solrpxacookiebar/010; type=boolean; label=Disable using of cookie (Active)
 		disableCookies = 0
-		page =
+
+		# cat=plugin.tx_pxacookiebar/solrpxacookiebar/015; type=string; label=Cookie link or Page UID
+		page = 1
+
+		# cat=plugin.tx_pxacookiebar/solrpxacookiebar/020; type=boolean; label=Link target blank
 		targetBlank = 0
+
+		# cat=plugin.tx_pxacookiebar/solrpxacookiebar/025; type=options[Top=top,Bottom=bottomFix]; label=Position
 		position = top
+
+		# cat=plugin.tx_pxacookiebar/solrpxacookiebar/030; type=boolean; label=Show only after FE user login
+		showOnlyOnLogin = 0
 	}
 }

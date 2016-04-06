@@ -1,5 +1,7 @@
 <?php
 
+namespace Pixelant\PxaCookieBar\Domain\Model;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -30,7 +32,8 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_PxaCookieBar_Domain_Model_Cookiewarning extends Tx_Extbase_DomainObject_AbstractEntity {
+class Cookiewarning extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+
 	/**
 	 * warningmessage
 	 *
@@ -111,4 +114,3 @@ class Tx_PxaCookieBar_Domain_Model_Cookiewarning extends Tx_Extbase_DomainObject
 		$this->page = $page;
 	}
 }
-?>

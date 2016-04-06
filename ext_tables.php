@@ -3,16 +3,10 @@ if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-Tx_Extbase_Utility_Extension::registerPlugin(
-	$_EXTKEY,
-	'Pxacookiebar',
-	'Cookie bar'
-);
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Cookie bar');
 
-t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Cookie bar');
-
-t3lib_extMgm::addLLrefForTCAdescr('tx_pxacookiebar_domain_model_cookiewarning', 'EXT:pxa_cookie_bar/Resources/Private/Language/locallang_csh_tx_pxacookiebar_domain_model_cookiewarning.xml');
-t3lib_extMgm::allowTableOnStandardPages('tx_pxacookiebar_domain_model_cookiewarning');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_pxacookiebar_domain_model_cookiewarning', 'EXT:pxa_cookie_bar/Resources/Private/Language/locallang_csh_tx_pxacookiebar_domain_model_cookiewarning.xml');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_pxacookiebar_domain_model_cookiewarning');
 $TCA['tx_pxacookiebar_domain_model_cookiewarning'] = array(
 	'ctrl' => array(
 		'title'	=> 'LLL:EXT:pxa_cookie_bar/Resources/Private/Language/locallang_db.xml:tx_pxacookiebar_domain_model_cookiewarning',
@@ -35,9 +29,7 @@ $TCA['tx_pxacookiebar_domain_model_cookiewarning'] = array(
 			'endtime' => 'endtime',
 		),
 		'searchFields' => '',
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Cookiewarning.php',
-		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_pxacookiebar_domain_model_cookiewarning.gif'
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Cookiewarning.php',
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_pxacookiebar_domain_model_cookiewarning.gif'
 	),
 );
-
-?>

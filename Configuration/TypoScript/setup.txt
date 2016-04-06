@@ -15,6 +15,7 @@ plugin.tx_pxacookiebar {
 		disableCookies = {$plugin.tx_pxacookiebar.settings.disableCookies}
 		page = {$plugin.tx_pxacookiebar.settings.page}
 		targetBlank = {$plugin.tx_pxacookiebar.settings.targetBlank}
+		showOnlyOnLogin = {$plugin.tx_pxacookiebar.settings.showOnlyOnLogin}
 	}
 }
 

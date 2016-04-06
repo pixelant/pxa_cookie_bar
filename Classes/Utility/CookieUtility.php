@@ -1,7 +1,8 @@
 <?php
 
+namespace Pixelant\PxaCookieBar\Utility;
 
-class Tx_PxaCookieBar_Utility_CookieUtility {
+class CookieUtility {
 
     /**
      * clear all cookies

@@ -13,5 +13,3 @@ class FrontendUserAuthentication extends \TYPO3\CMS\Frontend\Authentication\Fron
 		}    
    }
 }
-
-?>
