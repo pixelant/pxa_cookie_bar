@@ -5,8 +5,16 @@
     <f:layout name="Default"/>
 
     <f:section name="main">
-        <div id="pxa-cookie-mess" class="{settings.wrapperClasses}">
-            <div class="cookie-warning">
+     <f:if condition="{settings.disableCookies} == 1">
+          <f:then>
+             <div id="pxa-cookie-mess" class="{settings.wrapperClasses} active">
+          </f:then>
+          <f:else>
+            <div id="pxa-cookie-mess" class="{settings.wrapperClasses}">
+          </f:else>
+    </f:if>
+
+           <div class="cookie-warning">
                 <div class="cookie-container">
                     <div class="cookie-row">
                         <p>
@@ -18,7 +26,9 @@
                                     <f:translate key="pxacookiebar.message"/>
                                 </f:else>
                             </f:if>
-                            <f:if condition="{moretext}">
+
+                        </p>
+                                <f:if condition="{moretext}">
                                 <f:then>
                                     <pxa:link configuration="{parameter: page}" targetBlank="{settings.targetBlank}">{moretext}</pxa:link>
                                 </f:then>
@@ -27,7 +37,7 @@
                                 </f:else>
                             </f:if>
 
-                            <f:if condition="{settings.disableCookies}">
+                            <f:if condition="{settings.disableCookies}== 1">
                                 <f:then>
                                     <a id="accept-cookie" onClick="hide_cookie_warning('accept');"
                                        class="agree-buttons">
@@ -38,10 +48,9 @@
                                     </a>
                                 </f:then>
                                 <f:else>
-                                    <a class="btn-close" onClick="hide_cookie_warning(0);">x</a>
+                                    <a class="btn-close" onClick="hide_cookie_warning(0);"><f:translate key="pxacookiebar.close"/></a>
                                 </f:else>
                             </f:if>
-                        </p>
                     </div>
                 </div>
             </div>

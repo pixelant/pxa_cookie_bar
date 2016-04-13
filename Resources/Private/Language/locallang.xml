@@ -10,22 +10,26 @@
 			<label index="pxacookiebar.readmore">Read more</label>
 			<label index="pxacookiebar.accept">Accept</label>
 			<label index="pxacookiebar.decline">Decline</label>
+			<label index="pxacookiebar.close">CLOSE</label>
 		</languageKey>
 		<languageKey index="en" type="array">
 			<label index="pxacookiebar.message">This website uses cookies. By continuing to browse this website you are agreeing to our use of cookies. Find out more by reading our privacy policy.</label>
 			<label index="pxacookiebar.readmore">Read more</label>
+			<label index="pxacookiebar.close">CLOSE</label>
 		</languageKey>
 		<languageKey index="sv" type="array">
 			<label index="pxacookiebar.message">Denna webbplats använder cookies. Genom att fortsätta att surfa på denna webbplats samtycker du till vår användning av cookies. Ta reda på mer genom att läsa vår sekretesspolicy.</label>
 			<label index="pxacookiebar.readmore">Läs mer</label>
 			<label index="pxacookiebar.accept">Acceptera</label>
 			<label index="pxacookiebar.decline">Avböj</label>
+			<label index="pxacookiebar.close">STÄNG</label>
 		</languageKey>
 		<languageKey index="se" type="array">
 			<label index="pxacookiebar.message">Denna webbplats använder cookies. Genom att fortsätta att surfa på denna webbplats samtycker du till vår användning av cookies. Ta reda på mer genom att läsa vår sekretesspolicy.</label>
 			<label index="pxacookiebar.readmore">Läs mer</label>
 			<label index="pxacookiebar.accept">Acceptera</label>
 			<label index="pxacookiebar.decline">Avböj</label>
+			<label index="pxacookiebar.close">STÄNG</label>
 		</languageKey>
 		<languageKey index="da" type="array">
 			<label index="pxacookiebar.message">Vi bruger cookies på denne hjemmeside. Hvis du klikker videre på hjemmesiden, har du accepteret vores brug af cookies.</label>
@@ -44,7 +48,7 @@
 			<label index="pxacookiebar.readmore">Читати більше</label>
 		</languageKey>
 		<languageKey index="si" type="array">
-			<label index="pxacookiebar.message">Za boljše delovanje ta stran uporablja piškotke. Sprejmi piškotke.</label>			
+			<label index="pxacookiebar.message">Za boljše delovanje ta stran uporablja piškotke. Sprejmi piškotke.</label>
 			<label index="pxacookiebar.readmore">Preberite več</label>
 			<label index="pxacookiebar.accept">Accept</label>
 			<label index="pxacookiebar.decline">Decline</label>
