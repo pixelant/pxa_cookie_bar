@@ -53,7 +53,7 @@ class Cookiewarning extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * page
 	 *
-	 * @var \integer
+	 * @var \string
 	 */
 	protected $page;
 
@@ -98,7 +98,7 @@ class Cookiewarning extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the page
 	 *
-	 * @return \integer $page
+	 * @return \string $page
 	 */
 	public function getPage() {
 		return $this->page;
@@ -107,7 +107,7 @@ class Cookiewarning extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the page
 	 *
-	 * @param \integer $page
+	 * @param \string $page
 	 * @return void
 	 */
 	public function setPage($page) {

@@ -5,52 +5,37 @@
     <f:layout name="Default"/>
 
     <f:section name="main">
-     <f:if condition="{settings.disableCookies} == 1">
-          <f:then>
-             <div id="pxa-cookie-mess" class="{settings.wrapperClasses} active">
-          </f:then>
-          <f:else>
-            <div id="pxa-cookie-mess" class="{settings.wrapperClasses}">
-          </f:else>
-    </f:if>
-
-           <div class="cookie-warning">
+        <div id="pxa-cookie-mess" class="{settings.wrapperClasses}{f:if(then: ' active', condition: settings.disableCookies)}">
+            <div class="cookie-warning">
                 <div class="cookie-container">
                     <div class="cookie-row">
-                        <p>
-                            <f:if condition="{message}">
-                                <f:then>
-                                    <f:format.nl2br>{message}</f:format.nl2br>
-                                </f:then>
-                                <f:else>
-                                    <f:translate key="pxacookiebar.message"/>
-                                </f:else>
-                            </f:if>
+                        <f:if condition="{message}">
+                            <f:then>
+                                <f:format.html>{message}</f:format.html>
+                            </f:then>
+                            <f:else>
+                                <p><f:translate key="pxacookiebar.message"/></p>
+                            </f:else>
+                        </f:if>
 
-                        </p>
-                                <f:if condition="{moretext}">
-                                <f:then>
-                                    <pxa:link configuration="{parameter: page}" targetBlank="{settings.targetBlank}">{moretext}</pxa:link>
-                                </f:then>
-                                <f:else>
-                                    <pxa:link configuration="{parameter: page}" targetBlank="{settings.targetBlank}"><f:translate key="pxacookiebar.readmore"/></pxa:link>
-                                </f:else>
-                            </f:if>
+                        <f:if condition="{moretext}">
+                            <f:then>
+                                <pxa:link configuration="{parameter: page}">{moretext}</pxa:link>
+                            </f:then>
+                            <f:else>
+                                <pxa:link configuration="{parameter: page}" targetBlank="{settings.targetBlank}"><f:translate key="pxacookiebar.readmore"/></pxa:link>
+                            </f:else>
+                        </f:if>
 
-                            <f:if condition="{settings.disableCookies}== 1">
-                                <f:then>
-                                    <a id="accept-cookie" onClick="hide_cookie_warning('accept');"
-                                       class="agree-buttons">
-                                        <f:translate key="pxacookiebar.accept"/>
-                                    </a>
-                                    <a id="decline-cookie" onClick="hide_cookie_warning(0);" class="agree-buttons">
-                                        <f:translate key="pxacookiebar.decline"/>
-                                    </a>
-                                </f:then>
-                                <f:else>
-                                    <a class="btn-close" onClick="hide_cookie_warning(0);"><f:translate key="pxacookiebar.close"/></a>
-                                </f:else>
-                            </f:if>
+                        <f:if condition="{settings.disableCookies}">
+                            <f:then>
+                                <a id="accept-cookie" onClick="hide_cookie_warning('accept');"  class="agree-buttons"><f:translate key="pxacookiebar.accept"/></a>
+                                <a id="decline-cookie" onClick="hide_cookie_warning(0);" class="agree-buttons"><f:translate key="pxacookiebar.decline"/></a>
+                            </f:then>
+                            <f:else>
+                                <a class="btn-close" onClick="hide_cookie_warning(0);"><f:translate key="pxacookiebar.close_{settings.stylingVersion}"/></a>
+                            </f:else>
+                        </f:if>
                     </div>
                 </div>
             </div>

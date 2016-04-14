@@ -31,5 +31,8 @@ plugin.tx_pxacookiebar {
 
 		# cat=plugin.tx_pxacookiebar/solrpxacookiebar/030; type=boolean; label=Show only after FE user login
 		showOnlyOnLogin = 0
+
+		# cat=plugin.tx_pxacookiebar/solrpxacookiebar/035; type=options[Standart version=1,Styling version 2=2]; label=Styling version
+		stylingVersion = 1
 	}
 }

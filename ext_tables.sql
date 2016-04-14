@@ -8,8 +8,7 @@ uid int(11) NOT NULL auto_increment,
 
 	warningmessage text NOT NULL,
 	linktext varchar(255) DEFAULT '' NOT NULL,
-	page int(11) DEFAULT '0' NOT NULL,
-	linkurl varchar(255) DEFAULT '' NOT NULL,
+	page varchar(55) DEFAULT '' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,

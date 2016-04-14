@@ -2,6 +2,8 @@
 
 namespace Pixelant\PxaCookieBar\Utility;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 class CookieUtility {
 
     /**
@@ -9,13 +11,20 @@ class CookieUtility {
      * @return void
      */
     public static function removeAllCookies() {
-        $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
+        $cookies = GeneralUtility::trimExplode(';', $_SERVER['HTTP_COOKIE'], TRUE);
+
         foreach($cookies as $cookie) {
-            $parts = explode('=', $cookie);
-            $name = trim($parts[0]);
-            setcookie($name, '', time()-1000);
-            setcookie($name, '', time()-1000, '/');
-            setcookie($name, '', time()-1000, '/',substr($_SERVER['SERVER_NAME'],3));
+            $parts = GeneralUtility::trimExplode('=', $cookie, TRUE);
+
+            if($parts[0] !== 'be_typo_user') {
+                $host = GeneralUtility::getIndpEnv('TYPO3_HOST_ONLY');
+                $subdomain = substr($host, 0, 3) === 'www' ? substr($host, 3) : ('.' . $host);
+
+                setcookie($parts[0], '', time()-1000);
+                setcookie($parts[0], '', time()-1000, '/');
+                setcookie($parts[0], '', time()-1000, '/', $host);
+                setcookie($parts[0], '', time()-1000, '/', $subdomain);
+            }
         }
 
         self::removeFEUserCookie();

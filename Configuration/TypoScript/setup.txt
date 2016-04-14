@@ -16,6 +16,7 @@ plugin.tx_pxacookiebar {
 		page = {$plugin.tx_pxacookiebar.settings.page}
 		targetBlank = {$plugin.tx_pxacookiebar.settings.targetBlank}
 		showOnlyOnLogin = {$plugin.tx_pxacookiebar.settings.showOnlyOnLogin}
+		stylingVersion = {$plugin.tx_pxacookiebar.settings.stylingVersion}
 	}
 }
 
@@ -23,7 +24,7 @@ plugin.tx_pxacookiebar {
 
 #page.includeJSFooterlibs.requireLib = EXT:pxa_cookie_bar/Resources/Public/Js/require.js
 page.includeJSFooter.cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Js/pxa_cookie_warning.js
-page.includeCSS.cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Css/bar.css
+page.includeCSS.cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Css/bar_v_{$plugin.tx_pxacookiebar.settings.stylingVersion}.css
 page.headerData.100 = TEXT 
 page.headerData.100 {
 	data = TSFE:sys_language_uid
