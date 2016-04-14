@@ -94,6 +94,9 @@ color: #000000;
   background-color: black;
   border-bottom: 1px solid #dc0432;
 }
+#pxa-cookie-mess.active .cookie-warning {
+  padding-bottom: 0;
+}
 
 #pxa-cookie-mess .cookie-warning .close {
  margin: 2px 0 0 10px;
@@ -120,5 +123,13 @@ color: #000000;
   }
   #pxa-cookie-mess p {
     margin-right: 40px;
+  }
+  #pxa-cookie-mess.active p {
+    margin-right: 0;
+    padding-right: 0;
+  }
+  #pxa-cookie-mess .cookie-container .agree-buttons{
+    left: 105px;
+
   }
 }
