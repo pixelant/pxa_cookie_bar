@@ -107,6 +107,7 @@
 #pxa-cookie-mess .cookie-warning .close {
     margin: 2px 0 0 10px;
     font-size: 16px;
+    text-transform: uppercase;
 }
 
 #pxa-cookie-mess a {
