@@ -16,7 +16,8 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
      */
     public function initializeArguments() {
         $this->registerArgument('configuration', 'array', 'The typoLink configuration', TRUE);
-        $this->registerArgument('targetBlank', 'boolean', 'If link target is blank', FALSE);
+        $this->registerArgument('targetBlank', 'boolean', 'If link target is blank', FALSE, FALSE);
+        $this->registerArgument('class', 'string', 'Link class', FALSE, '');
     }
 
     /**
@@ -26,7 +27,9 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
         if((boolean)$this->arguments['targetBlank']) {
             $this->arguments['configuration']['parameter'] .= ' _blank';
         }
-
+        if(!empty($this->arguments['class'])) {
+            $this->arguments['configuration']['ATagParams'] = 'class="'.$this->arguments['class'].'"';
+        }
         return $GLOBALS['TSFE']->cObj->typoLink($this->renderChildren(), $this->arguments['configuration']);
     }
 }

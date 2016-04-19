@@ -5,7 +5,7 @@
     <f:layout name="Default"/>
 
     <f:section name="main">
-        <div id="pxa-cookie-mess" class="{settings.wrapperClasses}{f:if(then: ' active', condition: settings.disableCookies)}">
+        <div id="pxa-cookie-mess" class="{settings.wrapperClasses}{f:if(then: ' active-consent', else: 'passive-consent', condition: settings.disableCookies)}">
             <div class="cookie-warning">
                 <div class="cookie-container">
                     <div class="cookie-row">
@@ -20,10 +20,10 @@
 
                         <f:if condition="{moretext}">
                             <f:then>
-                                <pxa:link configuration="{parameter: page}">{moretext}</pxa:link>
+                                <pxa:link configuration="{parameter: page}" class="read-more">{moretext}</pxa:link>
                             </f:then>
                             <f:else>
-                                <pxa:link configuration="{parameter: page}" targetBlank="{settings.targetBlank}"><f:translate key="pxacookiebar.readmore"/></pxa:link>
+                                <pxa:link configuration="{parameter: page}" targetBlank="{settings.targetBlank}" class="read-more"><f:translate key="pxacookiebar.readmore"/></pxa:link>
                             </f:else>
                         </f:if>
 
