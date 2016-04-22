@@ -138,3 +138,16 @@
         margin-left: 28px;
     }
 }
+@media (max-width: 400px) {
+         #pxa-cookie-mess .cookie-container .read-more + .agree-buttons {
+            margin-left: 0;
+            display: block;
+
+    }
+        #pxa-cookie-mess .cookie-container #decline-cookie {
+            margin-left: 0;
+            width: 100%
+}
+
+
+}
