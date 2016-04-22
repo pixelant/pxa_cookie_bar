@@ -143,10 +143,17 @@
             margin-left: 0;
             display: block;
 
+
+    }
+    #pxa-cookie-mess .cookie-container .agree-buttons {
+        margin-bottom: 15px;
     }
         #pxa-cookie-mess .cookie-container #decline-cookie {
             margin-left: 0;
-            width: 100%
+            width: 100%;
+            top: 0;
+            margin-bottom: 10px;
+    }
 }
 
 
