@@ -51,6 +51,7 @@
     color: #fff;
     background-color: #4AA74D;
     text-transform: uppercase;
+    box-sizing: border-box;
 }
 
 #pxa-cookie-mess .cookie-container .btn-close:hover {
