@@ -126,10 +126,10 @@
 }
 
 @media (max-width: 767px) {
-    #pxa-cookie-mess .cookie-container .btn-close {
+    /*#pxa-cookie-mess .cookie-container .btn-close {
         bottom: 12px;
         top: inherit;
-    }
+    }*/
 
     #pxa-cookie-mess.passive-consent p {
         margin-right: 40px;
