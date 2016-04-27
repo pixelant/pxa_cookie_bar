@@ -50,8 +50,13 @@ cookieWarning.typeNum = 314638125
 cookieWarning.config.no_cache = 1
 cookieWarning.config.disableAllHeaderCode = 1
 
-cookieWarning.5 < tt_content.list.20.pxacookiebar_pxacookiebar
-
+cookieWarning.5 = USER
+cookieWarning.5 {
+	userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+	extensionName = PxaCookieBar
+	pluginName = Pxacookiebar
+	vendorName = Pixelant
+}
 [globalVar = LIT:bottomFix = {$plugin.tx_pxacookiebar.settings.position}]
 plugin.tx_pxacookiebar.settings.wrapperClasses = bottom-message-wrap
 [else]
