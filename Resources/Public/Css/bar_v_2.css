@@ -24,10 +24,12 @@
     position: relative;
     margin: 0;
 }
+
 #pxa-cookie-mess.passive-consent p {
     padding-right: 20px;
     margin-right: 50px;
 }
+
 #pxa-cookie-mess .cookie-container {
     position: relative;
     padding: 0 20px;
@@ -74,9 +76,11 @@
     text-align: center;
     margin-bottom: 20px;
 }
+
 #pxa-cookie-mess .cookie-container .read-more + .agree-buttons {
     margin-left: 55px;
 }
+
 #pxa-cookie-mess .cookie-container #accept-cookie {
     color: #fff;
     background-color: #4AA74D;
@@ -126,36 +130,19 @@
 }
 
 @media (max-width: 767px) {
-    /*#pxa-cookie-mess .cookie-container .btn-close {
-        bottom: 12px;
-        top: inherit;
-    }*/
-
     #pxa-cookie-mess.passive-consent p {
         margin-right: 40px;
     }
-
-    #pxa-cookie-mess .cookie-container .read-more + .agree-buttons {
-        margin-left: 28px;
-    }
-}
-@media (max-width: 420px) {
-         #pxa-cookie-mess .cookie-container .read-more + .agree-buttons {
-            margin-left: 0;
-            display: block;
-
-
+    #pxa-cookie-mess .cookie-container .read-more + .agree-buttons{
+        margin-left: 0;
     }
     #pxa-cookie-mess .cookie-container .agree-buttons {
-        margin-bottom: 15px;
+        width: 100%;
+        display: block;
     }
-        #pxa-cookie-mess .cookie-container #decline-cookie {
-            margin-left: 0;
-            width: 100%;
-            top: 0;
-            margin-bottom: 10px;
+    #pxa-cookie-mess .cookie-container #decline-cookie {
+        top: 0;
+        margin-bottom: 10px;
+        margin-left: 0;
     }
-}
-
-
 }
