@@ -4,46 +4,74 @@ plugin.tx_pxacookiebar {
 		partialRootPath = {$plugin.tx_pxacookiebar.view.partialRootPath}
 		layoutRootPath = {$plugin.tx_pxacookiebar.view.layoutRootPath}
 	}
+
 	persistence {
 		storagePid = {$plugin.tx_pxacookiebar.persistence.storagePid}
 	}
+
 	features {
 		# uncomment the following line to enable the new Property Mapper.
 		# rewrittenPropertyMapper = 1
 	}
+
 	settings {
 		disableCookies = {$plugin.tx_pxacookiebar.settings.disableCookies}
 		page = {$plugin.tx_pxacookiebar.settings.page}
 		targetBlank = {$plugin.tx_pxacookiebar.settings.targetBlank}
 		showOnlyOnLogin = {$plugin.tx_pxacookiebar.settings.showOnlyOnLogin}
 		stylingVersion = {$plugin.tx_pxacookiebar.settings.stylingVersion}
+		isCDN = {$plugin.tx_pxacookiebar.settings.isCDN}
 	}
 }
-
-
 
 #page.includeJSFooterlibs.requireLib = EXT:pxa_cookie_bar/Resources/Public/Js/require.js
 page.includeJSFooter.cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Js/pxa_cookie_warning.js
 page.includeCSS.cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Css/bar_v_{$plugin.tx_pxacookiebar.settings.stylingVersion}.css
-page.headerData.100 = TEXT 
-page.headerData.100 {
-	data = TSFE:sys_language_uid
-	wrap = <script> var cookie_bar_url="/?type=314638125&L=|"; </script>
-}
 
-page.headerData.97 = TEXT
-page.headerData.97 {
-  typolink{
-    parameter.data = TSFE:id
-    additionalParams = &type=314638125&tx_pxacookiebar_pxacookiebar[action]=closeWarning
-    addQueryString = 1
-    addQueryString.method = GET
-    useCacheHash = 1
-    forceAbsoluteUrl = 1
-    returnLast = url
-  }
-  wrap = <script> var close_cookie_url="|"; </script>
+page.headerData.86 = COA
+page.headerData.86 {
+	10 = TEXT
+	10 {
+		typolink {
+			parameter.data = TSFE:id
+			additionalParams = &type=314638125&tx_pxacookiebar_pxacookiebar[action]=closeWarning
+			addQueryString = 1
+			addQueryString.method = GET
+			useCacheHash = 1
+			forceAbsoluteUrl = 1
+			returnLast = url
+		}
+		wrap = var close_cookie_url="|";
+	}
+
+	20 = TEXT
+	20 {
+		stdWrap {
+			data = TSFE:sys_language_uid
+			wrap = /?type=314638125&L=|
+			dataWrap = var cookie_bar_url="{getIndpEnv:TYPO3_REQUEST_HOST}|";
+		}
+	}
+
+	wrap = <script>|</script>
 }
+[globalVar = LIT:1 = {$plugin.tx_pxacookiebar.settings.isCDN}]
+page.headerData.86 {
+	20 {
+		replacement {
+			10 {
+				search = /(https:\/\/www\.|http:\/\/www\.|http:\/\/|https:\/\/)/s
+				useRegExp = 1
+				replace = http://cdn.
+			}
+		}
+	}
+}
+[globalVar = LIT:bottomFix = {$plugin.tx_pxacookiebar.settings.position}]
+	plugin.tx_pxacookiebar.settings.wrapperClasses = bottom-message-wrap
+[else]
+	plugin.tx_pxacookiebar.settings.wrapperClasses = top-message-wrap
+[global]
 
 cookieWarning = PAGE
 cookieWarning.typeNum = 314638125
@@ -57,8 +85,3 @@ cookieWarning.5 {
 	pluginName = Pxacookiebar
 	vendorName = Pixelant
 }
-[globalVar = LIT:bottomFix = {$plugin.tx_pxacookiebar.settings.position}]
-plugin.tx_pxacookiebar.settings.wrapperClasses = bottom-message-wrap
-[else]
-plugin.tx_pxacookiebar.settings.wrapperClasses = top-message-wrap
-[global]

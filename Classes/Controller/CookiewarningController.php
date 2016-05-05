@@ -24,6 +24,9 @@ namespace Pixelant\PxaCookieBar\Controller;
      *
      *  This copyright notice MUST APPEAR in all copies of the script!
      ***************************************************************/
+use Pixelant\PxaCookieBar\Utility\CookieUtility;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 
 /**
@@ -54,8 +57,6 @@ class CookiewarningController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
                 setcookie('pxa_cookie_warning', 1, time() + 60 * 60 * 24 * 30 * 12, '/');
             }
 
-            $this->view->assign('show', '1');
-
             $messages = $this->cookiewarningRepository->findSomething();
 
             if ($messages) {
@@ -66,6 +67,12 @@ class CookiewarningController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
                 $this->view->assign('page', $this->settings['page']);
             }
 
+            // check if CDN is enabled
+            if($this->settings['isCDN'] == 1 && ($cdnDomain = $this->getCdnDomain())) {
+                # allow subdomain request
+                $this->response->setHeader('Access-Control-Allow-Origin', GeneralUtility::getIndpEnv('TYPO3_SSL') ? 'https' : 'http' . '://' . $cdnDomain);
+            }
+            $this->view->assign('show', '1');
         }
     }
 
@@ -77,6 +84,18 @@ class CookiewarningController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
     public function closeWarningAction() {
         setcookie('pxa_cookie_warning', 1, time() + 60 * 60 * 24 * 30 * 12, '/');
         exit(0);
+    }
+
+    /**
+     * check if CDN is enabled and return domain
+     *
+     * @return string
+     */
+    private function getCdnDomain() {
+        $domain = BackendUtility::firstDomainRecord($this->getTSFE()->rootLine);
+        $domainRecord = BackendUtility::getDomainStartPage($domain);
+
+        return $domainRecord['tx_pxacdn_enable'] == 1 ? $domainRecord['domainName'] : '';
     }
 
     /**
