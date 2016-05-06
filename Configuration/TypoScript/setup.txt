@@ -20,16 +20,18 @@ plugin.tx_pxacookiebar {
 		targetBlank = {$plugin.tx_pxacookiebar.settings.targetBlank}
 		showOnlyOnLogin = {$plugin.tx_pxacookiebar.settings.showOnlyOnLogin}
 		stylingVersion = {$plugin.tx_pxacookiebar.settings.stylingVersion}
-		isCDN = {$plugin.tx_pxacookiebar.settings.isCDN}
+		useSubDomain = {$plugin.tx_pxacookiebar.settings.useSubDomain}
+		subDomain = {$plugin.tx_pxacookiebar.settings.subDomain}
 	}
 }
 
-#page.includeJSFooterlibs.requireLib = EXT:pxa_cookie_bar/Resources/Public/Js/require.js
 page.includeJSFooter.cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Js/pxa_cookie_warning.js
 page.includeCSS.cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Css/bar_v_{$plugin.tx_pxacookiebar.settings.stylingVersion}.css
 
+# options
 page.headerData.86 = COA
 page.headerData.86 {
+	# helper options
 	10 = TEXT
 	10 {
 		typolink {
@@ -41,7 +43,7 @@ page.headerData.86 {
 			forceAbsoluteUrl = 1
 			returnLast = url
 		}
-		wrap = var close_cookie_url="|";
+		wrap = cookieCloseUrl:"|",
 	}
 
 	20 = TEXT
@@ -49,22 +51,71 @@ page.headerData.86 {
 		stdWrap {
 			data = TSFE:sys_language_uid
 			wrap = /?type=314638125&L=|
-			dataWrap = var cookie_bar_url="{getIndpEnv:TYPO3_REQUEST_HOST}|";
+			dataWrap = cookieBarUrl:"{getIndpEnv:TYPO3_REQUEST_HOST}|",
 		}
 	}
 
-	wrap = <script>|</script>
+	30 = TEXT
+	30 {
+		value (
+getCookie : function(c_name) {
+	var i, x, y, ARRcookies = document.cookie.split(";");
+	for (i = 0; i < ARRcookies.length; i++) {
+		x = ARRcookies[i].substr(0, ARRcookies[i].indexOf("="));
+		y = ARRcookies[i].substr(ARRcookies[i].indexOf("=") + 1);
+		x = x.replace(/^\s+|\s+$/g, "");
+		if (x == c_name) {
+			return unescape(y) == '1';
+		}
+	}
+
+	return false;
+},
+)
+	}
+
+	wrap = <script>var PxaCookieWarningHelper = {|};PxaCookieWarningHelper['cookieIsSet']=PxaCookieWarningHelper.getCookie('pxa_cookie_warning');</script>
 }
-[globalVar = LIT:1 = {$plugin.tx_pxacookiebar.settings.isCDN}]
+
+[globalVar = LIT:1 = {$plugin.tx_pxacookiebar.settings.disableCookies}]
+# disallow JS to SetCookie, should be on top of the page
+page.headerData.86 {
+	40 = TEXT
+	40 {
+		value (
+pxaPreventJsFromSettingCookies: function() {
+	if(!document.__defineGetter__) {
+    	Object.defineProperty(document, 'cookie', {
+			get: function(){return '';},
+            set: function(){return true}
+        });
+	} else {
+        document.__defineGetter__("cookie", function() {return '';} );
+        document.__defineSetter__("cookie", function() {} );
+    }
+},
+)
+	}
+
+	50 = TEXT
+	50.value = isActiveConsent: true,
+
+	wrap (
+<script>var PxaCookieWarningHelper = {|};
+PxaCookieWarningHelper['cookieIsSet']=PxaCookieWarningHelper.getCookie('pxa_cookie_warning');
+if(!PxaCookieWarningHelper['cookieIsSet']) {PxaCookieWarningHelper.pxaPreventJsFromSettingCookies();}
+</script>
+)
+}
+[else]
+page.headerData.86 {
+	50 = TEXT
+	50.value = isActiveConsent: false,
+}
+[globalVar = LIT:1 = {$plugin.tx_pxacookiebar.settings.useSubDomain}]
 page.headerData.86 {
 	20 {
-		replacement {
-			10 {
-				search = /(https:\/\/www\.|http:\/\/www\.|http:\/\/|https:\/\/)/s
-				useRegExp = 1
-				replace = http://cdn.
-			}
-		}
+		stdWrap.postUserFunc = Pixelant\PxaCookieBar\Utility\CookieUtility->replaceWithSubDomain
 	}
 }
 [globalVar = LIT:bottomFix = {$plugin.tx_pxacookiebar.settings.position}]

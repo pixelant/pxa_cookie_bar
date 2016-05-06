@@ -35,7 +35,10 @@ plugin.tx_pxacookiebar {
 		# cat=plugin.tx_pxacookiebar/solrpxacookiebar/035; type=options[Standart version=1,Styling version 2=2]; label=Styling version
 		stylingVersion = 1
 
-		# cat=plugin.tx_pxacookiebar/solrpxacookiebar/040; type=boolean; label=Cdn enabled
-		isCDN = 0
+		# cat=plugin.tx_pxacookiebar/solrpxacookiebar/040; type=boolean; label=Use subdomain to get cookie bar
+		useSubDomain = 0
+
+		# cat=plugin.tx_pxacookiebar/solrpxacookiebar/045; type=string; label=Subdomain
+		subDomain =
 	}
 }

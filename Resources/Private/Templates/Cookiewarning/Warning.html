@@ -29,11 +29,11 @@
 
                         <f:if condition="{settings.disableCookies}">
                             <f:then>
-                                <a id="accept-cookie" onClick="hide_cookie_warning('accept');"  class="agree-buttons"><f:translate key="pxacookiebar.accept"/></a>
-                                <a id="decline-cookie" onClick="hide_cookie_warning(0);" class="agree-buttons"><f:translate key="pxacookiebar.decline"/></a>
+                                <a id="accept-cookie" class="agree-buttons pxa-cookie-buttons"><f:translate key="pxacookiebar.accept"/></a>
+                                <a id="decline-cookie" class="agree-buttons pxa-cookie-buttons"><f:translate key="pxacookiebar.decline"/></a>
                             </f:then>
                             <f:else>
-                                <a class="btn-close" onClick="hide_cookie_warning(0);"><f:translate key="pxacookiebar.close_{settings.stylingVersion}"/></a>
+                                <a class="btn-close pxa-cookie-buttons"><f:translate key="pxacookiebar.close_{settings.stylingVersion}"/></a>
                             </f:else>
                         </f:if>
                     </div>

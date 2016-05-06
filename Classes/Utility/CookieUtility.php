@@ -2,6 +2,7 @@
 
 namespace Pixelant\PxaCookieBar\Utility;
 
+use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class CookieUtility {
@@ -51,5 +52,35 @@ class CookieUtility {
         setcookie('fe_typo_user', '', time()-1000, '/');
         setcookie('fe_typo_user', '', time()-1000, '/', $host);
         setcookie('fe_typo_user', '', time()-1000, '/', $subdomain);
+    }
+
+    /**
+     * replace with subcdn domain
+     *
+     * @param $content
+     * @return string
+     */
+    public function replaceWithSubDomain($content) {
+        if(TYPO3_MODE === 'FE' && ($subDomain = self::getSubDomain())) {
+            $content = str_replace(GeneralUtility::getIndpEnv('TYPO3_HOST_ONLY'), $subDomain, $content);
+        }
+
+        return $content;
+    }
+
+    /**
+     * check if CDN is enabled and return domain
+     *
+     * @return string
+     */
+    static public function getSubDomain() {
+        return self::getTSFE()->tmpl->setup['plugin.']['tx_pxacookiebar.']['settings.']['subDomain'] ? self::getTSFE()->tmpl->setup['plugin.']['tx_pxacookiebar.']['settings.']['subDomain'] : '';
+    }
+
+    /**
+     * @return \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
+     */
+    static public function getTSFE() {
+        return $GLOBALS['TSFE'];
     }
 }
