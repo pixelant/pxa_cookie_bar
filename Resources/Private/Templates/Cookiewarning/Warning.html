@@ -9,6 +9,7 @@
             <div class="cookie-warning">
                 <div class="cookie-container">
                     <div class="cookie-row">
+                    <div>
                         <f:if condition="{message}">
                             <f:then>
                                 <f:format.html>{message}</f:format.html>
@@ -26,14 +27,16 @@
                                 <pxa:link configuration="{parameter: page}" targetBlank="{settings.targetBlank}" class="read-more"><f:translate key="pxacookiebar.readmore"/></pxa:link>
                             </f:else>
                         </f:if>
-
+                    </div>
                         <f:if condition="{settings.disableCookies}">
                             <f:then>
                                 <a id="accept-cookie" class="agree-buttons pxa-cookie-buttons"><f:translate key="pxacookiebar.accept"/></a>
                                 <a id="decline-cookie" class="agree-buttons pxa-cookie-buttons"><f:translate key="pxacookiebar.decline"/></a>
                             </f:then>
                             <f:else>
+                            <div class="close-button">
                                 <a class="btn-close pxa-cookie-buttons"><f:translate key="pxacookiebar.close_{settings.stylingVersion}"/></a>
+                            </div>
                             </f:else>
                         </f:if>
                     </div>
