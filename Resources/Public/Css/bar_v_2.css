@@ -26,8 +26,7 @@
 }
 
 #pxa-cookie-mess.passive-consent p {
-    padding-right: 75px;
-    margin-right: 50px;
+    margin-right: 20px;
 }
 
 #pxa-cookie-mess .cookie-container {
@@ -39,16 +38,11 @@
     font-size: 14px;
     line-height: 20px;
     font-family: Verdana, Arial;
-    height: 30px;
     cursor: pointer;
     text-decoration: none;
     border: none;
     border-radius: 0;
     padding: 5px 6px 5px 6px;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 15px;
     margin: auto;
     color: #fff;
     background-color: #4AA74D;
@@ -130,9 +124,6 @@
 }
 
 @media (max-width: 767px) {
-    #pxa-cookie-mess.passive-consent p {
-        margin-right: 40px;
-    }
     #pxa-cookie-mess .cookie-container .read-more + .agree-buttons{
         margin-left: 0;
     }
@@ -144,5 +135,25 @@
         top: 0;
         margin-bottom: 10px;
         margin-left: 0;
+    }
+}
+
+.passive-consent .cookie-warning div {
+        display: table-cell;
+        vertical-align: middle;
+}
+
+
+.passive-consent .cookie-warning .cookie-row, .passive-consent .cookie-warning .cookie-container{
+    display: table;
+    width: 100%;
+}
+
+
+
+@media (max-width: 400px) {
+    #pxa-cookie-mess .cookie-container .btn-close {
+        max-width: 149px;
+        overflow: hidden;
     }
 }
