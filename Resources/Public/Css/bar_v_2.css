@@ -149,11 +149,13 @@
     width: 100%;
 }
 
-
-
-@media (max-width: 400px) {
-    #pxa-cookie-mess .cookie-container .btn-close {
-        max-width: 149px;
-        overflow: hidden;
+@media (max-width: 420px) {
+    .passive-consent .cookie-warning div {
+      display: block;
+    }
+    .passive-consent .close-button {
+      margin-top: 10px;
     }
 }
+
+
