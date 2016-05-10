@@ -34,14 +34,14 @@
     border: 1px solid;
     border-radius: 10px;
     padding: 4px 6px 5px 6px;
-    position: absolute;
+    /*position: absolute;
     top: 5px;
     right: 5px;
-    margin: -2px;
+    margin: -2px;*/
 }
 #pxa-cookie-mess .cookie-container .btn-close:hover{
-    padding: 3px 5px 4px 5px;
-    margin: -1px;
+    padding: 4px 6px 5px 6px;
+    /*margin: -1px;*/
     color: #000000;
 
 }
@@ -85,5 +85,35 @@
     font-size: 16px;
 }
 #pxa-cookie-mess .cookie-warning {
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
+
+
+#pxa-cookie-mess.passive-consent p {
+    margin-right: 20px;
+}
+
+.passive-consent .cookie-warning div {
+        display: table-cell;
+        vertical-align: middle;
+}
+
+
+.passive-consent .cookie-warning .cookie-row, .passive-consent .cookie-warning .cookie-container{
+    display: table;
+    width: 100%;
+}
+
+@media (max-width: 420px) {
+    .passive-consent .cookie-warning div {
+      display: block;
+    }
+    .passive-consent .close-button {
+      margin-top: 3px;
+    }
+    #pxa-cookie-mess .cookie-container .btn-close {
+      float: left;
+    }
+}
+
+
