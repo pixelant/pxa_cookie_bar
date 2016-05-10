@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2016-05-10T10:02:00Z" product-name="pxa_cookie_bar">
+        <header/>
+        <body>
+            <trans-unit id="tx_pxacookiebar_domain_model_cookiewarning">
+                <source>Cookie Warning</source>
+            </trans-unit>
+            <trans-unit id="tx_pxacookiebar_domain_model_cookiewarning.page">
+                <source>Link on page with detail information</source>
+            </trans-unit>
+            <trans-unit id="tx_pxacookiebar_domain_model_cookiewarning.linktext">
+                <source>Link text</source>
+            </trans-unit>
+            <trans-unit id="tx_pxacookiebar_domain_model_cookiewarning.warningmessage">
+                <source>Warning message about cookies</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

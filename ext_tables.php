@@ -9,7 +9,7 @@ if (!defined('TYPO3_MODE')) {
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_pxacookiebar_domain_model_cookiewarning');
 $TCA['tx_pxacookiebar_domain_model_cookiewarning'] = array(
 	'ctrl' => array(
-		'title'	=> 'LLL:EXT:pxa_cookie_bar/Resources/Private/Language/locallang_db.xml:tx_pxacookiebar_domain_model_cookiewarning',
+		'title'	=> 'LLL:EXT:pxa_cookie_bar/Resources/Private/Language/locallang_db.xlf:tx_pxacookiebar_domain_model_cookiewarning',
 		'label' => 'uid',
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',

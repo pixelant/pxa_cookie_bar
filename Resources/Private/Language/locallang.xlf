@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2016-05-10T10:02:00Z" product-name="pxa_cookie_bar">
+        <header/>
+        <body>
+            <trans-unit id="pxacookiebar.message">
+                <source>This website uses cookies. By continuing to browse this website you are agreeing to our use of cookies. Find out more by reading our privacy policy.</source>
+            </trans-unit>
+            <trans-unit id="pxacookiebar.readmore">
+                <source>Read more</source>
+            </trans-unit>
+            <trans-unit id="pxacookiebar.accept">
+                <source>Accept</source>
+            </trans-unit>
+            <trans-unit id="pxacookiebar.decline">
+                <source>Decline</source>
+            </trans-unit>
+            <trans-unit id="pxacookiebar.close_1">
+                <source>x</source>
+            </trans-unit>
+            <trans-unit id="pxacookiebar.close_2">
+                <source>Close</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

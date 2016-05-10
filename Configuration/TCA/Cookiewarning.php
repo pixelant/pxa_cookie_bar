@@ -95,7 +95,7 @@ $TCA['tx_pxacookiebar_domain_model_cookiewarning'] = array(
         ),
         'warningmessage' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:pxa_cookie_bar/Resources/Private/Language/locallang_db.xml:tx_pxacookiebar_domain_model_cookiewarning.warningmessage',
+            'label' => 'LLL:EXT:pxa_cookie_bar/Resources/Private/Language/locallang_db.xlf:tx_pxacookiebar_domain_model_cookiewarning.warningmessage',
             'config' => array(
                 'type' => 'text',
                 'cols' => 40,
@@ -116,7 +116,7 @@ $TCA['tx_pxacookiebar_domain_model_cookiewarning'] = array(
         ),
         'linktext' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:pxa_cookie_bar/Resources/Private/Language/locallang_db.xml:tx_pxacookiebar_domain_model_cookiewarning.linktext',
+            'label' => 'LLL:EXT:pxa_cookie_bar/Resources/Private/Language/locallang_db.xlf:tx_pxacookiebar_domain_model_cookiewarning.linktext',
             'config' => array(
                 'type' => 'input',
                 'size' => 30,
@@ -125,7 +125,7 @@ $TCA['tx_pxacookiebar_domain_model_cookiewarning'] = array(
         ),
         'page' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:pxa_cookie_bar/Resources/Private/Language/locallang_db.xml:tx_pxacookiebar_domain_model_cookiewarning.page',
+            'label' => 'LLL:EXT:pxa_cookie_bar/Resources/Private/Language/locallang_db.xlf:tx_pxacookiebar_domain_model_cookiewarning.page',
             'config' => array(
                 'type' => 'input',
                 'size' => 10,

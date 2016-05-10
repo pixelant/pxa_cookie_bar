@@ -1,8 +1,14 @@
 plugin.tx_pxacookiebar {
 	view {
-		templateRootPath = {$plugin.tx_pxacookiebar.view.templateRootPath}
-		partialRootPath = {$plugin.tx_pxacookiebar.view.partialRootPath}
-		layoutRootPath = {$plugin.tx_pxacookiebar.view.layoutRootPath}
+		templateRootPaths {
+			10 = {$plugin.tx_pxacookiebar.view.templateRootPath}
+		}
+		partialRootPaths {
+			10 = {$plugin.tx_pxacookiebar.view.partialRootPath}
+		}
+		layoutRootPaths {
+			10 = {$plugin.tx_pxacookiebar.view.layoutRootPath}
+		}
 	}
 
 	persistence {

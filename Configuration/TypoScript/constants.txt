@@ -15,30 +15,30 @@ plugin.tx_pxacookiebar {
 # Settings for cookies
 plugin.tx_pxacookiebar {
 
-	# customsubcategory=solrpxacookiebar=Cookie bar seetings
+	# customsubcategory=pxacookiebar=Cookie bar settings
 	settings {
-		# cat=plugin.tx_pxacookiebar/solrpxacookiebar/010; type=boolean; label=Disable using of cookie (Active)
+		# cat=plugin.tx_pxacookiebar/pxacookiebar/010; type=boolean; label=Disable using of cookie (Active)
 		disableCookies = 0
 
-		# cat=plugin.tx_pxacookiebar/solrpxacookiebar/015; type=string; label=Cookie link or Page UID
+		# cat=plugin.tx_pxacookiebar/pxacookiebar/015; type=string; label=Cookie link or Page UID
 		page = 1
 
-		# cat=plugin.tx_pxacookiebar/solrpxacookiebar/020; type=boolean; label=Link target blank
+		# cat=plugin.tx_pxacookiebar/pxacookiebar/020; type=boolean; label=Link target blank
 		targetBlank = 0
 
-		# cat=plugin.tx_pxacookiebar/solrpxacookiebar/025; type=options[Top=top,Bottom=bottomFix]; label=Position
+		# cat=plugin.tx_pxacookiebar/pxacookiebar/025; type=options[Top=top,Bottom=bottomFix]; label=Position
 		position = top
 
-		# cat=plugin.tx_pxacookiebar/solrpxacookiebar/030; type=boolean; label=Show only after FE user login
+		# cat=plugin.tx_pxacookiebar/pxacookiebar/030; type=boolean; label=Show only after FE user login
 		showOnlyOnLogin = 0
 
-		# cat=plugin.tx_pxacookiebar/solrpxacookiebar/035; type=options[Standart version=1,Styling version 2=2]; label=Styling version
+		# cat=plugin.tx_pxacookiebar/pxacookiebar/035; type=options[Standart version=1,Styling version 2=2]; label=Styling version
 		stylingVersion = 1
 
-		# cat=plugin.tx_pxacookiebar/solrpxacookiebar/040; type=boolean; label=Use subdomain to get cookie bar
+		# cat=plugin.tx_pxacookiebar/pxacookiebar/040; type=boolean; label=Use subdomain to get cookie bar
 		useSubDomain = 0
 
-		# cat=plugin.tx_pxacookiebar/solrpxacookiebar/045; type=string; label=Subdomain
+		# cat=plugin.tx_pxacookiebar/pxacookiebar/045; type=string; label=Subdomain
 		subDomain =
 	}
 }
