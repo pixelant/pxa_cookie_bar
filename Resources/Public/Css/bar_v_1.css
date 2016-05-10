@@ -52,11 +52,10 @@
     border-radius: 10px;
     padding: 4px 6px 5px 6px;
     position: relative;
-    top: 4px;
+    top: 7px;
 }
 #pxa-cookie-mess .cookie-container #accept-cookie{
     color: #6FB536;
-    margin-left: 40px;
 }
 
 #pxa-cookie-mess .cookie-container #accept-cookie:hover{
@@ -84,4 +83,7 @@
 #pxa-cookie-mess .cookie-warning .close {
     margin: 2px 0 0 10px;
     font-size: 16px;
+}
+#pxa-cookie-mess .cookie-warning {
+    padding-bottom: 20px;
 }
