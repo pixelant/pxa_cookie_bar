@@ -6,6 +6,7 @@
     width: 100%;
     color: #ffffff;
 }
+
 .bottom-message-wrap {
     position: fixed;
     bottom: 0;
@@ -13,6 +14,7 @@
     width: 100%;
     color: #ffffff;
 }
+
 #pxa-cookie-mess p {
     color: #82787d;
     margin: 0;
@@ -23,11 +25,11 @@
     padding-right: 30px;
 }
 
-#pxa-cookie-mess .cookie-container{
+#pxa-cookie-mess .cookie-container {
     padding: 0 20px;
 }
 
-#pxa-cookie-mess .cookie-container .btn-close{
+#pxa-cookie-mess .cookie-container .btn-close {
     float: right;
     cursor: pointer;
     text-decoration: none;
@@ -39,13 +41,15 @@
     right: 5px;
     margin: -2px;*/
 }
-#pxa-cookie-mess .cookie-container .btn-close:hover{
+
+#pxa-cookie-mess .cookie-container .btn-close:hover {
     padding: 4px 6px 5px 6px;
     /*margin: -1px;*/
     color: #000000;
 
 }
-#pxa-cookie-mess .cookie-container .agree-buttons{
+
+#pxa-cookie-mess .cookie-container .agree-buttons {
     cursor: pointer;
     text-decoration: none;
     border: 1px solid;
@@ -54,68 +58,71 @@
     position: relative;
     top: 7px;
 }
-#pxa-cookie-mess .cookie-container #accept-cookie{
+
+#pxa-cookie-mess .cookie-container #accept-cookie {
     color: #6FB536;
 }
 
-#pxa-cookie-mess .cookie-container #accept-cookie:hover{
+#pxa-cookie-mess .cookie-container #accept-cookie:hover {
     color: #609C30;
 }
 
-#pxa-cookie-mess .cookie-container #decline-cookie{
+#pxa-cookie-mess .cookie-container #decline-cookie {
     color: #F14A29;
     margin-left: 10px;
 }
 
-#pxa-cookie-mess .cookie-container #decline-cookie:hover{
+#pxa-cookie-mess .cookie-container #decline-cookie:hover {
     color: #C43E23;
 }
 
 #pxa-cookie-mess .cookie-warning {
     padding: 10px 0 15px 0;
-    background-image:-webkit-linear-gradient(-90deg,rgb(254,254,254) 0%,rgb(248,248,248) 68%,rgb(230,230,230) 100%);
-    background-image:-ms-linear-gradient(-90deg,rgb(254,254,254) 0%,rgb(248,248,248) 68%,rgb(230,230,230) 100%);
-    background-image:linear-gradient(-180deg,rgb(254,254,254) 0%,rgb(248,248,248) 68%,rgb(230,230,230) 100%);
-    -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#fffefefe,endColorstr=#ffe6e6e6,GradientType=0)";
-    filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#fffefefe,endColorstr=#ffe6e6e6,GradientType=0)";
+    background-image: -webkit-linear-gradient(-90deg, rgb(254, 254, 254) 0%, rgb(248, 248, 248) 68%, rgb(230, 230, 230) 100%);
+    background-image: -ms-linear-gradient(-90deg, rgb(254, 254, 254) 0%, rgb(248, 248, 248) 68%, rgb(230, 230, 230) 100%);
+    background-image: linear-gradient(-180deg, rgb(254, 254, 254) 0%, rgb(248, 248, 248) 68%, rgb(230, 230, 230) 100%);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#fffefefe,endColorstr=#ffe6e6e6,GradientType=0)";
+    filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#fffefefe,endColorstr=#ffe6e6e6,GradientType=0)";
 }
 
 #pxa-cookie-mess .cookie-warning .close {
     margin: 2px 0 0 10px;
     font-size: 16px;
 }
+
 #pxa-cookie-mess .cookie-warning {
     padding-bottom: 10px;
 }
-
 
 #pxa-cookie-mess.passive-consent p {
     margin-right: 20px;
 }
 
 .passive-consent .cookie-warning div {
-        display: table-cell;
-        vertical-align: middle;
+    display: table-cell;
+    vertical-align: middle;
 }
 
-
-.passive-consent .cookie-warning .cookie-row, .passive-consent .cookie-warning .cookie-container{
+.passive-consent .cookie-warning .cookie-row, .passive-consent .cookie-warning .cookie-container {
     display: table;
     width: 100%;
-}
-
-@media (max-width: 420px) {
-    .passive-consent .cookie-warning div {
-      display: block;
-    }
-    .passive-consent .close-button {
-      margin-top: 3px;
-    }
-    #pxa-cookie-mess .cookie-container .btn-close {
-      float: left;
-    }
+    box-sizing: border-box;
 }
 
 .active-consent .cookie-row {
     margin-bottom: 10px;
+}
+
+@media (max-width: 420px) {
+    .passive-consent .cookie-warning div {
+        display: block;
+    }
+
+    .passive-consent .close-button {
+        margin-top: 3px;
+    }
+
+    #pxa-cookie-mess .cookie-container .btn-close {
+        float: left;
+    }
 }
