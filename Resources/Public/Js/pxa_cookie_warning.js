@@ -1,13 +1,13 @@
 function PxaCookieWarning() {
     var self = this;
 
-    // disable/enable cookies
+    /* disable/enable cookies*/
     self.isActiveConsent = false;
 
-    // url for ajax load of cookie bar
+    /* url for ajax load of cookie bar*/
     self.cookieBarUrl = '';
 
-    // url for ajax request of close cookie bar
+    /* url for ajax request of close cookie bar*/
     self.cookieCloseUrl = '';
 
     self.xmlHttp = null;
@@ -57,7 +57,7 @@ function PxaCookieWarning() {
     };
 
     self.isVisibleCookieBar = function() {
-        // it is set in header.
+        /* it is set in header.*/
         return !PxaCookieWarningHelper['cookieIsSet'];
     };
 
