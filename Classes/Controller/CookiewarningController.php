@@ -51,7 +51,7 @@ class CookiewarningController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
      */
     public function warningAction() {
         if ($_COOKIE['pxa_cookie_warning'] || ($this->settings['showOnlyOnLogin'] && !CookieUtility::getTSFE()->loginUser)) {
-            $this->view->assign('show', '0');
+            $this->view->assign('show', FALSE);
         } else {
             $messages = $this->cookiewarningRepository->findSomething();
 
@@ -74,7 +74,7 @@ class CookiewarningController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
                 $this->setCookie();
             }
 
-            $this->view->assign('show', '1');
+            $this->view->assign('show', TRUE);
         }
     }
 

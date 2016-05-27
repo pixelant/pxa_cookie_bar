@@ -3,8 +3,30 @@ if (!defined('TYPO3_MODE')) {
     die ('Access denied.');
 }
 
-$TCA['tx_pxacookiebar_domain_model_cookiewarning'] = array(
-    'ctrl' => $TCA['tx_pxacookiebar_domain_model_cookiewarning']['ctrl'],
+return array(
+    'ctrl' => array(
+        'title'	=> 'LLL:EXT:pxa_cookie_bar/Resources/Private/Language/locallang_db.xlf:tx_pxacookiebar_domain_model_cookiewarning',
+        'label' => 'uid',
+        'tstamp' => 'tstamp',
+        'crdate' => 'crdate',
+        'cruser_id' => 'cruser_id',
+        'dividers2tabs' => TRUE,
+
+        'versioningWS' => 2,
+        'versioning_followPages' => TRUE,
+        'origUid' => 't3_origuid',
+        'languageField' => 'sys_language_uid',
+        'transOrigPointerField' => 'l10n_parent',
+        'transOrigDiffSourceField' => 'l10n_diffsource',
+        'delete' => 'deleted',
+        'enablecolumns' => array(
+            'disabled' => 'hidden',
+            'starttime' => 'starttime',
+            'endtime' => 'endtime',
+        ),
+        'searchFields' => 'warningmessage,linktext',
+        'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('pxa_cookie_bar') . 'Resources/Public/Icons/tx_pxacookiebar_domain_model_cookiewarning.gif'
+    ),
     'interface' => array(
         'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, warningmessage, linktext, page',
     ),
@@ -144,5 +166,3 @@ $TCA['tx_pxacookiebar_domain_model_cookiewarning'] = array(
         ),
     ),
 );
-
-?>
