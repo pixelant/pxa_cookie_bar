@@ -29,6 +29,7 @@ plugin.tx_pxacookiebar {
 		stylingVersion = {$plugin.tx_pxacookiebar.settings.stylingVersion}
 		useSubDomain = {$plugin.tx_pxacookiebar.settings.useSubDomain}
 		subDomain = {$plugin.tx_pxacookiebar.settings.subDomain}
+        forceDontSetCookieOnPassiveConsent = {$plugin.tx_pxacookiebar.settings.forceDontSetCookieOnPassiveConsent}
 	}
 }
 

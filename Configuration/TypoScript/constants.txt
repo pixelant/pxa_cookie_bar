@@ -35,10 +35,13 @@ plugin.tx_pxacookiebar {
 		# cat=plugin.tx_pxacookiebar/pxacookiebar/035; type=options[Standart version=1,Styling version 2=2]; label=Styling version
 		stylingVersion = 1
 
-		# cat=plugin.tx_pxacookiebar/pxacookiebar/040; type=boolean; label=Use subdomain to get cookie bar
+        # cat=plugin.tx_pxacookiebar/pxacookiebar/040; type=options[Set cookie after load=0,Don't set cookie when loading=1]; label=Force extension to don't set cookie, when first loading
+        forceDontSetCookieOnPassiveConsent = 0
+
+		# cat=plugin.tx_pxacookiebar/pxacookiebar/045; type=boolean; label=Use subdomain to get cookie bar
 		useSubDomain = 0
 
-		# cat=plugin.tx_pxacookiebar/pxacookiebar/045; type=string; label=Subdomain
+		# cat=plugin.tx_pxacookiebar/pxacookiebar/050; type=string; label=Subdomain
 		subDomain =
 	}
 }

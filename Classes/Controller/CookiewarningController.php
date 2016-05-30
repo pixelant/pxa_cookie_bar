@@ -70,7 +70,7 @@ class CookiewarningController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
                 $this->response->setHeader('Access-Control-Allow-Origin', GeneralUtility::getIndpEnv('TYPO3_SSL') ? 'https' : 'http' . '://' . $domain);
             }
 
-            if (!intval($this->settings['disableCookies'])) {
+            if (!intval($this->settings['disableCookies']) && 0 === intval($this->settings['forceDontSetCookieOnPassiveConsent'])) {
                 $this->setCookie();
             }
 
