@@ -10,34 +10,22 @@ function PxaCookieWarning() {
     /* url for ajax request of close cookie bar*/
     self.cookieCloseUrl = '';
 
-    self.xmlHttp = null;
-
-    self.xmlHttpSetCookie = null;
-
     self.init = function() {
         if(typeof PxaCookieWarningHelper !== 'undefined') {
             self.isActiveConsent = PxaCookieWarningHelper['isActiveConsent'];
             self.cookieBarUrl = PxaCookieWarningHelper['cookieBarUrl'];
             self.cookieCloseUrl = PxaCookieWarningHelper['cookieCloseUrl'];
         }
-        if (window.XMLHttpRequest) {
-            self.xmlHttp = new XMLHttpRequest();
-            self.xmlHttpSetCookie = new XMLHttpRequest();
-        }
-        else {
-            self.xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-            self.xmlHttpSetCookie = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-
-        self.xmlHttp.onreadystatechange = function () {
-            if (self.xmlHttp.readyState == 4 && self.xmlHttp.status == 200) {
-                self.showCookieBar(self.xmlHttp.responseText);
-                self.initCookieBarClick();
-            }
-        };
 
         if(self.isVisibleCookieBar()) {
-            self.sendRequest();
+            if(PxaCookieWarningHelper['disableAjaxLoading']) {
+                if(!self.isActiveConsent) {
+                    self.sendRequestCloseCookieBar();
+                }
+                self.initCookieBarClick();
+            } else {
+                self.sendRequestGetCookieBar();
+            }
         }
     };
 
@@ -70,8 +58,7 @@ function PxaCookieWarning() {
         var clickHandler = function() {
             var attribute = this.getAttribute("id");
             if(attribute == "accept-cookie") {
-                self.xmlHttpSetCookie.open("GET", self.cookieCloseUrl, true);
-                self.xmlHttpSetCookie.send();
+                self.sendRequestCloseCookieBar();
             }
 
             self.hideCookieBar();
@@ -84,10 +71,39 @@ function PxaCookieWarning() {
         }
     };
 
-    self.sendRequest = function () {
+    self.sendRequestGetCookieBar = function () {
+        var xmlHttp;
+
         var timestamp = new Date().getTime();
-        self.xmlHttp.open("GET", self.cookieBarUrl + '&ts=' + timestamp, true);
-        self.xmlHttp.send();
+        if (window.XMLHttpRequest) {
+            xmlHttp = new XMLHttpRequest();
+        }
+        else {
+            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                self.showCookieBar(xmlHttp.responseText);
+                self.initCookieBarClick();
+            }
+        };
+
+        xmlHttp.open("GET", self.cookieBarUrl + '&ts=' + timestamp, true);
+        xmlHttp.send();
+    };
+
+    self.sendRequestCloseCookieBar = function () {
+        var xmlHttp;
+
+        if (window.XMLHttpRequest) {
+            xmlHttp = new XMLHttpRequest();
+        }
+        else {
+            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlHttp.open("GET", self.cookieCloseUrl, true);
+        xmlHttp.send();
     };
 }
 
@@ -95,7 +111,5 @@ function initPxaCookie() {
     var pxaCookieWarning = new PxaCookieWarning();
     pxaCookieWarning.init();
 }
-
-
 
 document.addEventListener('DOMContentLoaded', initPxaCookie, false);
