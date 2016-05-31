@@ -11,11 +11,12 @@ function PxaCookieWarning() {
     self.cookieCloseUrl = '';
 
     self.init = function() {
-        if(typeof PxaCookieWarningHelper !== 'undefined') {
-            self.isActiveConsent = PxaCookieWarningHelper['isActiveConsent'];
-            self.cookieBarUrl = PxaCookieWarningHelper['cookieBarUrl'];
-            self.cookieCloseUrl = PxaCookieWarningHelper['cookieCloseUrl'];
-        }
+        if(typeof PxaCookieWarningHelper === 'undefined') return false;
+
+        self.isActiveConsent = PxaCookieWarningHelper['isActiveConsent'];
+        self.cookieBarUrl = PxaCookieWarningHelper['cookieBarUrl'];
+        self.cookieCloseUrl = PxaCookieWarningHelper['cookieCloseUrl'];
+
 
         if(self.isVisibleCookieBar()) {
             if(PxaCookieWarningHelper['disableAjaxLoading']) {
