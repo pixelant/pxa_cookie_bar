@@ -1,5 +1,6 @@
 # README #
 Adds a cookie bar to the page consisting of a text and an option link to a cookie bar policy page.
+
 Features active and passive consent.
 
 **Passive consent**
@@ -35,4 +36,4 @@ By default, the cookie bar is positioned at the top of the page. This can confli
 @TODO
 
 ## Responsible developer ##
-@Andriy_Oprysko 
+@Andriy_Oprysko
