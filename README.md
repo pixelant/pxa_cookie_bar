@@ -23,7 +23,7 @@ After installation, each site can decide whether to use active or passive consen
 2. Set the value of `plugin.tx_pxacookiebar.settings.enable` to `1`.
 
 ## Configurations ##
-### Position ###
+### Position of the cookie bar ###
 By default, the cookie bar is positioned at the top of the page. This can conflict with some sites with sticky menus. To position the cookie bar sticky at the bottom, set the typoscript constant `plugin.tx_pxacookiebar.settings.position` to `bottom`
 
 ### Typoscript setup ###
