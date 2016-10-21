@@ -1,9 +1,12 @@
 <?php
+
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
+
 if (!defined('TYPO3_MODE')) {
     die ('Access denied.');
 }
 
-return array(
+$tca = array(
     'ctrl' => array(
         'title'	=> 'LLL:EXT:pxa_cookie_bar/Resources/Private/Language/locallang_db.xlf:tx_pxacookiebar_domain_model_cookiewarning',
         'label' => 'uid',
@@ -170,3 +173,15 @@ return array(
         ),
     ),
 );
+
+// For 6.x compatibility
+if( VersionNumberUtility::convertVersionNumberToInteger( VersionNumberUtility::getNumericTypo3Version()) < VersionNumberUtility::convertVersionNumberToInteger('7.0.0') ) {
+
+    $tca['columns']['warningmessage']['config']['wizards']['RTE']['script'] = 'wizard_rte.php';
+    unset( $tca['columns']['warningmessage']['config']['wizards']['RTE']['module'] );
+    $tca['columns']['page']['config']['wizards']['link']['script'] = 'browse_links.php?mode=wizard';
+    unset( $tca['columns']['page']['config']['wizards']['link']['module'] );
+
+}
+
+return $tca;
