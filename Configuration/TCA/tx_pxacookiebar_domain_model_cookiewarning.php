@@ -1,9 +1,12 @@
 <?php
+
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
+
 if (!defined('TYPO3_MODE')) {
     die ('Access denied.');
 }
 
-return array(
+$tca = array(
     'ctrl' => array(
         'title'	=> 'LLL:EXT:pxa_cookie_bar/Resources/Private/Language/locallang_db.xlf:tx_pxacookiebar_domain_model_cookiewarning',
         'label' => 'uid',
@@ -128,11 +131,13 @@ return array(
                         'icon' => 'wizard_rte2.gif',
                         'notNewRecords' => 1,
                         'RTEonly' => 1,
-                        'script' => 'wizard_rte.php',
+                        'module' => array (
+                            'name' => 'wizard_rte',
+                        ),
                         'title' => 'LLL:EXT:cms/locallang_ttc.xlf:bodytext.W.RTE',
                         'type' => 'script'
                     )
-                )
+                ),
             ),
             'defaultExtras' => 'richtext:rte_transform[flag=rte_enabled|mode=ts]',
         ),
@@ -158,7 +163,9 @@ return array(
                         'type' => 'popup',
                         'title' => 'LLL:EXT:cms/locallang_ttc.xml:header_link_formlabel',
                         'icon' => 'link_popup.gif',
-                        'script' => 'browse_links.php?mode=wizard',
+                        'module' => array(
+                            'name' => 'wizard_link',
+                        ),
                         'JSopenParams' => 'height=600,width=800,status=0,menubar=0,scrollbars=1',
                     ),
                 ),
@@ -166,3 +173,15 @@ return array(
         ),
     ),
 );
+
+// For 6.x compatibility
+if( VersionNumberUtility::convertVersionNumberToInteger( VersionNumberUtility::getNumericTypo3Version()) < VersionNumberUtility::convertVersionNumberToInteger('7.0.0') ) {
+
+    $tca['columns']['warningmessage']['config']['wizards']['RTE']['script'] = 'wizard_rte.php';
+    unset( $tca['columns']['warningmessage']['config']['wizards']['RTE']['module'] );
+    $tca['columns']['page']['config']['wizards']['link']['script'] = 'browse_links.php?mode=wizard';
+    unset( $tca['columns']['page']['config']['wizards']['link']['module'] );
+
+}
+
+return $tca;
