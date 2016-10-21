@@ -128,11 +128,13 @@ return array(
                         'icon' => 'wizard_rte2.gif',
                         'notNewRecords' => 1,
                         'RTEonly' => 1,
-                        'script' => 'wizard_rte.php',
+                        'module' => array (
+                            'name' => 'wizard_rte',
+                        ),
                         'title' => 'LLL:EXT:cms/locallang_ttc.xlf:bodytext.W.RTE',
                         'type' => 'script'
                     )
-                )
+                ),
             ),
             'defaultExtras' => 'richtext:rte_transform[flag=rte_enabled|mode=ts]',
         ),
@@ -158,7 +160,9 @@ return array(
                         'type' => 'popup',
                         'title' => 'LLL:EXT:cms/locallang_ttc.xml:header_link_formlabel',
                         'icon' => 'link_popup.gif',
-                        'script' => 'browse_links.php?mode=wizard',
+                        'module' => array(
+                            'name' => 'wizard_link',
+                        ),
                         'JSopenParams' => 'height=600,width=800,status=0,menubar=0,scrollbars=1',
                     ),
                 ),
