@@ -9,6 +9,18 @@
         <trans-unit id="pxacookiebar.readmore">
             <target>Читати більше</target>
         </trans-unit>
+        <trans-unit id="pxacookiebar.accept">
+            <target>Прийняти</target>
+        </trans-unit>
+        <trans-unit id="pxacookiebar.decline">
+            <target>Відхилити</target>
+        </trans-unit>
+        <trans-unit id="pxacookiebar.close_1">
+            <target>x</target>
+        </trans-unit>
+        <trans-unit id="pxacookiebar.close_2">
+            <target>Закрити</target>
+        </trans-unit>
     </body>
 </file>
 </xliff>
