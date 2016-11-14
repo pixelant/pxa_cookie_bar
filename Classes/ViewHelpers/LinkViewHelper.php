@@ -10,6 +10,12 @@ namespace Pixelant\PxaCookieBar\ViewHelpers;
  */
 class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
+    /**
+     * Disable escaping of output
+     *
+     * @var bool
+     */
+    protected $escapeOutput = FALSE;
 
     /**
      * Initializes the arguments for the ViewHelper
