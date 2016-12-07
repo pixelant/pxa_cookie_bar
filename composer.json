@@ -1,0 +1,19 @@
+{
+  "name": "pixelant/pxa-cookie-bar",
+  "description": "Text and link for page with cookie.",
+  "type": "typo3-cms-extension",
+  "version": "1.0.1",
+  "license": "GPL-2.0+",
+  "autoload": {
+    "psr-4": {
+      "Pixelant\\PxaCookieBar\\": "Classes/"
+    }
+  },
+  "replace": {
+    "pxa_cookie_bar": "self.version",
+    "typo3-ter/pxa_cookie_bar": "self.version"
+  },
+  "require": {
+    "typo3/cms": ">=8.0.0 <=8.9.99"
+  }
+}
