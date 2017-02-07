@@ -112,5 +112,4 @@ function initPxaCookie() {
     var pxaCookieWarning = new PxaCookieWarning();
     pxaCookieWarning.init();
 }
-
-document.addEventListener('DOMContentLoaded', initPxaCookie, false);
+initPxaCookie();
