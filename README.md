@@ -1,4 +1,8 @@
 # README #
+
+# MIGRATED #
+**Repository was moved to** [github](https://github.com/pixelant/pxa_cookie_bar). Use it instead of this repository
+
 Adds a cookie bar to the page consisting of a text and an option link to a cookie bar policy page.
 
 Features active and passive consent.
