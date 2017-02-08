@@ -74,14 +74,11 @@ setDocumentClass : function(className) {
 		wrap = cookieCloseUrl:"|",
 	}
 
-	20 = TEXT
-	20 {
-		stdWrap {
-			data = TSFE:sys_language_uid
-			wrap = &type=314638125&L=|
-			dataWrap = cookieBarUrl:"{getIndpEnv:TYPO3_REQUEST_HOST}/?id={TSFE:id}|",
-		}
-	}
+    20 < .10
+    20 {
+        typolink.additionalParams = &type=314638125&tx_pxacookiebar_pxacookiebar[action]=warning
+        wrap = cookieBarUrl:"|",
+    }
 
 	30 = TEXT
 	30 {
@@ -114,6 +111,11 @@ page {
         stdWrap.prepend = COA
         stdWrap.prepend  {
             10 < cookieWarning.5
+            10 {
+                settings {
+                    forceCookieWarningRender = 1
+                }
+            }
         }
     }
     cssInline {

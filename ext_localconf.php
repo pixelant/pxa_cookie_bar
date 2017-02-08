@@ -7,13 +7,7 @@ if (!defined('TYPO3_MODE')) {
 	'Pixelant.' . $_EXTKEY,
 	'Pxacookiebar',
 	array(
-		'Cookiewarning' => 'warning, closeWarning',
-		
-	),
-	// non-cacheable actions
-	array(
-		'Cookiewarning' => 'warning, closeWarning',
-		
+		'Cookiewarning' => 'warning, closeWarning'
 	)
 );
 
