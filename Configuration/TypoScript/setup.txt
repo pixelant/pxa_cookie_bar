@@ -29,8 +29,6 @@ plugin.tx_pxacookiebar {
         targetBlank = {$plugin.tx_pxacookiebar.settings.targetBlank}
         showOnlyOnLogin = {$plugin.tx_pxacookiebar.settings.showOnlyOnLogin}
         stylingVersion = {$plugin.tx_pxacookiebar.settings.stylingVersion}
-        useSubDomain = {$plugin.tx_pxacookiebar.settings.useSubDomain}
-        subDomain = {$plugin.tx_pxacookiebar.settings.subDomain}
         disableAjaxLoading = {$plugin.tx_pxacookiebar.settings.disableAjaxLoading}
     }
 }
@@ -169,13 +167,6 @@ if(!PxaCookieWarningHelper['cookieIsSet'] && PxaCookieWarningHelper['disableAjax
     page.headerData.86 {
         50 = TEXT
         50.value = isActiveConsent: false,
-    }
-
-[globalVar = LIT:1 = {$plugin.tx_pxacookiebar.settings.useSubDomain}]
-    page.headerData.86 {
-        20 {
-            stdWrap.postUserFunc = Pixelant\PxaCookieBar\Utility\CookieUtility->replaceWithSubDomain
-        }
     }
 [globalVar = LIT:bottomFix = {$plugin.tx_pxacookiebar.settings.position}]
     plugin.tx_pxacookiebar.settings.wrapperClasses = bottom-message-wrap

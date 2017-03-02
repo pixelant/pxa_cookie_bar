@@ -39,12 +39,6 @@ plugin.tx_pxacookiebar {
         # cat=plugin.tx_pxacookiebar/pxacookiebar/040; type=boolean; label=Don't use ajax for cookie bar loading
         disableAjaxLoading = 0
 
-        # cat=plugin.tx_pxacookiebar/pxacookiebar/045; type=boolean; label=Use subdomain to get cookie bar
-        useSubDomain = 0
-
-        # cat=plugin.tx_pxacookiebar/pxacookiebar/050; type=string; label=Subdomain
-        subDomain =
-
         prepantTo = 10
     }
 }
