@@ -1,16 +1,20 @@
 <?php
-if (!defined('TYPO3_MODE')) {
-	die ('Access denied.');
-}
+defined('TYPO3_MODE') or die('Access denied.');
 
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	'Pixelant.' . $_EXTKEY,
-	'Pxacookiebar',
-	array(
-		'Cookiewarning' => 'warning, closeWarning'
-	)
-);
+$boot = function ($_EXTKEY) {
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'Pixelant.' . $_EXTKEY,
+        'Pxacookiebar',
+        [
+            'Cookiewarning' => 'warning, closeWarning'
+        ]
+    );
 
-if (TYPO3_MODE === 'FE') {
-	$TYPO3_CONF_VARS['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-output'][] = 'Pixelant\PxaCookieBar\Hooks\PxaCookieBarHook->contentPostProc_all';
-}
+    if (TYPO3_MODE === 'FE') {
+        $hook = \Pixelant\PxaCookieBar\Hooks\ContentPostProc::class . '->contentPostProcAll';
+        $TYPO3_CONF_VARS['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-output'][$_EXTKEY] = $hook;
+    }
+};
+
+$boot($_EXTKEY);
+unset($boot);
