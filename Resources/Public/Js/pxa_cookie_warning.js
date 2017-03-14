@@ -75,7 +75,6 @@ function PxaCookieWarning() {
     self.sendRequestGetCookieBar = function () {
         var xmlHttp;
 
-        var timestamp = new Date().getTime();
         if (window.XMLHttpRequest) {
             xmlHttp = new XMLHttpRequest();
         }
@@ -90,7 +89,7 @@ function PxaCookieWarning() {
             }
         };
 
-        xmlHttp.open("GET", self.cookieBarUrl + '&ts=' + timestamp, true);
+        xmlHttp.open("GET", self.cookieBarUrl, true);
         xmlHttp.send();
     };
 
