@@ -51,21 +51,21 @@ function PxaCookieWarning() {
     };
 
     self.hideCookieBar = function() {
-        var e = document.getElementById("pxa-cookie-mess");
-        e.style.cssText = "display:none";
+        var e = document.getElementById('pxa-cookie-mess');
+        e.style.cssText = 'display:none';
     };
 
     self.initCookieBarClick = function() {
         var clickHandler = function() {
-            var attribute = this.getAttribute("id");
-            if(attribute == "accept-cookie") {
+            var attribute = this.getAttribute('id');
+            if(attribute == 'accept-cookie') {
                 self.sendRequestCloseCookieBar();
             }
 
             self.hideCookieBar();
         };
 
-        var buttons = document.getElementsByClassName("pxa-cookie-buttons");
+        var buttons = document.getElementsByClassName('pxa-cookie-buttons');
 
         for (var i = 0; i < buttons.length; i++) {
             buttons[i].addEventListener('click', clickHandler, false);
@@ -75,12 +75,11 @@ function PxaCookieWarning() {
     self.sendRequestGetCookieBar = function () {
         var xmlHttp;
 
-        var timestamp = new Date().getTime();
         if (window.XMLHttpRequest) {
             xmlHttp = new XMLHttpRequest();
         }
         else {
-            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+            xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
         }
 
         xmlHttp.onreadystatechange = function () {
@@ -90,7 +89,7 @@ function PxaCookieWarning() {
             }
         };
 
-        xmlHttp.open("GET", self.cookieBarUrl + '&ts=' + timestamp, true);
+        xmlHttp.open('GET', self.cookieBarUrl, true);
         xmlHttp.send();
     };
 
@@ -101,9 +100,9 @@ function PxaCookieWarning() {
             xmlHttp = new XMLHttpRequest();
         }
         else {
-            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+            xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
         }
-        xmlHttp.open("GET", self.cookieCloseUrl, true);
+        xmlHttp.open('GET', self.cookieCloseUrl, true);
         xmlHttp.send();
     };
 }
