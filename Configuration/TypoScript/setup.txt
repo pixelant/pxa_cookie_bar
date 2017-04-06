@@ -122,12 +122,11 @@ getCookie : function(c_name) {
                 }
             }
         }
-
-        cssInline {
-            87 = TEXT
-            87.value = #pxa-cookie-mess{display:none;}.visible-cookie-warning #pxa-cookie-mess{display: block;}
-        }
     }
+
+    plugin.tx_pxacookiebar._CSS_DEFAULT_STYLE (
+        #pxa-cookie-mess{display:none;}.visible-cookie-warning #pxa-cookie-mess{display: block;}
+    )
 [else]
     page.headerData.86 {
         35 = TEXT
