@@ -12,17 +12,17 @@ function PxaCookieWarning() {
 
     self.cookieName = 'pxa_cookie_warning';
 
-    self.init = function() {
-        if(typeof PxaCookieWarningHelper === 'undefined') return false;
+    self.init = function () {
+        if (typeof PxaCookieWarningHelper === 'undefined') return false;
 
         self.isActiveConsent = PxaCookieWarningHelper['isActiveConsent'];
         self.cookieBarUrl = PxaCookieWarningHelper['cookieBarUrl'];
         self.cookieCloseUrl = PxaCookieWarningHelper['cookieCloseUrl'];
 
 
-        if(self.isVisibleCookieBar()) {
-            if(PxaCookieWarningHelper['disableAjaxLoading']) {
-                if(!self.isActiveConsent) {
+        if (self.isVisibleCookieBar()) {
+            if (PxaCookieWarningHelper['disableAjaxLoading']) {
+                if (!self.isActiveConsent) {
                     self.setCookie(self.cookieName, 1, 365);
                 }
                 self.initCookieBarClick();
@@ -32,12 +32,12 @@ function PxaCookieWarning() {
         }
     };
 
-    self.showCookieBar = function(response) {
+    self.showCookieBar = function (response) {
         var cookieBar = self.create(response);
         document.body.insertBefore(cookieBar, document.body.childNodes[0]);
     };
 
-    self.create = function(htmlStr) {
+    self.create = function (htmlStr) {
         var frag = document.createDocumentFragment(),
             temp = document.createElement('div');
         temp.innerHTML = htmlStr;
@@ -47,21 +47,21 @@ function PxaCookieWarning() {
         return frag;
     };
 
-    self.isVisibleCookieBar = function() {
+    self.isVisibleCookieBar = function () {
         /* it is set in header.*/
         return !PxaCookieWarningHelper['cookieIsSet'];
     };
 
-    self.hideCookieBar = function() {
+    self.hideCookieBar = function () {
         var e = document.getElementById('pxa-cookie-mess');
         e.style.cssText = 'display:none';
     };
 
-    self.initCookieBarClick = function() {
-        var clickHandler = function() {
+    self.initCookieBarClick = function () {
+        var clickHandler = function () {
             var attribute = this.getAttribute('id');
-            if(attribute === 'accept-cookie') {
-                if(PxaCookieWarningHelper['disableAjaxLoading']) {
+            if (attribute === 'accept-cookie') {
+                if (PxaCookieWarningHelper['disableAjaxLoading']) {
                     self.setCookie(self.cookieName, 1, 365);
                 } else {
                     self.sendRequestCloseCookieBar();
@@ -112,7 +112,7 @@ function PxaCookieWarning() {
         xmlHttp.send();
     };
 
-    self.setCookie = function(cName, value, exdays) {
+    self.setCookie = function (cName, value, exdays) {
         var exdate = new Date();
         exdate.setDate(exdate.getDate() + exdays);
         var cValue = encodeURI(value) + ((exdays === null) ? '' : '; expires=' + exdate.toUTCString()) + '; path=/';
@@ -120,8 +120,4 @@ function PxaCookieWarning() {
     };
 }
 
-function initPxaCookie() {
-    var pxaCookieWarning = new PxaCookieWarning();
-    pxaCookieWarning.init();
-}
-initPxaCookie();
+new PxaCookieWarning().init();
