@@ -7,6 +7,9 @@ $boot = function ($_EXTKEY) {
         'Pxacookiebar',
         [
             'Cookiewarning' => 'warning, closeWarning'
+        ],
+        [
+            'Cookiewarning' => 'closeWarning'
         ]
     );
 
