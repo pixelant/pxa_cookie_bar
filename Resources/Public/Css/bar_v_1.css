@@ -1,10 +1,9 @@
 /*  Cookies Popup*/
 .top-message-wrap {
-    position: static;
+    position: fixed;
     top: 0;
-    z-index: 200;
+    z-index: 6000;
     width: 100%;
-    color: #ffffff;
 }
 
 .bottom-message-wrap {
@@ -12,7 +11,6 @@
     bottom: 0;
     z-index: 2000;
     width: 100%;
-    color: #ffffff;
 }
 
 #pxa-cookie-mess p {
@@ -77,6 +75,7 @@
 }
 
 #pxa-cookie-mess .cookie-warning {
+    color: #82787d;
     padding: 10px 0 15px 0;
     background-image: -webkit-linear-gradient(-90deg, rgb(254, 254, 254) 0%, rgb(248, 248, 248) 68%, rgb(230, 230, 230) 100%);
     background-image: -ms-linear-gradient(-90deg, rgb(254, 254, 254) 0%, rgb(248, 248, 248) 68%, rgb(230, 230, 230) 100%);

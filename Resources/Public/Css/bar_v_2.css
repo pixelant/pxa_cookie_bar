@@ -6,8 +6,8 @@
 
 .top-message-wrap {
     top: 0;
-    z-index: 200;
-    position: static;
+    z-index: 6000;
+    position: fixed;
 }
 
 .bottom-message-wrap {
@@ -97,6 +97,13 @@
 #pxa-cookie-mess .cookie-warning {
     padding: 10px 0 8px 0;
     background-color: black;
+}
+
+#pxa-cookie-mess.bottom-message-wrap .cookie-warning{
+    border-top: 1px solid #dc0432;
+}
+
+#pxa-cookie-mess.top-message-wrap .cookie-warning{
     border-bottom: 1px solid #dc0432;
 }
 
