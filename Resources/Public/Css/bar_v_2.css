@@ -6,8 +6,8 @@
 
 .top-message-wrap {
     top: 0;
-    z-index: 200;
-    position: static;
+    z-index: 7200;
+    position: fixed;
 }
 
 .bottom-message-wrap {
@@ -20,7 +20,7 @@
     color: #fff;
     font-size: 14px;
     line-height: 20px;
-    font-family: Verdana, Arial;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
     position: relative;
     margin: 0;
 }
@@ -37,7 +37,7 @@
 #pxa-cookie-mess .cookie-container .btn-close {
     font-size: 14px;
     line-height: 20px;
-    font-family: Verdana, Arial;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
     cursor: pointer;
     text-decoration: none;
     border: none;
@@ -59,7 +59,7 @@
 #pxa-cookie-mess .cookie-container .agree-buttons {
     font-size: 14px;
     line-height: 20px;
-    font-family: Verdana, Arial;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
     cursor: pointer;
     text-decoration: none;
     border: none;
@@ -97,6 +97,13 @@
 #pxa-cookie-mess .cookie-warning {
     padding: 10px 0 8px 0;
     background-color: black;
+}
+
+#pxa-cookie-mess.bottom-message-wrap .cookie-warning{
+    border-top: 1px solid #dc0432;
+}
+
+#pxa-cookie-mess.top-message-wrap .cookie-warning{
     border-bottom: 1px solid #dc0432;
 }
 
@@ -112,7 +119,7 @@
 #pxa-cookie-mess a {
     font-size: 14px;
     line-height: 20px;
-    font-family: Verdana, Arial;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
     display: inline-block;
     color: #fff;
     text-decoration: underline;

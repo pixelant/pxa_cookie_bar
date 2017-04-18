@@ -28,7 +28,7 @@ plugin.tx_pxacookiebar {
         targetBlank = 0
 
         # cat=plugin.tx_pxacookiebar/pxacookiebar/025; type=options[Top=top,Bottom=bottomFix]; label=Position
-        position = top
+        position = bottomFix
 
         # cat=plugin.tx_pxacookiebar/pxacookiebar/030; type=boolean; label=Show only after FE user login
         showOnlyOnLogin = 0
@@ -36,8 +36,8 @@ plugin.tx_pxacookiebar {
         # cat=plugin.tx_pxacookiebar/pxacookiebar/035; type=options[Standart version=1,Styling version 2=2]; label=Styling version
         stylingVersion = 1
 
-        # cat=plugin.tx_pxacookiebar/pxacookiebar/040; type=boolean; label=Don't use ajax for cookie bar loading
-        disableAjaxLoading = 0
+		# cat=plugin.tx_pxacookiebar/pxacookiebar/040; type=boolean; label=Don't use ajax for cookie bar loading
+		disableAjaxLoading = 0
 
         prepantTo = 10
     }
