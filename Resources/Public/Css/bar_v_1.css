@@ -30,12 +30,14 @@
 #pxa-cookie-mess .cookie-container .btn-close {
     text-align: center;
     min-width: 36px;
+    font-size: 19px;
+    line-height: 26px;
     float: right;
     cursor: pointer;
     text-decoration: none;
     border: 1px solid;
     border-radius: 3px;
-    padding: 4px 6px 5px 6px;
+    padding: 4px 6px 6px 6px;
     font-family: Verdana, sans-serif;
 }
 
