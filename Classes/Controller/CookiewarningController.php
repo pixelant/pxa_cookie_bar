@@ -24,10 +24,10 @@ namespace Pixelant\PxaCookieBar\Controller;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-use Pixelant\PxaCookieBar\Utility\CookieUtility;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+use Pixelant\PxaCookieBar\Domain\Model\Cookiewarning;
+use Pixelant\PxaCookieBar\Utility\CookieUtility;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
  *
@@ -36,7 +36,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class CookiewarningController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class CookiewarningController extends ActionController
+{
 
     /**
      * @var \Pixelant\PxaCookieBar\Domain\Repository\CookiewarningRepository
@@ -45,57 +46,57 @@ class CookiewarningController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
     protected $cookiewarningRepository;
 
     /**
-     * action warning
+     * Render message
      *
      * @return void
      */
-    public function warningAction() {
-        if ($_COOKIE['pxa_cookie_warning'] || ($this->settings['showOnlyOnLogin'] && !CookieUtility::getTSFE()->loginUser)) {
-            $this->view->assign('show', FALSE);
+    public function warningAction()
+    {
+        if (!$this->settings['forceCookieWarningRender']
+            && ($_COOKIE['pxa_cookie_warning']
+                || ($this->settings['showOnlyOnLogin'] && !CookieUtility::getTSFE()->loginUser))
+        ) {
+            $this->view->assign('show', false);
         } else {
+            /** @var Cookiewarning $messages */
             $messages = $this->cookiewarningRepository->findSomething();
 
-            if ($messages) {
-                $this->view->assign('message', $messages->getWarningmessage());
-                $this->view->assign('moretext', $messages->getLinktext());
-                $this->view->assign('page', $messages->getPage());
+            if ($messages !== null) {
+                $this->view->assignMultiple([
+                    'message' => $messages->getWarningmessage(),
+                    'linkText' => $messages->getLinktext(),
+                    'page' => $messages->getPage()
+                ]);
             } else {
                 $this->view->assign('page', $this->settings['page']);
-            }
-
-            // check if CDN is enabled
-            if ($this->settings['useSubDomain'] == 1 && ($subDomain = CookieUtility::getSubDomain()) && GeneralUtility::getIndpEnv('TYPO3_HOST_ONLY') === $subDomain) {
-                $domain = BackendUtility::firstDomainRecord(CookieUtility::getTSFE()->rootLine);
-                # allow subdomain request
-                $this->response->setHeader('Access-Control-Allow-Origin', GeneralUtility::getIndpEnv('TYPO3_SSL') ? 'https' : 'http' . '://' . $domain);
             }
 
             if (!intval($this->settings['disableCookies']) && 0 === intval($this->settings['disableAjaxLoading'])) {
                 $this->setCookie();
             }
 
-            $this->view->assign('show', TRUE);
+            $this->view->assign('show', true);
         }
     }
 
     /**
-     * action closeWarning
+     * Ajax close warning
      *
      * @return void
      */
-    public function closeWarningAction() {
+    public function closeWarningAction()
+    {
         $this->setCookie();
         exit(0);
     }
 
     /**
-     * set cookie that it was read
+     * Set cookie that it was read
+     *
+     * @return void
      */
-    protected function setCookie() {
-        if ($this->settings['useSubDomain'] == 1 && ($subDomain = CookieUtility::getSubDomain()) && GeneralUtility::getIndpEnv('TYPO3_HOST_ONLY') === $subDomain) {
-            setcookie('pxa_cookie_warning', 1, time() + 60 * 60 * 24 * 30 * 12, '/', BackendUtility::firstDomainRecord(CookieUtility::getTSFE()->rootLine));
-        } else {
-            setcookie('pxa_cookie_warning', 1, time() + 60 * 60 * 24 * 30 * 12, '/');
-        }
+    protected function setCookie()
+    {
+        setcookie('pxa_cookie_warning', 1, time() + 60 * 60 * 24 * 30 * 12, '/');
     }
 }

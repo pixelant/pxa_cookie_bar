@@ -1,47 +1,44 @@
 plugin.tx_pxacookiebar {
-	view {
-		# cat=plugin.tx_pxacookiebar/file; type=string; label=Path to template root (FE)
-		templateRootPath = EXT:pxa_cookie_bar/Resources/Private/Templates/
-		# cat=plugin.tx_pxacookiebar/file; type=string; label=Path to template partials (FE)
-		partialRootPath = EXT:pxa_cookie_bar/Resources/Private/Partials/
-		# cat=plugin.tx_pxacookiebar/file; type=string; label=Path to template layouts (FE)
-		layoutRootPath = EXT:pxa_cookie_bar/Resources/Private/Layouts/
-	}
-	persistence {
-		# cat=plugin.tx_pxacookiebar//a; type=string; label=Default storage PID
-		storagePid = 
-	}
+    view {
+        # cat=plugin.tx_pxacookiebar/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:pxa_cookie_bar/Resources/Private/Templates/
+        # cat=plugin.tx_pxacookiebar/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:pxa_cookie_bar/Resources/Private/Partials/
+        # cat=plugin.tx_pxacookiebar/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:pxa_cookie_bar/Resources/Private/Layouts/
+    }
+
+    persistence {
+        # cat=plugin.tx_pxacookiebar//a; type=string; label=Default storage PID
+        storagePid =
+    }
 }
+
 # Settings for cookies
 plugin.tx_pxacookiebar {
+    # customsubcategory=pxacookiebar=Cookie bar settings
+    settings {
+        # cat=plugin.tx_pxacookiebar/pxacookiebar/010; type=boolean; label=Disable using of cookie (Active)
+        disableCookies = 0
 
-	# customsubcategory=pxacookiebar=Cookie bar settings
-	settings {
-		# cat=plugin.tx_pxacookiebar/pxacookiebar/010; type=boolean; label=Disable using of cookie (Active)
-		disableCookies = 0
+        # cat=plugin.tx_pxacookiebar/pxacookiebar/015; type=string; label=Cookie link or Page UID
+        page = 1
 
-		# cat=plugin.tx_pxacookiebar/pxacookiebar/015; type=string; label=Cookie link or Page UID
-		page = 1
+        # cat=plugin.tx_pxacookiebar/pxacookiebar/020; type=boolean; label=Link target blank
+        targetBlank = 0
 
-		# cat=plugin.tx_pxacookiebar/pxacookiebar/020; type=boolean; label=Link target blank
-		targetBlank = 0
+        # cat=plugin.tx_pxacookiebar/pxacookiebar/025; type=options[Top=top,Bottom=bottomFix]; label=Position
+        position = bottomFix
 
-		# cat=plugin.tx_pxacookiebar/pxacookiebar/025; type=options[Top=top,Bottom=bottomFix]; label=Position
-		position = bottomFix
+        # cat=plugin.tx_pxacookiebar/pxacookiebar/030; type=boolean; label=Show only after FE user login
+        showOnlyOnLogin = 0
 
-		# cat=plugin.tx_pxacookiebar/pxacookiebar/030; type=boolean; label=Show only after FE user login
-		showOnlyOnLogin = 0
-
-		# cat=plugin.tx_pxacookiebar/pxacookiebar/035; type=options[Standart version=1,Styling version 2=2]; label=Styling version
-		stylingVersion = 1
+        # cat=plugin.tx_pxacookiebar/pxacookiebar/035; type=options[Standart version=1,Styling version 2=2]; label=Styling version
+        stylingVersion = 1
 
 		# cat=plugin.tx_pxacookiebar/pxacookiebar/040; type=boolean; label=Don't use ajax for cookie bar loading
 		disableAjaxLoading = 0
 
-		# cat=plugin.tx_pxacookiebar/pxacookiebar/045; type=boolean; label=Use subdomain to get cookie bar
-		useSubDomain = 0
-
-		# cat=plugin.tx_pxacookiebar/pxacookiebar/050; type=string; label=Subdomain
-		subDomain =
-	}
+        prepantTo = 10
+    }
 }

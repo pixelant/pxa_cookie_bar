@@ -1,36 +1,36 @@
 plugin.tx_pxacookiebar {
-	view {
-		templateRootPaths {
-			10 = {$plugin.tx_pxacookiebar.view.templateRootPath}
-		}
-		partialRootPaths {
-			10 = {$plugin.tx_pxacookiebar.view.partialRootPath}
-		}
-		layoutRootPaths {
-			10 = {$plugin.tx_pxacookiebar.view.layoutRootPath}
-		}
-	}
+    view {
+        templateRootPaths {
+            10 = {$plugin.tx_pxacookiebar.view.templateRootPath}
+        }
 
-	persistence {
-		storagePid = {$plugin.tx_pxacookiebar.persistence.storagePid}
-	}
+        partialRootPaths {
+            10 = {$plugin.tx_pxacookiebar.view.partialRootPath}
+        }
 
-	features {
-		# uncomment the following line to enable the new Property Mapper.
-		# rewrittenPropertyMapper = 1
-	}
+        layoutRootPaths {
+            10 = {$plugin.tx_pxacookiebar.view.layoutRootPath}
+        }
+    }
 
-	settings {
-		enable = 1
-		disableCookies = {$plugin.tx_pxacookiebar.settings.disableCookies}
-		page = {$plugin.tx_pxacookiebar.settings.page}
-		targetBlank = {$plugin.tx_pxacookiebar.settings.targetBlank}
-		showOnlyOnLogin = {$plugin.tx_pxacookiebar.settings.showOnlyOnLogin}
-		stylingVersion = {$plugin.tx_pxacookiebar.settings.stylingVersion}
-		useSubDomain = {$plugin.tx_pxacookiebar.settings.useSubDomain}
-		subDomain = {$plugin.tx_pxacookiebar.settings.subDomain}
+    persistence {
+        storagePid = {$plugin.tx_pxacookiebar.persistence.storagePid}
+    }
+
+    features {
+        # uncomment the following line to enable the new Property Mapper.
+        # rewrittenPropertyMapper = 1
+    }
+
+    settings {
+        enable = 1
+        disableCookies = {$plugin.tx_pxacookiebar.settings.disableCookies}
+        page = {$plugin.tx_pxacookiebar.settings.page}
+        targetBlank = {$plugin.tx_pxacookiebar.settings.targetBlank}
+        showOnlyOnLogin = {$plugin.tx_pxacookiebar.settings.showOnlyOnLogin}
+        stylingVersion = {$plugin.tx_pxacookiebar.settings.stylingVersion}
         disableAjaxLoading = {$plugin.tx_pxacookiebar.settings.disableAjaxLoading}
-	}
+    }
 }
 
 page.includeJSFooter.cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Js/pxa_cookie_warning.js
@@ -49,43 +49,40 @@ cookieWarning.5 {
     vendorName = Pixelant
 }
 
-
 # options
 page.headerData.86 = COA
 page.headerData.86 {
-	# helper options
+    # helper options
     5 = TEXT
     5.value (
 setDocumentClass : function(className) {
     document.documentElement.className += (document.documentElement.className == "" ? "":" ") + className;
 },
-)
-	10 = TEXT
-	10 {
-		typolink {
-			parameter.data = TSFE:id
-			additionalParams = &type=314638125&tx_pxacookiebar_pxacookiebar[action]=closeWarning
-			addQueryString = 1
-			addQueryString.method = GET
-			useCacheHash = 1
-			forceAbsoluteUrl = 1
-			returnLast = url
-		}
-		wrap = cookieCloseUrl:"|",
-	}
+    )
+    10 = TEXT
+    10 {
+        typolink {
+            parameter.data = TSFE:id
+            additionalParams = &type=314638125&tx_pxacookiebar_pxacookiebar[action]=closeWarning
+            addQueryString = 1
+            addQueryString.method = GET
+            useCacheHash = 1
+            forceAbsoluteUrl = 1
+            returnLast = url
+        }
 
-	20 = TEXT
-	20 {
-		stdWrap {
-			data = TSFE:sys_language_uid
-			wrap = &type=314638125&L=|
-			dataWrap = cookieBarUrl:"{getIndpEnv:TYPO3_REQUEST_HOST}/?id={TSFE:id}|",
-		}
-	}
+        wrap = cookieCloseUrl:"|",
+    }
 
-	30 = TEXT
-	30 {
-		value (
+    20 < .10
+    20 {
+        typolink.additionalParams = &type=314638125&tx_pxacookiebar_pxacookiebar[action]=warning
+        wrap = cookieBarUrl:"|",
+    }
+
+    30 = TEXT
+    30 {
+        value (
 getCookie : function(c_name) {
 	var i, x, y, ARRcookies = document.cookie.split(";");
 	for (i = 0; i < ARRcookies.length; i++) {
@@ -99,39 +96,47 @@ getCookie : function(c_name) {
 
 	return false;
 },
-)
-	}
+        )
+    }
 
-	wrap = <script>var PxaCookieWarningHelper = {|};PxaCookieWarningHelper['cookieIsSet']=PxaCookieWarningHelper.getCookie('pxa_cookie_warning');if(!PxaCookieWarningHelper['cookieIsSet'] && PxaCookieWarningHelper['disableAjaxLoading']) {PxaCookieWarningHelper.setDocumentClass("visible-cookie-warning");}</script>
+    wrap = <script>var PxaCookieWarningHelper = {|};PxaCookieWarningHelper['cookieIsSet']=PxaCookieWarningHelper.getCookie('pxa_cookie_warning');if(!PxaCookieWarningHelper['cookieIsSet'] && PxaCookieWarningHelper['disableAjaxLoading']) {PxaCookieWarningHelper.setDocumentClass("visible-cookie-warning");}</script>
 }
+
 [globalVar = LIT:1 = {$plugin.tx_pxacookiebar.settings.disableAjaxLoading}]
-page.headerData.86 {
-    35 = TEXT
-    35.value = disableAjaxLoading: true,
-}
-page {
-    10 {
-        stdWrap.prepend = COA
-        stdWrap.prepend  {
-            10 < cookieWarning.5
+    page.headerData.86 {
+        35 = TEXT
+        35.value = disableAjaxLoading: true,
+    }
+
+    page {
+        {$plugin.tx_pxacookiebar.settings.prepantTo} {
+            stdWrap.prepend = COA
+            stdWrap.prepend {
+                10 < cookieWarning.5
+                10 {
+                    settings {
+                        forceCookieWarningRender = 1
+                    }
+                }
+            }
         }
     }
-    cssInline {
-        87 = TEXT
-        87.value = #pxa-cookie-mess{display:none;}.visible-cookie-warning #pxa-cookie-mess{display: block;}
-    }
-}
+
+    plugin.tx_pxacookiebar._CSS_DEFAULT_STYLE (
+        #pxa-cookie-mess{display:none;}.visible-cookie-warning #pxa-cookie-mess{display: block;}
+    )
 [else]
-page.headerData.86 {
-    35 = TEXT
-    35.value = disableAjaxLoading: false,
-}
+    page.headerData.86 {
+        35 = TEXT
+        35.value = disableAjaxLoading: false,
+    }
+
 [globalVar = LIT:1 = {$plugin.tx_pxacookiebar.settings.disableCookies}]
-# disallow JS to SetCookie, should be on top of the page
-page.headerData.86 {
-	40 = TEXT
-	40 {
-		value (
+    # disallow JS to SetCookie, should be on top of the page
+    page.headerData.86 {
+        40 = TEXT
+        40 {
+            value (
 pxaPreventJsFromSettingCookies: function() {
 	if(!document.__defineGetter__) {
     	Object.defineProperty(document, 'cookie', {
@@ -143,33 +148,27 @@ pxaPreventJsFromSettingCookies: function() {
         document.__defineSetter__("cookie", function() {} );
     }
 },
-)
-	}
+            )
+        }
 
-	50 = TEXT
-	50.value = isActiveConsent: true,
+        50 = TEXT
+        50.value = isActiveConsent: true,
 
-	wrap (
+        wrap (
 <script>var PxaCookieWarningHelper = {|};
 PxaCookieWarningHelper['cookieIsSet']=PxaCookieWarningHelper.getCookie('pxa_cookie_warning');
 if(!PxaCookieWarningHelper['cookieIsSet']) {PxaCookieWarningHelper.pxaPreventJsFromSettingCookies();}
 if(!PxaCookieWarningHelper['cookieIsSet'] && PxaCookieWarningHelper['disableAjaxLoading']) {PxaCookieWarningHelper.setDocumentClass("visible-cookie-warning");}
 </script>
-)
-}
+        )
+    }
 [else]
-page.headerData.86 {
-	50 = TEXT
-	50.value = isActiveConsent: false,
-}
-[globalVar = LIT:1 = {$plugin.tx_pxacookiebar.settings.useSubDomain}]
-page.headerData.86 {
-	20 {
-		stdWrap.postUserFunc = Pixelant\PxaCookieBar\Utility\CookieUtility->replaceWithSubDomain
-	}
-}
+    page.headerData.86 {
+        50 = TEXT
+        50.value = isActiveConsent: false,
+    }
 [globalVar = LIT:bottomFix = {$plugin.tx_pxacookiebar.settings.position}]
-	plugin.tx_pxacookiebar.settings.wrapperClasses = bottom-message-wrap
+    plugin.tx_pxacookiebar.settings.wrapperClasses = bottom-message-wrap
 [else]
-	plugin.tx_pxacookiebar.settings.wrapperClasses = top-message-wrap
+    plugin.tx_pxacookiebar.settings.wrapperClasses = top-message-wrap
 [global]
