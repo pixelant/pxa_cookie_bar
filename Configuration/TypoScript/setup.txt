@@ -62,10 +62,8 @@ setDocumentClass : function(className) {
     10 = TEXT
     10 {
         typolink {
-            parameter.data = TSFE:id
+            parameter.data = leveluid:0
             additionalParams = &type=314638125&tx_pxacookiebar_pxacookiebar[action]=closeWarning
-            addQueryString = 1
-            addQueryString.method = GET
             useCacheHash = 1
             forceAbsoluteUrl = 1
             returnLast = url
