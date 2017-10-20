@@ -25,7 +25,7 @@ namespace Pixelant\PxaCookieBar\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use Pixelant\PxaCookieBar\Domain\Model\Cookiewarning;
+use Pixelant\PxaCookieBar\Domain\Model\CookieWarning;
 use Pixelant\PxaCookieBar\Utility\CookieUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
@@ -36,21 +36,21 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class CookiewarningController extends ActionController
+class CookieWarningController extends ActionController
 {
 
     /**
-     * @var \Pixelant\PxaCookieBar\Domain\Repository\CookiewarningRepository
+     * @var \Pixelant\PxaCookieBar\Domain\Repository\CookieWarningRepository
      * @inject
      */
-    protected $cookiewarningRepository;
+    protected $cookieWarningRepository;
 
     /**
      * Render message
      *
      * @return void
      */
-    public function warningAction()
+    public function warningMessageAction()
     {
         if (!$this->settings['forceCookieWarningRender']
             && ($_COOKIE['pxa_cookie_warning']
@@ -58,7 +58,7 @@ class CookiewarningController extends ActionController
         ) {
             $this->view->assign('show', false);
         } else {
-            /** @var Cookiewarning $messages */
+            /** @var CookieWarning $messages */
             $messages = $this->cookiewarningRepository->findSomething();
 
             if ($messages !== null) {
@@ -77,26 +77,5 @@ class CookiewarningController extends ActionController
 
             $this->view->assign('show', true);
         }
-    }
-
-    /**
-     * Ajax close warning
-     *
-     * @return void
-     */
-    public function closeWarningAction()
-    {
-        $this->setCookie();
-        exit(0);
-    }
-
-    /**
-     * Set cookie that it was read
-     *
-     * @return void
-     */
-    protected function setCookie()
-    {
-        setcookie('pxa_cookie_warning', 1, time() + 60 * 60 * 24 * 30 * 12, '/');
     }
 }

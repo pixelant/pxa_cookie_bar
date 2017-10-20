@@ -1,12 +1,11 @@
 <?php
 
-namespace Pixelant\PxaCookieBar\Domain\Repository;
+namespace Pixelant\PxaCookieBar\Controller;
 
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2013 Andriy <andriy@pixelant.se>, Pixelant
- *
+ *  (c) 2017
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -26,29 +25,19 @@ namespace Pixelant\PxaCookieBar\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use TYPO3\CMS\Extbase\Persistence\Repository;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
- *
- *
- * @package pxa_cookie_warning
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
- *
+ * Class AbstractController
+ * @package Pixelant\PxaCookieBar\Controller
  */
-
-class CookiewarningRepository extends Repository
+class AbstractController extends ActionController
 {
-
     /**
-     * try to find some message
-     *
-     * @return object|null
+     * @var \TYPO3\CMS\Core\Registry
+     * @inject
      */
-    public function findSomething()
-    {
-        $query = $this->createQuery();
-        $query->getQuerySettings()->setRespectStoragePage(true);
+    protected $registry;
 
-        return $query->execute()->getFirst();
-    }
+
 }

@@ -3,27 +3,30 @@
 #
 CREATE TABLE tx_pxacookiebar_domain_model_cookiewarning (
 
-  uid int(11) NOT NULL auto_increment,
-	pid int(11) DEFAULT '0' NOT NULL,
+  uid              INT(11)                         NOT NULL AUTO_INCREMENT,
+  pid              INT(11) DEFAULT '0'             NOT NULL,
 
-	warningmessage text NOT NULL,
-	linktext varchar(255) DEFAULT '' NOT NULL,
-	page varchar(55) DEFAULT '' NOT NULL,
+  name             VARCHAR(55) DEFAULT ''          NOT NULL,
+  warning_message  TEXT                            NOT NULL,
+  link_text        VARCHAR(255) DEFAULT ''         NOT NULL,
+  link_target      VARCHAR(55) DEFAULT ''          NOT NULL,
+  active_consent   TINYINT(4) UNSIGNED DEFAULT '0' NOT NULL,
+  one_time_visible TINYINT(4) UNSIGNED DEFAULT '0' NOT NULL,
 
-	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
-	crdate int(11) unsigned DEFAULT '0' NOT NULL,
-	cruser_id int(11) unsigned DEFAULT '0' NOT NULL,
-	deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
-	hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
-	starttime int(11) unsigned DEFAULT '0' NOT NULL,
-	endtime int(11) unsigned DEFAULT '0' NOT NULL,
+  tstamp           INT(11) UNSIGNED DEFAULT '0'    NOT NULL,
+  crdate           INT(11) UNSIGNED DEFAULT '0'    NOT NULL,
+  cruser_id        INT(11) UNSIGNED DEFAULT '0'    NOT NULL,
+  deleted          TINYINT(4) UNSIGNED DEFAULT '0' NOT NULL,
+  hidden           TINYINT(4) UNSIGNED DEFAULT '0' NOT NULL,
+  starttime        INT(11) UNSIGNED DEFAULT '0'    NOT NULL,
+  endtime          INT(11) UNSIGNED DEFAULT '0'    NOT NULL,
 
-	t3_origuid int(11) DEFAULT '0' NOT NULL,
-	sys_language_uid int(11) DEFAULT '0' NOT NULL,
-	l10n_parent int(11) DEFAULT '0' NOT NULL,
-	l10n_diffsource mediumblob,
+  t3_origuid       INT(11) DEFAULT '0'             NOT NULL,
+  sys_language_uid INT(11) DEFAULT '0'             NOT NULL,
+  l10n_parent      INT(11) DEFAULT '0'             NOT NULL,
+  l10n_diffsource  MEDIUMBLOB,
 
-	PRIMARY KEY (uid),
-	KEY parent (pid),
-	KEY language (l10n_parent,sys_language_uid)
+  PRIMARY KEY (uid),
+  KEY parent (pid),
+  KEY language (l10n_parent, sys_language_uid)
 );
