@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace Pixelant\PxaCookieBar\ViewHelpers\Backend;
 
 use TYPO3\CMS\Core\Page\PageRenderer;

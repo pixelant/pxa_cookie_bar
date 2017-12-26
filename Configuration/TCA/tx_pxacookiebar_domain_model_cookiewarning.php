@@ -6,7 +6,7 @@ $ll = 'LLL:EXT:pxa_cookie_bar/Resources/Private/Language/locallang_db.xlf:';
 return [
     'ctrl' => [
         'title' => $ll . 'tx_pxacookiebar_domain_model_cookiewarning',
-        'label' => 'uid',
+        'label' => 'name',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',

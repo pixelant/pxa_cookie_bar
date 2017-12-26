@@ -6,34 +6,18 @@
 <f:section name="main">
     <f:if condition="{isRoot}">
         <f:then>
-            <f:if condition="{cookieWarnings}">
-                <div class="panel panel-space panel-default recordlist">
-                    <div class="panel-heading">
-                            <span class="c-table"
-                                  role="button"
-                                  data-toggle="collapse"
-                                  href="#collapse-cookie-list"
-                                  aria-expanded="false"
-                                  aria-controls="collapse-cookie-list">
-                                <pxa:backend.translate key="be.cookie_bar"/>
-                            </span>
-                        (<span class="t3js-table-total-items">{cookieWarnings -> f:count()}</span>)
-                    </div>
-                    <div class="collapse in" data-state="expanded" id="collapse-cookie-list">
-                        <div class="table-fit">
-                            <table class="table table-striped table-hover">
-                                <!-- Element, begin: -->
-                                <tbody>
-                                <f:for each="{cookieWarnings}" as="cookieWarning">
-                                    <tr>
-                                        <td title="{cookieWarning.uid}">{cookieWarning.name}</td>
-                                    </tr>
-                                </f:for>
-                                </tbody>
-                            </table>
+            <f:if condition="{cookieWarning}">
+                <f:then>
+                    <f:render section="cookieWarningList" arguments="{cookieWarning: cookieWarning}"/>
+                </f:then>
+                <f:else>
+                    <div class="alert alert-info">
+                        <div class="message-body">
+                            <pxa:backend.translate key="be.no_warnings_found"/>
                         </div>
                     </div>
-                </div>
+                    <a type="button" class="btn btn-default" href="{pxa:backend.recordUrl(linkType: 'new', uid: pid)}">+ <pxa:backend.translate key="be.create_new"/></a>
+                </f:else>
             </f:if>
         </f:then>
         <f:else>
@@ -44,5 +28,32 @@
             </div>
         </f:else>
     </f:if>
+</f:section>
+
+<f:section name="cookieWarningList">
+    <div class="panel panel-space panel-default recordlist">
+        <div class="panel-heading">
+            <span class="c-table"
+                  role="button"
+                  data-toggle="collapse"
+                  href="#collapse-cookie-list"
+                  aria-expanded="false"
+                  aria-controls="collapse-cookie-list">
+                <pxa:backend.translate key="be.cookie_bar"/>
+            </span>
+        </div>
+        <div class="collapse in" data-state="expanded" id="collapse-cookie-list">
+            <div class="table-fit">
+                <table class="table table-striped table-hover">
+                    <!-- Element, begin: -->
+                    <tbody>
+                        <tr>
+                            <td title="{cookieWarning.uid}">{cookieWarning.name}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </f:section>
 </html>

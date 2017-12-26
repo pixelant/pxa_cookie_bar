@@ -13,36 +13,21 @@ plugin.tx_pxacookiebar {
         }
     }
 
-    persistence {
-        storagePid = {$plugin.tx_pxacookiebar.persistence.storagePid}
-    }
-
     features {
         # uncomment the following line to enable the new Property Mapper.
         # rewrittenPropertyMapper = 1
     }
 
     settings {
-        enable = 1
-        disableCookies = {$plugin.tx_pxacookiebar.settings.disableCookies}
-        page = {$plugin.tx_pxacookiebar.settings.page}
-        targetBlank = {$plugin.tx_pxacookiebar.settings.targetBlank}
-        showOnlyOnLogin = {$plugin.tx_pxacookiebar.settings.showOnlyOnLogin}
-        stylingVersion = {$plugin.tx_pxacookiebar.settings.stylingVersion}
-        disableAjaxLoading = {$plugin.tx_pxacookiebar.settings.disableAjaxLoading}
+
     }
 }
 
 page.includeJSFooter.cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Js/pxa_cookie_warning.js
-page.includeCSS.cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Css/bar_v_{$plugin.tx_pxacookiebar.settings.stylingVersion}.css
+page.includeCSS.cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Css/bar.css
 
-cookieWarning = PAGE
-cookieWarning.typeNum = 314638125
-cookieWarning.config.no_cache = 1
-cookieWarning.config.disableAllHeaderCode = 1
-
-cookieWarning.5 = USER
-cookieWarning.5 {
+page.11905 = USER
+page.11905 {
     userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
     extensionName = PxaCookieBar
     pluginName = Pxacookiebar

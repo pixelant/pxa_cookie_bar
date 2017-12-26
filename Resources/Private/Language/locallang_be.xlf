@@ -11,7 +11,10 @@
                 <source>Page is not a site root, please, choose page marked as site root.</source>
             </trans-unit>
             <trans-unit id="be.create_new">
-                <source>Create new Cookie Warning message</source>
+                <source>Create cookie warning</source>
+            </trans-unit>
+            <trans-unit id="be.no_warnings_found">
+                <source>No cookie warnings were found.</source>
             </trans-unit>
             <!--Backend module labels:END-->
         </body>

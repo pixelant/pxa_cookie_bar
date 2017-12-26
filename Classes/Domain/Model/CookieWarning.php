@@ -39,7 +39,7 @@ class CookieWarning extends AbstractEntity
     /**
      * @var string
      */
-    protected $name;
+    protected $name = '';
 
     /**
      * Warning message
@@ -47,7 +47,7 @@ class CookieWarning extends AbstractEntity
      * @var string
      * @validate NotEmpty
      */
-    protected $warningMessage;
+    protected $warningMessage = '';
 
     /**
      * Link text
@@ -55,24 +55,24 @@ class CookieWarning extends AbstractEntity
      * @var string
      * @validate NotEmpty
      */
-    protected $linkText;
+    protected $linkText = '';
 
     /**
      * Link
      *
      * @var string
      */
-    protected $linkTarget;
+    protected $linkTarget = '';
 
     /**
      * @var bool
      */
-    protected $activeConsent;
+    protected $activeConsent = false;
 
     /**
      * @var bool
      */
-    protected $oneTimeVisible;
+    protected $oneTimeVisible = false;
 
     /**
      * @return string

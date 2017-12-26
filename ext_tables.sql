@@ -2,7 +2,6 @@
 # Table structure for table 'tx_pxacookiebar_domain_model_cookiewarning'
 #
 CREATE TABLE tx_pxacookiebar_domain_model_cookiewarning (
-
   uid              INT(11)                         NOT NULL AUTO_INCREMENT,
   pid              INT(11) DEFAULT '0'             NOT NULL,
 

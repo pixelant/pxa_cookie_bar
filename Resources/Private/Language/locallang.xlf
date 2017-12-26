@@ -16,11 +16,8 @@
             <trans-unit id="pxacookiebar.decline">
                 <source>Decline</source>
             </trans-unit>
-            <trans-unit id="pxacookiebar.close_1">
+            <trans-unit id="pxacookiebar.close">
                 <source>x</source>
-            </trans-unit>
-            <trans-unit id="pxacookiebar.close_2">
-                <source>Close</source>
             </trans-unit>
             <!--FE:END-->
         </body>

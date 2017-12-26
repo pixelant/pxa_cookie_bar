@@ -52,30 +52,15 @@ class CookieWarningController extends ActionController
      */
     public function warningMessageAction()
     {
-        if (!$this->settings['forceCookieWarningRender']
-            && ($_COOKIE['pxa_cookie_warning']
-                || ($this->settings['showOnlyOnLogin'] && !CookieUtility::getTSFE()->loginUser))
-        ) {
-            $this->view->assign('show', false);
-        } else {
-            /** @var CookieWarning $messages */
-            $messages = $this->cookiewarningRepository->findSomething();
+        $rootLine = array_reverse(CookieUtility::getTSFE()->rootLine ?: []);
 
-            if ($messages !== null) {
-                $this->view->assignMultiple([
-                    'message' => $messages->getWarningmessage(),
-                    'linkText' => $messages->getLinktext(),
-                    'page' => $messages->getPage()
-                ]);
-            } else {
-                $this->view->assign('page', $this->settings['page']);
+        foreach ($rootLine as $rootLineItem) {
+            if ((int)$rootLineItem['is_siteroot'] === 1) {
+                /** @var CookieWarning $cookieWarning */
+                $cookieWarning = $this->cookieWarningRepository->findByPid((int)$rootLineItem['uid']);
+
+                $this->view->assign('cookieWarning', $cookieWarning);
             }
-
-            if (!intval($this->settings['disableCookies']) && 0 === intval($this->settings['disableAjaxLoading'])) {
-                $this->setCookie();
-            }
-
-            $this->view->assign('show', true);
         }
     }
 }

@@ -1,11 +1,9 @@
 <?php
-
+declare(strict_types=1);
 namespace Pixelant\PxaCookieBar\ViewHelpers\Backend;
 
-use TYPO3\CMS\Core\Page\PageRenderer;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Pixelant\PxaCookieBar\Utility\BackendTranslateUtility;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3\CMS\Lang\LanguageService;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
@@ -16,13 +14,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 class TranslateViewHelper extends AbstractViewHelper
 {
     use CompileWithRenderStatic;
-
-    /**
-     * Path to translation file
-     *
-     * @var string
-     */
-    protected static $LLL = 'LLL:EXT:pxa_cookie_bar/Resources/Private/Language/locallang_be.xlf:';
 
     /**
      * Initialize arguments
@@ -46,15 +37,12 @@ class TranslateViewHelper extends AbstractViewHelper
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
     ): string {
-
         $key = $arguments['key'];
+
         if (empty($key)) {
             $key = trim($renderChildrenClosure());
         }
 
-        /** @var LanguageService $lang */
-        $lang = $GLOBALS['LANG'];
-
-        return $lang->sL(self::$LLL . $key);
+        return BackendTranslateUtility::translate($key);
     }
 }

@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace Pixelant\PxaCookieBar\Utility;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -27,7 +27,7 @@ class CookieUtility
     {
         if (self::$settings === null) {
             self::$settings = GeneralUtility::removeDotsFromTS(
-                self::getTSFE()->tmpl->setup['plugin.']['tx_pxacookiebar.']['settings.']
+                self::getTSFE()->tmpl->setup['plugin.']['tx_pxacookiebar.']['settings.'] ?: []
             );
         }
 

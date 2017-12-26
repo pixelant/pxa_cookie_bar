@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Pixelant\PxaCookieBar\Controller;
 
@@ -25,21 +26,21 @@ namespace Pixelant\PxaCookieBar\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use Pixelant\PxaCookieBar\Utility\BackendTranslateUtility;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
-use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-use TYPO3\CMS\Lang\LanguageService;
 
 /**
  * Class CookieBarAdministrationController
  * @package Pixelant\PxaCookieBar\Controller
  */
-class CookieBarAdministrationController extends AbstractController
+class CookieBarAdministrationController extends ActionController
 {
     /**
      * Backend Template Container
@@ -53,38 +54,34 @@ class CookieBarAdministrationController extends AbstractController
      *
      * @var BackendTemplateView
      */
-    protected $view;
+    protected $view = null;
 
     /**
      * @var \Pixelant\PxaCookieBar\Domain\Repository\CookieWarningRepository
      * @inject
      */
-    protected $cookieWarningRepository;
+    protected $cookieWarningRepository = null;
 
     /**
      * Array of db row of current selected page
      *
      * @var array
      */
-    protected $currentPageInfo;
+    protected $currentPageInfo = [];
 
     /**
      * Current page
      *
      * @var int
      */
-    protected $pageUid;
+    protected $pageUid = 0;
 
     /**
-     * initializeAction
+     * Determinate if current page is site root
      *
-     * @return void
+     * @var bool
      */
-    public function initializeAction()
-    {
-        $this->pageUid = (int)GeneralUtility::_GET('id');
-    }
-
+    protected $isSiteRoot = false;
 
     /**
      * Set up the doc header properly here
@@ -97,7 +94,29 @@ class CookieBarAdministrationController extends AbstractController
         /** @var BackendTemplateView $view */
         parent::initializeView($view);
 
-        $this->createButtons();
+        // Need to run before menu is created to know if new button is visible
+        $this->initialize();
+
+        if ($this->isSiteRoot
+            && $this->cookieWarningRepository->countByPid($this->pageUid) === 0
+        ) {
+            $this->createButtons();
+        }
+    }
+
+    /**
+     * Initialize
+     *
+     * @return void
+     */
+    protected function initialize()
+    {
+        $this->pageUid = (int)GeneralUtility::_GET('id');
+
+        if ($this->pageUid) {
+            $page = BackendUtility::getRecord('pages', $this->pageUid, 'is_siteroot');
+            $this->isSiteRoot = is_array($page) && (bool)$page['is_siteroot'];
+        }
     }
 
     /**
@@ -106,12 +125,10 @@ class CookieBarAdministrationController extends AbstractController
     public function indexAction()
     {
         if ($this->pageUid) {
-            $page = BackendUtility::getRecord('pages', $this->pageUid, 'is_siteroot');
-            $isSiteRoot = is_array($page) && $page['is_siteroot'];
-
             $this->view->assignMultiple([
-                'isRoot' => $isSiteRoot,
-                'cookieWarnings' => $this->cookieWarningRepository->findAll()
+                'isRoot' => $this->isSiteRoot,
+                'pid' => $this->pageUid,
+                'cookieWarning' => $this->cookieWarningRepository->findByPid($this->pageUid)
             ]);
         }
     }
@@ -124,15 +141,14 @@ class CookieBarAdministrationController extends AbstractController
     protected function createButtons()
     {
         if ($this->view->getModuleTemplate() !== null) {
-            $uriBuilder = $this->uriBuilder->reset();
             /** @var IconFactory $iconFactory */
             $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
             $buttonBar = $this->view->getModuleTemplate()->getDocHeaderComponent()->getButtonBar();
 
             $button = $buttonBar
                 ->makeLinkButton()
-                ->setHref($uriBuilder->reset()->uriFor('createNewRecord'))
-                ->setTitle($this->translate('be.create_new'))
+                ->setHref($this->buildNewCookieWarningUrl())
+                ->setTitle(BackendTranslateUtility::translate('be.create_new'))
                 ->setIcon($iconFactory->getIcon('actions-document-new', Icon::SIZE_SMALL));
 
             $buttonBar->addButton($button, ButtonBar::BUTTON_POSITION_LEFT);
@@ -140,23 +156,20 @@ class CookieBarAdministrationController extends AbstractController
     }
 
     /**
-     * Translate label
+     * Generate url to create new survey
      *
-     * @param string $key
      * @return string
      */
-    protected function translate(string $key): string
+    protected function buildNewCookieWarningUrl(): string
     {
-        return $this->getLanguageService()->sL(
-            'LLL:EXT:pxa_cookie_bar/Resources/Private/Language/locallang_be.xlf:' . $key
+        $url = BackendUtility::getModuleUrl(
+            'record_edit',
+            [
+                'edit[tx_pxacookiebar_domain_model_cookiewarning][' . $this->pageUid . ']' => 'new',
+                'returnUrl' => GeneralUtility::getIndpEnv('REQUEST_URI')
+            ]
         );
-    }
 
-    /**
-     * @return LanguageService
-     */
-    protected function getLanguageService(): LanguageService
-    {
-        return $GLOBALS['LANG'];
+        return $url;
     }
 }

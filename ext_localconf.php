@@ -13,7 +13,9 @@ call_user_func(
 
         if (TYPO3_MODE === 'FE') {
             $hook = \Pixelant\PxaCookieBar\Hooks\ContentPostProc::class . '->contentPostProcAll';
-            $TYPO3_CONF_VARS['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-output'][$_EXTKEY] = $hook;
+            // @codingStandardsIgnoreStart
+            $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-output'][$_EXTKEY] = $hook;
+            // @codingStandardsIgnoreEnd
         }
     },
     $_EXTKEY

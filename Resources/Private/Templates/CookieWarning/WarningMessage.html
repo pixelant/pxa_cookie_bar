@@ -1,0 +1,41 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers">
+
+    <f:layout name="Default"/>
+
+    <f:section name="main">
+        <f:debug>{cookieWarning}</f:debug>
+        <f:if condition="{cookieWarning}">
+            <div id="pxa-cookie-mess"
+                 data-active-consent="{f:if(then: '1', else: '0', condition: cookieWarning.activeConsent)}"
+                 data-show-once="{f:if(then: '1', else: '0', condition: cookieWarning.oneTimeVisible)}"
+                 class="{settings.wrapperClasses}{f:if(then: ' active-consent', else: ' passive-consent', condition: cookieWarning.activeConsent)}">
+                <div class="cookie-warning">
+                    <div class="cookie-container">
+                        <div class="cookie-row">
+                            <div>
+                                <f:format.html>{cookieWarning.warningMessage}</f:format.html>
+
+                                <f:if condition="{cookieWarning.linkText} && {cookieWarning.linkTarget}">
+                                    <f:link.typolink parameter="{cookieWarning.linkTarget}">
+                                        {cookieWarning.linkText}
+                                    </f:link.typolink>
+                                </f:if>
+                            </div>
+                            <f:if condition="{cookieWarning.activeConsent}">
+                                <f:then>
+                                    <a id="accept-cookie" class="agree-buttons pxa-cookie-buttons"><f:translate key="pxacookiebar.accept"/></a>
+                                    <a id="decline-cookie" class="agree-buttons pxa-cookie-buttons"><f:translate key="pxacookiebar.decline"/></a>
+                                </f:then>
+                                <f:else>
+                                    <div class="close-button">
+                                        <a class="btn-close pxa-cookie-buttons"><f:translate key="pxacookiebar.close"/></a>
+                                    </div>
+                                </f:else>
+                            </f:if>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </f:if>
+    </f:section>
+</div>
