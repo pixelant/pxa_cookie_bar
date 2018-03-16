@@ -5,9 +5,9 @@ call_user_func(
     function ($_EXTKEY) {
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'Pixelant.' . $_EXTKEY,
-            'Pxacookiebar',
+            'Pi1',
             [
-                'CookieWarning' => 'warningMessage'
+                'CookieWarning' => 'warningMessage, getJsCookieWarningSettings'
             ]
         );
 

@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace Pixelant\PxaCookieBar\Domain\Model;
 
 /***************************************************************
@@ -45,7 +45,6 @@ class CookieWarning extends AbstractEntity
      * Warning message
      *
      * @var string
-     * @validate NotEmpty
      */
     protected $warningMessage = '';
 
@@ -53,7 +52,6 @@ class CookieWarning extends AbstractEntity
      * Link text
      *
      * @var string
-     * @validate NotEmpty
      */
     protected $linkText = '';
 

@@ -84,6 +84,6 @@ class CookieWarningRepository extends Repository
             $query->equals('pid', $pid)
         );
 
-        return $query->execute()->count();
+        return $query->count();
     }
 }

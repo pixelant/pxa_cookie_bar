@@ -26,15 +26,20 @@ namespace Pixelant\PxaCookieBar\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList;
 use Pixelant\PxaCookieBar\Utility\BackendTranslateUtility;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\MathUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
+use TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList;
 
 /**
  * Class CookieBarAdministrationController
@@ -77,6 +82,13 @@ class CookieBarAdministrationController extends ActionController
     protected $pageUid = 0;
 
     /**
+     * Current page row
+     *
+     * @var array
+     */
+    protected $pageRow = [];
+
+    /**
      * Determinate if current page is site root
      *
      * @var bool
@@ -97,9 +109,23 @@ class CookieBarAdministrationController extends ActionController
         // Need to run before menu is created to know if new button is visible
         $this->initialize();
 
-        if ($this->isSiteRoot
-            && $this->cookieWarningRepository->countByPid($this->pageUid) === 0
-        ) {
+        $pageRenderer = $this->view->getModuleTemplate()->getPageRenderer();
+
+        $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/AjaxDataHandler');
+
+        // Add JavaScript functions to the page:
+        $this->view->getModuleTemplate()->addJavaScriptCode(
+            'RecordListInlineJS',
+            '
+				function jumpExt(URL,anchor) {
+					var anc = anchor?anchor:"";
+					window.location.href = URL+(T3_THIS_LOCATION?"&returnUrl="+T3_THIS_LOCATION:"")+anc;
+					return false;
+				};
+			'
+        );
+
+        if ($this->isSiteRoot && $this->isNewCookieBarAllowed()) {
             $this->createButtons();
         }
     }
@@ -114,8 +140,11 @@ class CookieBarAdministrationController extends ActionController
         $this->pageUid = (int)GeneralUtility::_GET('id');
 
         if ($this->pageUid) {
-            $page = BackendUtility::getRecord('pages', $this->pageUid, 'is_siteroot');
-            $this->isSiteRoot = is_array($page) && (bool)$page['is_siteroot'];
+            $page = BackendUtility::getRecord('pages', $this->pageUid);
+            if (is_array($page)) {
+                $this->isSiteRoot = (bool)$page['is_siteroot'];
+                $this->pageRow = $page;
+            }
         }
     }
 
@@ -125,10 +154,25 @@ class CookieBarAdministrationController extends ActionController
     public function indexAction()
     {
         if ($this->pageUid) {
+            $countRecords = $this->cookieWarningRepository->countByPid($this->pageUid);
+
+            if ($countRecords > 1) {
+                $this->addFlashMessage(
+                    BackendTranslateUtility::translate('be.error.too_many'),
+                    BackendTranslateUtility::translate('be.error'),
+                    FlashMessage::ERROR
+                );
+            }
+            if ($countRecords > 0) {
+                $this->view->assign('htmlDbList', $this->getDbListHTML());
+            } else {
+                $this->view->assign('newRecordUrl', $this->buildNewCookieWarningUrl());
+            }
+
             $this->view->assignMultiple([
                 'isRoot' => $this->isSiteRoot,
                 'pid' => $this->pageUid,
-                'cookieWarning' => $this->cookieWarningRepository->findByPid($this->pageUid)
+                'requestUri' => GeneralUtility::quoteJSvalue(rawurlencode(GeneralUtility::getIndpEnv('REQUEST_URI')))
             ]);
         }
     }
@@ -156,6 +200,42 @@ class CookieBarAdministrationController extends ActionController
     }
 
     /**
+     * Records list html
+     *
+     * @return string
+     */
+    protected function getDbListHTML(): string
+    {
+        /** @var DatabaseRecordList $dbList */
+        $dbList = GeneralUtility::makeInstance(DatabaseRecordList::class);
+        $dbList->script = GeneralUtility::getIndpEnv('REQUEST_URI');
+        $dbList->thumbs = $this->getBackendUser()->uc['thumbnailsByDefault'];
+        $dbList->allFields = 1;
+        $dbList->localizationView = 1;
+        $dbList->clickTitleMode = 'edit';
+        $dbList->calcPerms = $this->getBackendUser()->calcPerms($this->pageRow);
+        $dbList->showClipboard = 0;
+        $dbList->disableSingleTableView = 1;
+        $dbList->pageRow = $this->pageRow;
+        $dbList->displayFields = [];
+        $dbList->dontShowClipControlPanels = true;
+        $dbList->counter++;
+        $dbList->newWizards = false;
+        $dbList->MOD_MENU = ['bigControlPanel' => '', 'clipBoard' => '', 'localization' => ''];
+        $pointer = MathUtility::forceIntegerInRange(GeneralUtility::_GP('pointer'), 0);
+
+        $dbList->start(
+            $this->pageUid,
+            'tx_pxacookiebar_domain_model_cookiewarning',
+            $pointer
+        );
+
+        $dbList->generateList();
+
+        return $dbList->HTMLcode;
+    }
+
+    /**
      * Generate url to create new survey
      *
      * @return string
@@ -171,5 +251,25 @@ class CookieBarAdministrationController extends ActionController
         );
 
         return $url;
+    }
+
+    /**
+     * Check if it's allowed to create new cookie warnings
+     *
+     * @return bool
+     */
+    protected function isNewCookieBarAllowed(): bool
+    {
+        return $this->pageUid !== 0 && ($this->cookieWarningRepository->countByPid($this->pageUid) === 0);
+    }
+
+    /**
+     * Get backend user
+     *
+     * @return BackendUserAuthentication
+     */
+    protected function getBackendUser(): BackendUserAuthentication
+    {
+        return $GLOBALS['BE_USER'];
     }
 }

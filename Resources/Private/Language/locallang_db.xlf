@@ -10,13 +10,13 @@
                 <source>Name</source>
             </trans-unit>
             <trans-unit id="tx_pxacookiebar_domain_model_cookiewarning.link_target">
-                <source>Link on page with detail information</source>
+                <source>Link target</source>
             </trans-unit>
             <trans-unit id="tx_pxacookiebar_domain_model_cookiewarning.linktext">
                 <source>Link text</source>
             </trans-unit>
             <trans-unit id="tx_pxacookiebar_domain_model_cookiewarning.warningmessage">
-                <source>Warning message about cookies</source>
+                <source>Warning message</source>
             </trans-unit>
             <trans-unit id="tx_pxacookiebar_domain_model_cookiewarning.active_consent">
                 <source>Active consent</source>

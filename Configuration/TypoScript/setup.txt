@@ -19,138 +19,72 @@ plugin.tx_pxacookiebar {
     }
 
     settings {
-
+        showDefault = {$plugin.tx_pxacookiebar.settings.showDefault}
+        activeConsent = {$plugin.tx_pxacookiebar.settings.activeConsent}
+        oneTimeVisible = {$plugin.tx_pxacookiebar.settings.oneTimeVisible}
+        detailPageUid = {$plugin.tx_pxacookiebar.settings.detailPageUid}
     }
 }
 
-page.includeJSFooter.cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Js/pxa_cookie_warning.js
-page.includeCSS.cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Css/bar.css
+# Include all libs
+page {
+    includeJSFooterlibs {
+        cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Js/CookieWarningHelperFooter.js
+    }
+    includeJSFooter {
+        cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Js/pxa_cookie_warning.js
+    }
+    includeCSS {
+        cookieWarning = EXT:pxa_cookie_bar/Resources/Public/Css/bar.css
+    }
+}
 
+# Required styling
+plugin.tx_pxacookiebar._CSS_DEFAULT_STYLE (
+    #pxa-cookie-bar{display:none;}.visible-cookie-warning #pxa-cookie-bar{display:block;}
+)
+
+# Render message at the very end
 page.11905 = USER
 page.11905 {
     userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
     extensionName = PxaCookieBar
-    pluginName = Pxacookiebar
+    pluginName = Pi1
     vendorName = Pixelant
+
+    settings =< plugin.tx_pxasocialfeed.settings
+    view =< plugin.tx_pxasocialfeed.view
 }
 
-# options
-page.headerData.86 = COA
-page.headerData.86 {
-    # helper options
-    5 = TEXT
-    5.value (
-setDocumentClass : function(className) {
-    document.documentElement.className += (document.documentElement.className == "" ? "":" ") + className;
-},
-    )
-    10 = TEXT
+# Need to render some stuff at very begging to avoid page speed issues
+# and prevent JS from setting cookies in case of active consent
+page.headerData.84 = COA
+page.headerData.84 {
+    10 = COA
     10 {
-        typolink {
-            parameter.data = leveluid:0
-            additionalParams = &type=314638125&tx_pxacookiebar_pxacookiebar[action]=closeWarning
-            useCacheHash = 1
-            forceAbsoluteUrl = 1
-            returnLast = url
+        10 = USER
+        10 {
+            userFunc = Pixelant\PxaCookieBar\UserFunc\IncludeFileInlineUserFunc->includeFile
+            file = EXT:pxa_cookie_bar/Resources/Public/Js/CookieWarningHelperHeader.min.js
         }
-
-        wrap = cookieCloseUrl:"|",
+        wrap = <script>|</script>
     }
-
-    20 < .10
+    20 = COA
     20 {
-        typolink.additionalParams = &type=314638125&tx_pxacookiebar_pxacookiebar[action]=warning
-        wrap = cookieBarUrl:"|",
-    }
-
-    30 = TEXT
-    30 {
-        value (
-getCookie : function(c_name) {
-	var i, x, y, ARRcookies = document.cookie.split(";");
-	for (i = 0; i < ARRcookies.length; i++) {
-		x = ARRcookies[i].substr(0, ARRcookies[i].indexOf("="));
-		y = ARRcookies[i].substr(ARRcookies[i].indexOf("=") + 1);
-		x = x.replace(/^\s+|\s+$/g, "");
-		if (x == c_name) {
-			return unescape(y) == '1';
-		}
-	}
-
-	return false;
-},
-        )
-    }
-
-    wrap = <script>var PxaCookieWarningHelper = {|};PxaCookieWarningHelper['cookieIsSet']=PxaCookieWarningHelper.getCookie('pxa_cookie_warning');if(!PxaCookieWarningHelper['cookieIsSet'] && PxaCookieWarningHelper['disableAjaxLoading']) {PxaCookieWarningHelper.setDocumentClass("visible-cookie-warning");}</script>
-}
-
-[globalVar = LIT:1 = {$plugin.tx_pxacookiebar.settings.disableAjaxLoading}]
-    page.headerData.86 {
-        35 = TEXT
-        35.value = disableAjaxLoading: true,
-    }
-
-    page {
-        {$plugin.tx_pxacookiebar.settings.prepantTo} {
-            stdWrap.prepend = COA
-            stdWrap.prepend {
-                10 < cookieWarning.5
-                10 {
-                    settings {
-                        forceCookieWarningRender = 1
-                    }
+        10 < page.11905
+        10 {
+            switchableControllerActions {
+                CookieWarning {
+                    1 = getJsCookieWarningSettings
                 }
             }
         }
+        wrap = <script>PxaCookieBarHelper.setSettings(|);PxaCookieBarHelper.init();</script>
     }
+}
 
-    plugin.tx_pxacookiebar._CSS_DEFAULT_STYLE (
-        #pxa-cookie-mess{display:none;}.visible-cookie-warning #pxa-cookie-mess{display: block;}
-    )
-[else]
-    page.headerData.86 {
-        35 = TEXT
-        35.value = disableAjaxLoading: false,
-    }
-
-[globalVar = LIT:1 = {$plugin.tx_pxacookiebar.settings.disableCookies}]
-    # disallow JS to SetCookie, should be on top of the page
-    page.headerData.86 {
-        40 = TEXT
-        40 {
-            value (
-pxaPreventJsFromSettingCookies: function() {
-	if(!document.__defineGetter__) {
-    	Object.defineProperty(document, 'cookie', {
-			get: function(){return '';},
-            set: function(){return true}
-        });
-	} else {
-        document.__defineGetter__("cookie", function() {return '';} );
-        document.__defineSetter__("cookie", function() {} );
-    }
-},
-            )
-        }
-
-        50 = TEXT
-        50.value = isActiveConsent: true,
-
-        wrap (
-<script>var PxaCookieWarningHelper = {|};
-PxaCookieWarningHelper['cookieIsSet']=PxaCookieWarningHelper.getCookie('pxa_cookie_warning');
-if(!PxaCookieWarningHelper['cookieIsSet']) {PxaCookieWarningHelper.pxaPreventJsFromSettingCookies();}
-if(!PxaCookieWarningHelper['cookieIsSet'] && PxaCookieWarningHelper['disableAjaxLoading']) {PxaCookieWarningHelper.setDocumentClass("visible-cookie-warning");}
-</script>
-        )
-    }
-[else]
-    page.headerData.86 {
-        50 = TEXT
-        50.value = isActiveConsent: false,
-    }
-[globalVar = LIT:bottomFix = {$plugin.tx_pxacookiebar.settings.position}]
+# Position of bar
+[globalVar = LIT:bottom={$plugin.tx_pxacookiebar.settings.position}]
     plugin.tx_pxacookiebar.settings.wrapperClasses = bottom-message-wrap
 [else]
     plugin.tx_pxacookiebar.settings.wrapperClasses = top-message-wrap

@@ -3,39 +3,57 @@
     <f:layout name="Default"/>
 
     <f:section name="main">
-        <f:debug>{cookieWarning}</f:debug>
         <f:if condition="{cookieWarning}">
-            <div id="pxa-cookie-mess"
-                 data-active-consent="{f:if(then: '1', else: '0', condition: cookieWarning.activeConsent)}"
-                 data-show-once="{f:if(then: '1', else: '0', condition: cookieWarning.oneTimeVisible)}"
-                 class="{settings.wrapperClasses}{f:if(then: ' active-consent', else: ' passive-consent', condition: cookieWarning.activeConsent)}">
-                <div class="cookie-warning">
-                    <div class="cookie-container">
-                        <div class="cookie-row">
-                            <div>
-                                <f:format.html>{cookieWarning.warningMessage}</f:format.html>
+            <f:then>
+                <f:alias map="{c: cookieWarning}">
+                    <f:render section="cookieWarningTemplate"
+                              arguments="{warningMessage: c.warningMessage, linkText: c.linkText, linkTarget: c.linkTarget, activeConsent: c.activeConsent}"/>
+                </f:alias>
+            </f:then>
+            <f:else>
+                <f:if condition="{settings.showDefault}">
+                    <f:render section="cookieWarningTemplate"
+                              arguments="{warningMessage: '{f:translate(key: \'fe.message\')}', linkText: '{f:translate(key: \'fe.readmore\')}', linkTarget: settings.detailPageUid, activeConsent: settings.activeConsent}"/>
+                </f:if>
+            </f:else>
+        </f:if>
+    </f:section>
 
-                                <f:if condition="{cookieWarning.linkText} && {cookieWarning.linkTarget}">
-                                    <f:link.typolink parameter="{cookieWarning.linkTarget}">
-                                        {cookieWarning.linkText}
-                                    </f:link.typolink>
-                                </f:if>
-                            </div>
-                            <f:if condition="{cookieWarning.activeConsent}">
-                                <f:then>
-                                    <a id="accept-cookie" class="agree-buttons pxa-cookie-buttons"><f:translate key="pxacookiebar.accept"/></a>
-                                    <a id="decline-cookie" class="agree-buttons pxa-cookie-buttons"><f:translate key="pxacookiebar.decline"/></a>
-                                </f:then>
-                                <f:else>
-                                    <div class="close-button">
-                                        <a class="btn-close pxa-cookie-buttons"><f:translate key="pxacookiebar.close"/></a>
-                                    </div>
-                                </f:else>
+    <f:section name="cookieWarningTemplate">
+        <div id="pxa-cookie-bar"
+             class="{settings.wrapperClasses}{f:if(then: ' active-consent', else: ' passive-consent', condition: activeConsent)}">
+            <div class="cookie-warning">
+                <div class="cookie-container">
+                    <div class="cookie-row">
+                        <div>
+                            <f:format.html>{warningMessage}</f:format.html>
+
+                            <f:if condition="{linkText} && {linkTarget}">
+                                <f:link.typolink parameter="{linkTarget}">
+                                    {linkText}
+                                </f:link.typolink>
                             </f:if>
                         </div>
+                        <f:if condition="{activeConsent}">
+                            <f:then>
+                                <a id="accept-cookie" class="agree-buttons pxa-cookie-buttons">
+                                    <f:translate key="fe.accept"/>
+                                </a>
+                                <a id="decline-cookie" class="agree-buttons pxa-cookie-buttons">
+                                    <f:translate key="fe.decline"/>
+                                </a>
+                            </f:then>
+                            <f:else>
+                                <div class="close-button">
+                                    <a class="btn-close pxa-cookie-buttons">
+                                        <f:translate key="fe.close"/>
+                                    </a>
+                                </div>
+                            </f:else>
+                        </f:if>
                     </div>
                 </div>
             </div>
-        </f:if>
+        </div>
     </f:section>
 </div>

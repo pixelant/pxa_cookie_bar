@@ -52,15 +52,46 @@ class CookieWarningController extends ActionController
      */
     public function warningMessageAction()
     {
-        $rootLine = array_reverse(CookieUtility::getTSFE()->rootLine ?: []);
+        $this->view->assign('cookieWarning', $this->getCookieWarning());
+    }
 
-        foreach ($rootLine as $rootLineItem) {
-            if ((int)$rootLineItem['is_siteroot'] === 1) {
-                /** @var CookieWarning $cookieWarning */
-                $cookieWarning = $this->cookieWarningRepository->findByPid((int)$rootLineItem['uid']);
+    /**
+     * Convert warning message to json settings
+     */
+    public function getJsCookieWarningSettingsAction()
+    {
+        $cookieWarning = $this->getCookieWarning();
 
-                $this->view->assign('cookieWarning', $cookieWarning);
+        return json_encode([
+            'activeConsent' =>
+                (bool)($cookieWarning ? $cookieWarning->isActiveConsent() : $this['settings']['activeConsent']),
+            'oneTimeVisible' =>
+                (bool)($cookieWarning ? $cookieWarning->isOneTimeVisible() : $this['settings']['oneTimeVisible'])
+        ]);
+    }
+
+    /**
+     * Get cookie warning
+     *
+     * @return CookieWarning
+     */
+    protected function getCookieWarning(): CookieWarning
+    {
+        /** @var CookieWarning $cookieWarning */
+        static $cookieWarning;
+
+        // Use one cookie object everywhere
+        if ($cookieWarning === null) {
+            $rootLine = array_reverse(CookieUtility::getTSFE()->rootLine ?: []);
+
+            foreach ($rootLine as $rootLineItem) {
+                if ((int)$rootLineItem['is_siteroot'] === 1) {
+                    /** @var CookieWarning $cookieWarning */
+                    $cookieWarning = $this->cookieWarningRepository->findByPid((int)$rootLineItem['uid']) ?: false;
+                }
             }
         }
+
+        return $cookieWarning;
     }
 }

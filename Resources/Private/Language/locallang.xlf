@@ -4,19 +4,19 @@
         <header/>
         <body>
             <!--FE:START-->
-            <trans-unit id="pxacookiebar.message">
+            <trans-unit id="fe.message">
                 <source>This website uses cookies. By continuing to browse this website you are agreeing to our use of cookies. Find out more by reading our privacy policy.</source>
             </trans-unit>
-            <trans-unit id="pxacookiebar.readmore">
+            <trans-unit id="fe.readmore">
                 <source>Read more</source>
             </trans-unit>
-            <trans-unit id="pxacookiebar.accept">
+            <trans-unit id="fe.accept">
                 <source>Accept</source>
             </trans-unit>
-            <trans-unit id="pxacookiebar.decline">
+            <trans-unit id="fe.decline">
                 <source>Decline</source>
             </trans-unit>
-            <trans-unit id="pxacookiebar.close">
+            <trans-unit id="fe.close">
                 <source>x</source>
             </trans-unit>
             <!--FE:END-->
