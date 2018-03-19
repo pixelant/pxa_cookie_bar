@@ -7,12 +7,12 @@ call_user_func(
             'Pixelant.' . $_EXTKEY,
             'Pi1',
             [
-                'CookieWarning' => 'warningMessage, getJsCookieWarningSettings'
+                'CookieWarning' => 'warningMessage, getJsCookieWarningSettings, closeCookieBar'
             ]
         );
 
         if (TYPO3_MODE === 'FE') {
-            $hook = \Pixelant\PxaCookieBar\Hooks\ContentPostProc::class . '->contentPostProcAll';
+            $hook = \Pixelant\PxaCookieBar\Hooks\ContentPostProcessor::class . '->process';
             // @codingStandardsIgnoreStart
             $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-output'][$_EXTKEY] = $hook;
             // @codingStandardsIgnoreEnd

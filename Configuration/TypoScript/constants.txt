@@ -14,7 +14,7 @@ plugin.tx_pxacookiebar {
     # customsubcategory=pxacookiebar=Cookie bar settings
     settings {
         # cat=plugin.tx_pxacookiebar/pxacookiebar/010; type=options[Top=top,Bottom=bottom]; label=LLL:EXT:pxa_cookie_bar/Resources/Private/Language/locallang_be.xlf:ts.position
-        position = 1
+        position = top
 
         # cat=plugin.tx_pxacookiebar/pxacookiebar/020; type=options[Yes=1,No=0]; label=LLL:EXT:pxa_cookie_bar/Resources/Private/Language/locallang_be.xlf:ts.showDefault
         showDefault = 1

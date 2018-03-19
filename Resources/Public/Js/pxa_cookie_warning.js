@@ -17,7 +17,7 @@ var PxaCookieWarning = (function () {
 		 */
 		init: function () {
 			if (this._isVisibleCookieBar()) {
-				if (!PxaCookieBarHelper.settings.activeConsent) {
+				if (!PxaCookieBarHelper.settings.activeConsent && PxaCookieBarHelper.settings.oneTimeVisible) {
 					PxaCookieBarHelper.markBarAsHidden();
 				}
 
@@ -43,11 +43,13 @@ var PxaCookieWarning = (function () {
 		_initCookieBarClick: function () {
 			var that = this;
 
-			var __clickHandler = function () {
+			var __clickHandler = function (e) {
+				e.preventDefault();
 				var attribute = this.getAttribute('id');
 
 				if (attribute === 'accept-cookie') {
-					PxaCookieBarHelper.markBarAsHidden();
+					var url = this.getAttribute('href');
+					that._sendCloseCookieRequest(url);
 				}
 
 				that._hideCookieBar();
@@ -68,6 +70,56 @@ var PxaCookieWarning = (function () {
 		_hideCookieBar: function () {
 			var e = document.getElementById('pxa-cookie-bar');
 			e.style.cssText = 'display:none';
+
+			if (!PxaCookieBarHelper.settings.activeConsent && !PxaCookieBarHelper.settings.oneTimeVisible) {
+				PxaCookieBarHelper.markBarAsHidden();
+			}
+		},
+
+		/**
+		 * Send ajax request for close bar
+		 *
+		 * @param url
+		 * @private
+		 */
+		_sendCloseCookieRequest: function (url) {
+			var x = this._getXhr();
+
+			x.open('GET', url, true);
+			x.send();
+		},
+
+		/**
+		 * Initialize xhr
+		 *
+		 * @returns object
+		 * @private
+		 */
+		_getXhr: function () {
+			if (typeof XMLHttpRequest !== 'undefined') {
+				return new XMLHttpRequest();
+			}
+
+			var versions = [
+				"MSXML2.XmlHttp.6.0",
+				"MSXML2.XmlHttp.5.0",
+				"MSXML2.XmlHttp.4.0",
+				"MSXML2.XmlHttp.3.0",
+				"MSXML2.XmlHttp.2.0",
+				"Microsoft.XmlHttp"
+			];
+
+			var xhr;
+
+			for (var i = 0; i < versions.length; i++) {
+				try {
+					xhr = new ActiveXObject(versions[i]);
+					break;
+				} catch (e) {
+				}
+			}
+
+			return xhr;
 		}
 	};
 

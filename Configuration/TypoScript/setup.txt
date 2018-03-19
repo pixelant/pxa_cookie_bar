@@ -23,6 +23,8 @@ plugin.tx_pxacookiebar {
         activeConsent = {$plugin.tx_pxacookiebar.settings.activeConsent}
         oneTimeVisible = {$plugin.tx_pxacookiebar.settings.oneTimeVisible}
         detailPageUid = {$plugin.tx_pxacookiebar.settings.detailPageUid}
+
+        closeCookiePageType = 314638125
     }
 }
 
@@ -80,6 +82,20 @@ page.headerData.84 {
             }
         }
         wrap = <script>PxaCookieBarHelper.setSettings(|);PxaCookieBarHelper.init();</script>
+    }
+}
+
+cookieWarningCloseCookie = PAGE
+cookieWarningCloseCookie.typeNum = 314638125
+cookieWarningCloseCookie.config.disableAllHeaderCode = 1
+cookieWarningCloseCookie.config.debug = 0
+
+cookieWarningCloseCookie.5 < page.11905
+cookieWarningCloseCookie.5 {
+    switchableControllerActions {
+        CookieWarning {
+            1 = closeCookieBar
+        }
     }
 }
 

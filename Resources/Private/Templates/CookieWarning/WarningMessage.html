@@ -36,7 +36,7 @@
                         </div>
                         <f:if condition="{activeConsent}">
                             <f:then>
-                                <a id="accept-cookie" class="agree-buttons pxa-cookie-buttons">
+                                <a id="accept-cookie" href="{f:uri.action(action: 'closeCookieBar', pageType: settings.closeCookiePageType)}" class="agree-buttons pxa-cookie-buttons">
                                     <f:translate key="fe.accept"/>
                                 </a>
                                 <a id="decline-cookie" class="agree-buttons pxa-cookie-buttons">

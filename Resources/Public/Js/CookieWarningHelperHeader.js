@@ -23,7 +23,7 @@ var PxaCookieBarHelper = {
 	 * init all we need at start
 	 */
 	init: function () {
-		if (this.settings.activeConsent) {
+		if (this.settings.activeConsent && !this.isCookieSet()) {
 			this.preventJsFromSettingCookies();
 		}
 		if (!this.isCookieSet()) {
@@ -75,7 +75,7 @@ var PxaCookieBarHelper = {
 	 * @returns {null}
 	 */
 	isCookieSet: function () {
-		if (this.cookieIsSet === null) {console.log(this.getCookie(this.cookieName));
+		if (this.cookieIsSet === null) {
 			this.cookieIsSet = parseInt(this.getCookie(this.cookieName)) === 1;
 		}
 

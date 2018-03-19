@@ -61,21 +61,34 @@ class CookieWarningController extends ActionController
     public function getJsCookieWarningSettingsAction()
     {
         $cookieWarning = $this->getCookieWarning();
-
-        return json_encode([
+        $settings = [
             'activeConsent' =>
-                (bool)($cookieWarning ? $cookieWarning->isActiveConsent() : $this['settings']['activeConsent']),
+                (bool)($cookieWarning ? $cookieWarning->isActiveConsent() : $this->settings['activeConsent']),
             'oneTimeVisible' =>
-                (bool)($cookieWarning ? $cookieWarning->isOneTimeVisible() : $this['settings']['oneTimeVisible'])
-        ]);
+                (bool)($cookieWarning ? $cookieWarning->isOneTimeVisible() : $this->settings['oneTimeVisible'])
+        ];
+
+        // Save settings for later ContentPostProcessor hook
+        CookieUtility::setSettings($settings);
+
+        return json_encode($settings);
+    }
+
+    /**
+     * Just to send close cookie bar cookie
+     */
+    public function closeCookieBarAction()
+    {
+        setcookie('pxa_cookie_warning', 1, time() + 60 * 60 * 24 * 30 * 12, '/');
+        exit(0);
     }
 
     /**
      * Get cookie warning
      *
-     * @return CookieWarning
+     * @return CookieWarning|bool
      */
-    protected function getCookieWarning(): CookieWarning
+    protected function getCookieWarning()
     {
         /** @var CookieWarning $cookieWarning */
         static $cookieWarning;

@@ -1,13 +1,14 @@
 <?php
+declare(strict_types=1);
 namespace Pixelant\PxaCookieBar\Hooks;
 
 use Pixelant\PxaCookieBar\Utility\CookieUtility;
 
 /**
- * Class ContentPostProc
+ * Class ContentPostProcessor
  * @package Pixelant\PxaCookieBar\Hooks
  */
-class ContentPostProc
+class ContentPostProcessor
 {
 
     /**
@@ -15,19 +16,17 @@ class ContentPostProc
      *
      * @return void
      */
-    public function contentPostProcAll()
+    public function process()
     {
         $settings = CookieUtility::getSettings();
 
-        if (!isset($_COOKIE['pxa_cookie_warning'])
-            && (int)$settings['disableCookies'] === 1
-            && (int)$settings['enable'] === 1
-        ) {
+        if (!isset($_COOKIE['pxa_cookie_warning']) && $settings['activeConsent']) {
             if (session_id()) {
                 setcookie(session_name(), session_id(), time() - 60 * 60 * 24, '/');
                 session_unset();
                 session_destroy();
             }
+
             CookieUtility::removeAllCookies();
         }
     }
