@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace Pixelant\PxaCookieBar\Domain\Repository;
 
 /***************************************************************
@@ -26,6 +26,8 @@ namespace Pixelant\PxaCookieBar\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use Pixelant\PxaCookieBar\Domain\Model\CookieWarning;
+use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
@@ -35,20 +37,53 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-
-class CookiewarningRepository extends Repository
+class CookieWarningRepository extends Repository
 {
 
     /**
-     * try to find some message
-     *
-     * @return object|null
+     * Initialize default query settings
      */
-    public function findSomething()
+    public function initializeObject()
+    {
+        /** @var $defaultQuerySettings Typo3QuerySettings */
+        $defaultQuerySettings = $this->objectManager->get(Typo3QuerySettings::class);
+        $defaultQuerySettings->setRespectStoragePage(false);
+
+        $this->setDefaultQuerySettings($defaultQuerySettings);
+    }
+
+    /**
+     * Get warning message for current root page
+     *
+     * @param int $pid
+     * @return CookieWarning|object
+     */
+    public function findByPid(int $pid)
     {
         $query = $this->createQuery();
-        $query->getQuerySettings()->setRespectStoragePage(true);
+
+        $query->matching(
+            $query->equals('pid', $pid)
+        );
+        $query->setLimit(1);
 
         return $query->execute()->getFirst();
+    }
+
+    /**
+     * Count warning message for current root page
+     *
+     * @param int $pid
+     * @return int
+     */
+    public function countByPid(int $pid): int
+    {
+        $query = $this->createQuery();
+
+        $query->matching(
+            $query->equals('pid', $pid)
+        );
+
+        return $query->count();
     }
 }

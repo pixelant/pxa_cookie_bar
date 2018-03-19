@@ -1,0 +1,35 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:pxa="http://typo3.org/ns/Pixelant/PxaCookieBar/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:layout name="Backend/Default"/>
+
+<f:section name="main">
+    <f:if condition="{isRoot}">
+        <f:then>
+            <f:if condition="{htmlDbList}">
+                <f:then>
+                    <f:format.raw>{htmlDbList}</f:format.raw>
+                </f:then>
+                <f:else>
+                    <div class="alert alert-info">
+                        <div class="message-body">
+                            <pxa:backend.translate key="be.no_warnings_found"/>
+                        </div>
+                    </div>
+                    <a type="button" class="btn btn-default" href="{newRecordUrl}">+ <pxa:backend.translate key="be.create_new"/></a>
+                </f:else>
+            </f:if>
+            <script type="text/javascript">
+		        T3_THIS_LOCATION = {requestUri -> f:format.raw()};
+            </script>
+        </f:then>
+        <f:else>
+            <div class="alert alert-info">
+                <div class="message-body">
+                    <pxa:backend.translate key="be.no_root"/>
+                </div>
+            </div>
+        </f:else>
+    </f:if>
+</f:section>
+</html>

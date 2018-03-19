@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2016-05-10T10:02:00Z" product-name="pxa_cookie_bar">
+        <header/>
+        <body>
+            <trans-unit id="name.description">
+                <source>Name of cookie bar (only for BE).</source>
+            </trans-unit>
+            <trans-unit id="link_target.description">
+                <source>Link on page with detail information.</source>
+            </trans-unit>
+            <trans-unit id="link_text.description">
+                <source>Just a text of link.</source>
+            </trans-unit>
+            <trans-unit id="warning_message.description">
+                <source>Warning message about cookies in cookie bar.</source>
+            </trans-unit>
+            <trans-unit id="active_consent.description">
+                <source>Cookie bar will be visible until user accept it.</source>
+            </trans-unit>
+            <trans-unit id="one_time_visible.description">
+                <source>Cookie bar will show up only once and will be hidden on next reload.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

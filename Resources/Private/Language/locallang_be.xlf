@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2016-05-10T10:02:00Z" product-name="pxa_cookie_bar">
+        <header/>
+        <body>
+            <!--Backend module labels:START-->
+            <trans-unit id="be.cookie_bar">
+                <source>Cookie bar</source>
+            </trans-unit>
+            <trans-unit id="be.no_root">
+                <source>Please, choose a root page.</source>
+            </trans-unit>
+            <trans-unit id="be.create_new">
+                <source>Create cookie warning</source>
+            </trans-unit>
+            <trans-unit id="be.no_warnings_found">
+                <source>No cookie warnings were found.</source>
+            </trans-unit>
+
+            <trans-unit id="be.error.too_many">
+                <source>There are more than one messages. Only one will be visible on FE.</source>
+            </trans-unit>
+            <trans-unit id="be.error">
+                <source>Error</source>
+            </trans-unit>
+            
+            <trans-unit id="ts.position">
+                <source>Cookie bar possition</source>
+            </trans-unit>
+            <trans-unit id="ts.showDefault">
+                <source>Show default message if record is not found</source>
+            </trans-unit>
+            <trans-unit id="ts.oneTimeVisible">
+                <source>Show once (only for default message)</source>
+            </trans-unit>
+            <trans-unit id="ts.activeConsent">
+                <source>Active consent (only for default message)</source>
+            </trans-unit>
+            <trans-unit id="ts.detailPageUid">
+                <source>Detail page uid (only for default message)</source>
+            </trans-unit>
+            <!--Backend module labels:END-->
+        </body>
+    </file>
+</xliff>

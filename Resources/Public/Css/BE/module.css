@@ -1,0 +1,5 @@
+/*Hide useless icons*/
+.cookie-bar-admin .recordlist thead th.col-icon.nowrap > .btn-group,
+.cookie-bar-admin .recordlist thead th > .btn-group .t3js-record-edit-multiple {
+    display: none;
+}

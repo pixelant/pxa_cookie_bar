@@ -1,0 +1,59 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers">
+
+    <f:layout name="Default"/>
+
+    <f:section name="main">
+        <f:if condition="{cookieWarning}">
+            <f:then>
+                <f:alias map="{c: cookieWarning}">
+                    <f:render section="cookieWarningTemplate"
+                              arguments="{warningMessage: c.warningMessage, linkText: c.linkText, linkTarget: c.linkTarget, activeConsent: c.activeConsent}"/>
+                </f:alias>
+            </f:then>
+            <f:else>
+                <f:if condition="{settings.showDefault}">
+                    <f:render section="cookieWarningTemplate"
+                              arguments="{warningMessage: '{f:translate(key: \'fe.message\')}', linkText: '{f:translate(key: \'fe.readmore\')}', linkTarget: settings.detailPageUid, activeConsent: settings.activeConsent}"/>
+                </f:if>
+            </f:else>
+        </f:if>
+    </f:section>
+
+    <f:section name="cookieWarningTemplate">
+        <div id="pxa-cookie-bar"
+             class="{settings.wrapperClasses}{f:if(then: ' active-consent', else: ' passive-consent', condition: activeConsent)}">
+            <div class="cookie-warning">
+                <div class="cookie-container">
+                    <div class="cookie-row">
+                        <div>
+                            <f:format.html>{warningMessage}</f:format.html>
+
+                            <f:if condition="{linkText} && {linkTarget}">
+                                <f:link.typolink parameter="{linkTarget}">
+                                    {linkText}
+                                </f:link.typolink>
+                            </f:if>
+                        </div>
+                        <f:if condition="{activeConsent}">
+                            <f:then>
+                                <a id="accept-cookie" href="{f:uri.action(action: 'closeCookieBar', pageType: settings.closeCookiePageType)}" class="agree-buttons pxa-cookie-buttons">
+                                    <f:translate key="fe.accept"/>
+                                </a>
+                                <a id="decline-cookie" class="agree-buttons pxa-cookie-buttons">
+                                    <f:translate key="fe.decline"/>
+                                </a>
+                            </f:then>
+                            <f:else>
+                                <div class="close-button">
+                                    <a class="btn-close pxa-cookie-buttons">
+                                        <f:translate key="fe.close"/>
+                                    </a>
+                                </div>
+                            </f:else>
+                        </f:if>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </f:section>
+</div>

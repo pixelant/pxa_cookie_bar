@@ -3,22 +3,22 @@
 <file source-language="en" target-language="uk" datatype="plaintext" original="messages" date="2016-05-10T10:02:00Z" product-name="pxa_cookie_bar">
     <header/>
     <body>
-        <trans-unit id="pxacookiebar.message">
+        <trans-unit id="fe.message">
             <target>Цей сайт використовує "cookies". Продововжуючи використовувати цей сайт, Ви погоджуєтесь використовувати "cookies". Дізнатись більше можна прочитавши нашу політику конфіденційності.</target>
         </trans-unit>
-        <trans-unit id="pxacookiebar.readmore">
+        <trans-unit id="fe.readmore">
             <target>Читати більше</target>
         </trans-unit>
-        <trans-unit id="pxacookiebar.accept">
+        <trans-unit id="fe.accept">
             <target>Прийняти</target>
         </trans-unit>
-        <trans-unit id="pxacookiebar.decline">
+        <trans-unit id="fe.decline">
             <target>Відхилити</target>
         </trans-unit>
-        <trans-unit id="pxacookiebar.close_1">
+        <trans-unit id="fe.close_1">
             <target>x</target>
         </trans-unit>
-        <trans-unit id="pxacookiebar.close_2">
+        <trans-unit id="fe.close_2">
             <target>Закрити</target>
         </trans-unit>
     </body>

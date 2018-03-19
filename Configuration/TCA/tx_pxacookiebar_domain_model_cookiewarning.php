@@ -1,16 +1,20 @@
 <?php
-defined('TYPO3_MODE') or die('Access denied.');
+defined('TYPO3_MODE') || die('Access denied.');
 
 $ll = 'LLL:EXT:pxa_cookie_bar/Resources/Private/Language/locallang_db.xlf:';
 
-$tca = [
+return [
     'ctrl' => [
         'title' => $ll . 'tx_pxacookiebar_domain_model_cookiewarning',
-        'label' => 'uid',
+        'label' => 'name',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
         'dividers2tabs' => true,
+
+        'languageField' => 'sys_language_uid',
+        'transOrigPointerField' => 'l10n_parent',
+        'transOrigDiffSourceField' => 'l10n_diffsource',
 
         'delete' => 'deleted',
         'enablecolumns' => [
@@ -19,20 +23,22 @@ $tca = [
             'endtime' => 'endtime',
         ],
 
-        'searchFields' => 'warningmessage,linktext',
-        'iconfile' => 'EXT:pxa_cookie_bar/Resources/Public/Icons/tx_pxacookiebar_domain_model_cookiewarning.gif'
+        'searchFields' => 'name,warning_message,link_text',
+        'iconfile' => 'EXT:pxa_cookie_bar/Resources/Public/Icons/cookies.svg'
     ],
+    // @codingStandardsIgnoreStart
     'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, warningmessage, linktext, page',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, warning_message, link_text, link_target, active_consent, one_time_visible',
     ],
     'types' => [
         '1' => ['showitem' => '--palette--;;core, --palette--;;main, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, --palette--;;access'],
     ],
     'palettes' => [
         'core' => ['showitem' => 'l10n_parent, l10n_diffsource, --linebreak--, hidden, sys_language_uid'],
-        'main' => ['showitem' => 'linktext, --linebreak--, page, --linebreak--, warningmessage'],
-        'access' => ['showitem' => 'starttime, endtime']
+        'main' => ['showitem' => 'one_time_visible, active_consent, --linebreak--, name, --linebreak--, link_text, link_target, --linebreak--, warning_message'],
+        'access' => ['showitem' => 'starttime, --linebreak--, endtime']
     ],
+    // @codingStandardsIgnoreEnd
     'columns' => [
         'sys_language_uid' => [
             'exclude' => 1,
@@ -62,7 +68,8 @@ $tca = [
                     ['', 0],
                 ],
                 'foreign_table' => 'tx_pxacookiebar_domain_model_cookiewarning',
-                'foreign_table_where' => 'AND tx_pxacookiebar_domain_model_cookiewarning.pid=###CURRENT_PID### AND tx_pxacookiebar_domain_model_cookiewarning.sys_language_uid IN (-1,0)',
+                'foreign_table_where' => 'AND tx_pxacookiebar_domain_model_cookiewarning.pid=###CURRENT_PID###'
+                    . ' AND tx_pxacookiebar_domain_model_cookiewarning.sys_language_uid IN (-1,0)',
             ]
         ],
         'l10n_diffsource' => [
@@ -74,8 +81,7 @@ $tca = [
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
             'config' => [
-                'type' => 'check',
-                'default' => 0
+                'type' => 'check'
             ]
         ],
         'starttime' => [
@@ -84,10 +90,13 @@ $tca = [
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel',
             'config' => [
                 'type' => 'input',
-                'size' => 16,
-                'max' => 20,
+                'renderType' => 'inputDateTime',
                 'eval' => 'datetime',
+                'size' => 13,
                 'default' => 0,
+                'range' => [
+                    'lower' => mktime(0, 0, 0, date('m'), date('d'), date('Y'))
+                ],
             ]
         ],
         'endtime' => [
@@ -96,36 +105,36 @@ $tca = [
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel',
             'config' => [
                 'type' => 'input',
-                'size' => 16,
-                'max' => 20,
+                'renderType' => 'inputDateTime',
                 'eval' => 'datetime',
+                'size' => 13,
                 'default' => 0,
+                'range' => [
+                    'lower' => mktime(0, 0, 0, date('m'), date('d'), date('Y'))
+                ],
             ]
         ],
-        'warningmessage' => [
+        'name' => [
+            'exclude' => 0,
+            'label' => $ll . 'tx_pxacookiebar_domain_model_cookiewarning.name',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim,required'
+            ],
+        ],
+        'warning_message' => [
             'exclude' => 0,
             'label' => $ll . 'tx_pxacookiebar_domain_model_cookiewarning.warningmessage',
             'config' => [
                 'type' => 'text',
                 'cols' => 40,
                 'rows' => 15,
-                'eval' => 'trim',
-                'wizards' => [
-                    'RTE' => [
-                        'icon' => 'wizard_rte2.gif',
-                        'notNewRecords' => 1,
-                        'RTEonly' => 1,
-                        'module' => [
-                            'name' => 'wizard_rte',
-                        ],
-                        'title' => 'LLL:EXT:cms/locallang_ttc.xlf:bodytext.W.RTE',
-                        'type' => 'script'
-                    ]
-                ],
-            ],
-            'defaultExtras' => 'richtext:rte_transform[flag=rte_enabled|mode=ts]',
+                'eval' => 'trim,required',
+                'enableRichtext' => true
+            ]
         ],
-        'linktext' => [
+        'link_text' => [
             'exclude' => 0,
             'label' => $ll . 'tx_pxacookiebar_domain_model_cookiewarning.linktext',
             'config' => [
@@ -134,38 +143,31 @@ $tca = [
                 'eval' => 'trim'
             ],
         ],
-        'page' => [
+        'link_target' => [
             'exclude' => 0,
-            'label' => $ll . 'tx_pxacookiebar_domain_model_cookiewarning.page',
+            'label' => $ll . 'tx_pxacookiebar_domain_model_cookiewarning.link_target',
             'config' => [
                 'type' => 'input',
-                'size' => 10,
-                'eval' => 'trim,required',
-                'wizards' => [
-                    '_PADDING' => 2,
-                    'link' => [
-                        'type' => 'popup',
-                        'title' => 'LLL:EXT:cms/locallang_ttc.xml:header_link_formlabel',
-                        'icon' => 'link_popup.gif',
-                        'module' => [
-                            'name' => 'wizard_link',
-                        ],
-                        'JSopenParams' => 'height=600,width=800,status=0,menubar=0,scrollbars=1',
-                    ],
-                ],
+                'size' => '15',
+                'max' => '256',
+                'eval' => 'trim',
+                'renderType' => 'inputLink',
+                'softref' => 'typolink'
+            ]
+        ],
+        'active_consent' => [
+            'exclude' => 0,
+            'label' => $ll . 'tx_pxacookiebar_domain_model_cookiewarning.active_consent',
+            'config' => [
+                'type' => 'check'
+            ]
+        ],
+        'one_time_visible' => [
+            'exclude' => 0,
+            'label' => $ll . 'tx_pxacookiebar_domain_model_cookiewarning.one_time_visible',
+            'config' => [
+                'type' => 'check'
             ]
         ],
     ],
 ];
-
-unset($ll);
-
-// For 6.x compatibility
-if (version_compare(TYPO3_version, '7.0', '<')) {
-    $tca['columns']['warningmessage']['config']['wizards']['RTE']['script'] = 'wizard_rte.php';
-    unset($tca['columns']['warningmessage']['config']['wizards']['RTE']['module']);
-    $tca['columns']['page']['config']['wizards']['link']['script'] = 'browse_links.php?mode=wizard';
-    unset($tca['columns']['page']['config']['wizards']['link']['module']);
-}
-
-return $tca;

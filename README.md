@@ -1,4 +1,4 @@
-# README #
+# Cookie bar #
 
 Adds a cookie bar to the page consisting of a text and an option link to a cookie bar policy page.
 
@@ -12,29 +12,50 @@ The visitor is notified that the site uses cookies
 
 The visitor is notified that the site uses cookies. All cookies will be removed until the user has accepted the usage of cookies.
 
+**!!! IMPORTANT** any of your scripts will be able to set cookies (like google tracking scripts, etc.)  
+
 
 ## Setup ##
-After installation, each site can decide whether to use active or passive consent. If nothing is done, the site will not have a cookie bar.
+* Install extension
+* Include static TypoScript of extension
 
-### Passive consent ###
-1. Include static ts from extension.
+## Configuration
+**It's possible to show default cookie bar message or create custom one**
 
-### Active consent ###
-1. Include static ts from extension.
-2. Set the value of `plugin.tx_pxacookiebar.settings.enable` to `1`.
+### Default cookie bar message
+In order to get default cookie bar message show up configure next TypoScript constants
 
-## Configurations ##
-### Position of the cookie bar ###
-By default, the cookie bar is positioned to the bottom of the page to avoid conflict with some sites with sticky menus. To position the cookie bar sticky at the top, set the typoscript constant `plugin.tx_pxacookiebar.settings.position` to `top`
+#### TypoScript configuration
+```typo3_typoscript
+plugin.tx_pxacookiebar {
+    settings {
+        # Show default message if custom wasn't found
+        showDefault = 1
 
-### Typoscript setup ###
-@TODO
+        # Consent of default message
+        activeConsent = 0
 
-### Typoscript constants ###
-@TODO
+        # Show cookie bar only one time. After reload it'll disappear. 
+        oneTimeVisible = 1
 
-### Changing the content (texts and link to the cookie bar policy page) ###
-@TODO
+        # Page uid of page with detailed cookie bar policy
+        detailPageUid = 111
+    }
+}
+```
 
-## Responsible developer ##
-@Andriy_Oprysko
+### Custom cookie bar message
+
+* Go to Backend module in "Web" section called "Cookie bar".
+* Choose root page of site you want to have cookie bar notification
+* Press "Create cookie warning" button
+* Fill in all required field
+    * **Show once** - *check this if message should be showed to use only one time*
+    * **Active consent** - *check this if it's active consent*
+    * **Name** - *just a name for BE view*
+    * **Link text** - *text of "Read more" link*
+    * **Link target** - *target of "Read more" link*
+    * **Warning message** - *cookie bar message*
+* Save cookie bar
+* It's also possible to localize cookie bar message if you have multi-language site 
+    
