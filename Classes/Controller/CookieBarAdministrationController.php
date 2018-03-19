@@ -26,7 +26,6 @@ namespace Pixelant\PxaCookieBar\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList;
 use Pixelant\PxaCookieBar\Utility\BackendTranslateUtility;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
