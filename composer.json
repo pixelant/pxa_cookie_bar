@@ -23,7 +23,7 @@
   },
   "replace": {
     "pxa_cookie_bar": "self.version",
-    "typo3-ter/pxa_cookie_bar": "self.version"
+    "typo3-ter/pxa-cookie-bar": "self.version"
   },
   "config": {
     "vendor-dir": ".Build/vendor",
