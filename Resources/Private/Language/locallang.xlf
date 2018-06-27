@@ -19,6 +19,9 @@
             <trans-unit id="fe.close">
                 <source>x</source>
             </trans-unit>
+            <trans-unit id="fe.close_ok">
+                <source>OK</source>
+            </trans-unit>
             <!--FE:END-->
         </body>
     </file>
