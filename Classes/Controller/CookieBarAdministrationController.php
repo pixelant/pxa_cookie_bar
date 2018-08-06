@@ -27,6 +27,7 @@ namespace Pixelant\PxaCookieBar\Controller;
  ***************************************************************/
 
 use Pixelant\PxaCookieBar\Utility\BackendTranslateUtility;
+use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
@@ -62,7 +63,7 @@ class CookieBarAdministrationController extends ActionController
 
     /**
      * @var \Pixelant\PxaCookieBar\Domain\Repository\CookieWarningRepository
-     * @inject
+     * @\TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $cookieWarningRepository = null;
 
@@ -219,8 +220,6 @@ class CookieBarAdministrationController extends ActionController
         $dbList->displayFields = [];
         $dbList->dontShowClipControlPanels = true;
         $dbList->counter++;
-        $dbList->newWizards = false;
-        $dbList->MOD_MENU = ['bigControlPanel' => '', 'clipBoard' => '', 'localization' => ''];
         $pointer = MathUtility::forceIntegerInRange(GeneralUtility::_GP('pointer'), 0);
 
         $dbList->start(
@@ -241,7 +240,7 @@ class CookieBarAdministrationController extends ActionController
      */
     protected function buildNewCookieWarningUrl(): string
     {
-        $url = BackendUtility::getModuleUrl(
+        $url = (string)GeneralUtility::makeInstance(UriBuilder::class)->buildUriFromRoute(
             'record_edit',
             [
                 'edit[tx_pxacookiebar_domain_model_cookiewarning][' . $this->pageUid . ']' => 'new',

@@ -41,7 +41,7 @@ class CookieWarningController extends ActionController
 
     /**
      * @var \Pixelant\PxaCookieBar\Domain\Repository\CookieWarningRepository
-     * @inject
+     * @\TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $cookieWarningRepository;
 

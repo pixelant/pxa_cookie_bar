@@ -18,10 +18,10 @@ $EM_CONF[$_EXTKEY] = [
     'author_email' => 'andriy@pixelant.se',
     'author_company' => 'Pixelant',
     'clearCacheOnLoad' => false,
-    'version' => '2.0.3',
+    'version' => '2.1.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '8.7.0-8.9.99'
+            'typo3' => '8.7.0-9.9.99'
         ],
         'conflicts' => [],
         'suggests' => [],

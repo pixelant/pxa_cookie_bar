@@ -3,6 +3,11 @@ defined('TYPO3_MODE') || die('Access denied.');
 
 $ll = 'LLL:EXT:pxa_cookie_bar/Resources/Private/Language/locallang_db.xlf:';
 
+if (version_compare(TYPO3_version, '9.0', '>')) {
+    $llCore = 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:';
+} else {
+    $llCore = 'LLL:EXT:lang/locallang_general.xlf:';
+}
 return [
     'ctrl' => [
         'title' => $ll . 'tx_pxacookiebar_domain_model_cookiewarning',
@@ -42,14 +47,14 @@ return [
     'columns' => [
         'sys_language_uid' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
+            'label' => $llCore . 'LGL.language',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'special' => 'languages',
                 'items' => [
                     [
-                        'LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages',
+                        $llCore . 'LGL.allLanguages',
                         -1,
                         'flags-multiple'
                     ],
@@ -60,7 +65,7 @@ return [
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
             'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.l18n_parent',
+            'label' => $llCore . 'LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -79,14 +84,13 @@ return [
         ],
         'hidden' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
+            'label' => $llCore . 'LGL.hidden',
             'config' => [
                 'type' => 'check'
             ]
         ],
         'starttime' => [
             'exclude' => 1,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel',
             'config' => [
                 'type' => 'input',
@@ -101,7 +105,6 @@ return [
         ],
         'endtime' => [
             'exclude' => 1,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel',
             'config' => [
                 'type' => 'input',
@@ -148,8 +151,8 @@ return [
             'label' => $ll . 'tx_pxacookiebar_domain_model_cookiewarning.link_target',
             'config' => [
                 'type' => 'input',
-                'size' => '15',
-                'max' => '256',
+                'size' => 15,
+                'max' => 256,
                 'eval' => 'trim',
                 'renderType' => 'inputLink',
                 'softref' => 'typolink'
