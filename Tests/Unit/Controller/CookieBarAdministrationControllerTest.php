@@ -49,10 +49,10 @@ class CookieBarAdministrationControllerTest extends BaseTestCase
         $pageUid = 123;
         $this->subject->_set('pageUid', $pageUid);
 
-        $mockedRepository = $this->createPartialMock(CookieWarningRepository::class, ['countByPid']);
+        $mockedRepository = $this->createPartialMock(CookieWarningRepository::class, ['countByPidRespectDisabled']);
         $mockedRepository
             ->expects($this->once())
-            ->method('countByPid')
+            ->method('countByPidRespectDisabled')
             ->with($pageUid)
             ->will($this->returnValue(1));
 
@@ -69,10 +69,10 @@ class CookieBarAdministrationControllerTest extends BaseTestCase
         $pageUid = 123;
         $this->subject->_set('pageUid', $pageUid);
 
-        $mockedRepository = $this->createPartialMock(CookieWarningRepository::class, ['countByPid']);
+        $mockedRepository = $this->createPartialMock(CookieWarningRepository::class, ['countByPidRespectDisabled']);
         $mockedRepository
             ->expects($this->once())
-            ->method('countByPid')
+            ->method('countByPidRespectDisabled')
             ->with($pageUid)
             ->will($this->returnValue(0));
 
