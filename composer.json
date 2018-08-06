@@ -4,7 +4,7 @@
   "type": "typo3-cms-extension",
   "license": "GPL-2.0+",
   "require": {
-    "typo3/cms": ">=8.7.0 <=8.9.99"
+    "typo3/minimal": "^9.3"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.2",
