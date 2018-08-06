@@ -76,9 +76,13 @@ class CookieWarningRepository extends Repository
      * @param int $pid
      * @return int
      */
-    public function countByPid(int $pid): int
+    public function countByPidRespectDisabled(int $pid): int
     {
         $query = $this->createQuery();
+
+        $query->getQuerySettings()
+            ->setIgnoreEnableFields(true)
+            ->setEnableFieldsToBeIgnored(['disable']);
 
         $query->matching(
             $query->equals('pid', $pid)

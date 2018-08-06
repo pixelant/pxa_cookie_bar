@@ -26,7 +26,9 @@ namespace Pixelant\PxaCookieBar\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use Pixelant\PxaCookieBar\Domain\Repository\CookieWarningRepository;
 use Pixelant\PxaCookieBar\Utility\BackendTranslateUtility;
+use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
@@ -34,6 +36,7 @@ use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -62,9 +65,16 @@ class CookieBarAdministrationController extends ActionController
 
     /**
      * @var \Pixelant\PxaCookieBar\Domain\Repository\CookieWarningRepository
-     * @inject
      */
     protected $cookieWarningRepository = null;
+
+    /**
+     * @param CookieWarningRepository $cookieWarningRepository
+     */
+    public function injectCookieWarningRepository(CookieWarningRepository $cookieWarningRepository)
+    {
+        $this->cookieWarningRepository = $cookieWarningRepository;
+    }
 
     /**
      * Array of db row of current selected page
@@ -153,7 +163,7 @@ class CookieBarAdministrationController extends ActionController
     public function indexAction()
     {
         if ($this->pageUid) {
-            $countRecords = $this->cookieWarningRepository->countByPid($this->pageUid);
+            $countRecords = $this->cookieWarningRepository->countByPidRespectDisabled($this->pageUid);
 
             if ($countRecords > 1) {
                 $this->addFlashMessage(
@@ -164,6 +174,10 @@ class CookieBarAdministrationController extends ActionController
             }
             if ($countRecords > 0) {
                 $this->view->assign('htmlDbList', $this->getDbListHTML());
+                if (version_compare(TYPO3_version, '9.0', '>')) {
+                    // Need to add labels manually
+                    $this->includeLanguageFile('EXT:core/Resources/Private/Language/locallang_mod_web_list.xlf');
+                }
             } else {
                 $this->view->assign('newRecordUrl', $this->buildNewCookieWarningUrl());
             }
@@ -219,8 +233,6 @@ class CookieBarAdministrationController extends ActionController
         $dbList->displayFields = [];
         $dbList->dontShowClipControlPanels = true;
         $dbList->counter++;
-        $dbList->newWizards = false;
-        $dbList->MOD_MENU = ['bigControlPanel' => '', 'clipBoard' => '', 'localization' => ''];
         $pointer = MathUtility::forceIntegerInRange(GeneralUtility::_GP('pointer'), 0);
 
         $dbList->start(
@@ -241,7 +253,7 @@ class CookieBarAdministrationController extends ActionController
      */
     protected function buildNewCookieWarningUrl(): string
     {
-        $url = BackendUtility::getModuleUrl(
+        $url = (string)GeneralUtility::makeInstance(UriBuilder::class)->buildUriFromRoute(
             'record_edit',
             [
                 'edit[tx_pxacookiebar_domain_model_cookiewarning][' . $this->pageUid . ']' => 'new',
@@ -253,13 +265,37 @@ class CookieBarAdministrationController extends ActionController
     }
 
     /**
+     * Add js labels from file
+     *
+     * @param $file
+     * @return void
+     */
+    protected function includeLanguageFile(string $file)
+    {
+        $this->getPageRenderer()->addInlineLanguageLabelFile(
+            GeneralUtility::getFileAbsFileName($file)
+        );
+    }
+
+    /**
      * Check if it's allowed to create new cookie warnings
      *
      * @return bool
      */
     protected function isNewCookieBarAllowed(): bool
     {
-        return $this->pageUid !== 0 && ($this->cookieWarningRepository->countByPid($this->pageUid) === 0);
+        return $this->pageUid !== 0
+            && ($this->cookieWarningRepository->countByPidRespectDisabled($this->pageUid) === 0);
+    }
+
+    /**
+     * Wrapper for class
+     *
+     * @return PageRenderer
+     */
+    protected function getPageRenderer(): PageRenderer
+    {
+        return GeneralUtility::makeInstance(PageRenderer::class);
     }
 
     /**
