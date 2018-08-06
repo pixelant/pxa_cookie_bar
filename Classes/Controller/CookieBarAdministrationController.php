@@ -26,6 +26,7 @@ namespace Pixelant\PxaCookieBar\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use Pixelant\PxaCookieBar\Domain\Repository\CookieWarningRepository;
 use Pixelant\PxaCookieBar\Utility\BackendTranslateUtility;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
@@ -63,9 +64,16 @@ class CookieBarAdministrationController extends ActionController
 
     /**
      * @var \Pixelant\PxaCookieBar\Domain\Repository\CookieWarningRepository
-     * @\TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $cookieWarningRepository = null;
+
+    /**
+     * @param CookieWarningRepository $cookieWarningRepository
+     */
+    public function injectCookieWarningRepository(CookieWarningRepository $cookieWarningRepository)
+    {
+        $this->cookieWarningRepository = $cookieWarningRepository;
+    }
 
     /**
      * Array of db row of current selected page

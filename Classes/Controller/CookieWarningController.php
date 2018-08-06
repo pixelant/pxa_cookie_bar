@@ -26,6 +26,7 @@ namespace Pixelant\PxaCookieBar\Controller;
  ***************************************************************/
 
 use Pixelant\PxaCookieBar\Domain\Model\CookieWarning;
+use Pixelant\PxaCookieBar\Domain\Repository\CookieWarningRepository;
 use Pixelant\PxaCookieBar\Utility\CookieUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
@@ -41,9 +42,16 @@ class CookieWarningController extends ActionController
 
     /**
      * @var \Pixelant\PxaCookieBar\Domain\Repository\CookieWarningRepository
-     * @\TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $cookieWarningRepository;
+
+    /**
+     * @param CookieWarningRepository $cookieWarningRepository
+     */
+    public function injectCookieWarningRepository(CookieWarningRepository $cookieWarningRepository)
+    {
+        $this->cookieWarningRepository = $cookieWarningRepository;
+    }
 
     /**
      * Render message
