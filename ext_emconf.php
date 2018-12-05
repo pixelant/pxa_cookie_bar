@@ -17,11 +17,12 @@ $EM_CONF[$_EXTKEY] = [
     'author' => 'Andriy Oprysko, Tony',
     'author_email' => 'andriy@pixelant.se',
     'author_company' => 'Pixelant',
+    'state' => 'stable',
     'clearCacheOnLoad' => false,
-    'version' => '2.1.0',
+    'version' => '2.1.1',
     'constraints' => [
         'depends' => [
-            'typo3' => '8.7.0-9.9.99'
+            'typo3' => '8.7.0-9.5.99'
         ],
         'conflicts' => [],
         'suggests' => [],
