@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Cookie bar',
-    'description' => 'Text and link for page with cookie.',
+    'description' => 'Easily configure your site\'s cookie warning.',
     'category' => 'plugin',
     'author' => 'Pixelant',
     'author_email' => 'info@pixelant.net',
