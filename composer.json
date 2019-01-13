@@ -1,8 +1,16 @@
 {
   "name": "pixelant/pxa-cookie-bar",
-  "description": "Text and link for page with cookie.",
+  "description": "Easily configure your site's cookie warning.",
   "type": "typo3-cms-extension",
   "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Pixelant",
+      "email": "info@pixelant.net",
+      "homepage": "https://www.pixelant.net",
+      "role": "Developer"
+    }
+  ],
   "require": {
     "typo3/cms-core": "^8.7.0|| ^9.5.0",
     "php": ">=7.0"

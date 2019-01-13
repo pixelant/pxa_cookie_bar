@@ -12,10 +12,10 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Cookie bar',
-    'description' => 'Text and link for page with cookie.',
+    'description' => 'Easily configure your site\'s cookie warning.',
     'category' => 'plugin',
-    'author' => 'Andriy Oprysko, Tony',
-    'author_email' => 'andriy@pixelant.se',
+    'author' => 'Pixelant',
+    'author_email' => 'info@pixelant.net',
     'author_company' => 'Pixelant',
     'state' => 'stable',
     'clearCacheOnLoad' => false,
