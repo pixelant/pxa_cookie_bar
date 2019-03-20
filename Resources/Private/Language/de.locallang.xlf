@@ -9,6 +9,12 @@
             <trans-unit id="fe.readmore">
                 <target>Nutzungsbedingungen</target>
             </trans-unit>
+            <trans-unit id="fe.accept">
+                <target>Akzeptieren</target>
+            </trans-unit>
+            <trans-unit id="fe.decline">
+                <target>Ablehnen</target>
+            </trans-unit>
             <trans-unit id="fe.close_1">
                 <target>x</target>
             </trans-unit>
