@@ -68,8 +68,7 @@ var PxaCookieWarning = (function () {
 		 * @private
 		 */
 		_hideCookieBar: function () {
-			var e = document.getElementById('pxa-cookie-bar');
-			e.style.cssText = 'display:none';
+			PxaCookieBarHelper.removeDocumentClass(PxaCookieBarHelper.visibleCookieBarClass);
 
 			if (!PxaCookieBarHelper.settings.activeConsent && !PxaCookieBarHelper.settings.oneTimeVisible) {
 				PxaCookieBarHelper.markBarAsHidden();
