@@ -4,6 +4,7 @@
 
 	PxaCookieBarHelper.markBarAsHidden = markBarAsHidden;
 	PxaCookieBarHelper.setCookie = setCookie;
+	PxaCookieBarHelper.removeDocumentClass = removeDocumentClass;
 
 	/**
 	 * Set cooke
@@ -18,8 +19,20 @@
 		document.cookie = cName + '=' + cValue;
 	}
 
+	/**
+	 * Set cookie that marks cookie bar as hidden
+	 */
 	function markBarAsHidden() {
 		setCookie(PxaCookieBarHelper.cookieName, 1, 365);
+	}
+
+	/**
+	 * Remove document class
+	 *
+	 * @param className
+	 */
+	function removeDocumentClass(className) {
+		document.documentElement.classList.remove(className);
 	}
 
 	w.PxaCookieBarHelper = PxaCookieBarHelper;
