@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace Pixelant\PxaCookieBar\Utility;
 
-use TYPO3\CMS\Lang\LanguageService;
+use TYPO3\CMS\Core\Localization\LanguageService;
 
 /**
  * Class BackendTranslateUtility

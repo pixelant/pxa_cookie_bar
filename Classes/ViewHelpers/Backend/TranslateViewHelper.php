@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace Pixelant\PxaCookieBar\ViewHelpers\Backend;
 
 use Pixelant\PxaCookieBar\Utility\BackendTranslateUtility;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
