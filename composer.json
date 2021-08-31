@@ -22,7 +22,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Pixelant\\PxaCookieBar\\": "Classes/"
+      "Pixelant\\PxaCookieBar\\": "Classes"
     }
   },
   "autoload-dev": {
