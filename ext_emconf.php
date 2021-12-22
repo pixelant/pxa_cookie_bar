@@ -19,12 +19,12 @@ $EM_CONF[$_EXTKEY] = array (
   'author_company' => 'Pixelant',
   'state' => 'stable',
   'clearCacheOnLoad' => false,
-  'version' => '2.2.0',
+  'version' => '2.3.0-dev',
   'constraints' => 
   array (
     'depends' => 
     array (
-      'typo3' => '10.0.0-10.99.99',
+      'typo3' => '10.3.0-11.5.99',
     ),
     'conflicts' => 
     array (
