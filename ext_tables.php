@@ -12,7 +12,7 @@ defined('TYPO3_MODE') or die('Access denied.');
 
 if (TYPO3_MODE === 'BE') {
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-        'Pixelant.' . $_EXTKEY,
+        'Pixelant.PxaCookieBar',
         'web',
         'mod1',
         '',
@@ -22,7 +22,7 @@ if (TYPO3_MODE === 'BE') {
         [
             'access' => 'user,group',
             'icon' => 'EXT:pxa_cookie_bar/Resources/Public/Icons/cookies.svg',
-            'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_module.xlf',
+            'labels' => 'LLL:EXT:pxa_cookie_bar/Resources/Private/Language/locallang_module.xlf',
         ]
     );
 }
