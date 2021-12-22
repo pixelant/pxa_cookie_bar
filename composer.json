@@ -47,6 +47,7 @@
       "dev-master": "0.0.x-dev"
     },
     "typo3/cms": {
+      "extension-key": "pxa_cookie_bar",
       "cms-package-dir": "{$vendor-dir}/typo3/cms",
       "web-dir": ".Build/Web"
     }
