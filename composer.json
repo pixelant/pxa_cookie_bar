@@ -31,7 +31,6 @@
     }
   },
   "replace": {
-    "pxa_cookie_bar": "self.version",
     "typo3-ter/pxa-cookie-bar": "self.version"
   },
   "config": {
