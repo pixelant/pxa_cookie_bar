@@ -5,9 +5,25 @@ call_user_func(
     function () {
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'Pixelant.PxaCookieBar',
-            'Pi1',
+            'warningMessage',
             [
-                'CookieWarning' => 'warningMessage, getJsCookieWarningSettings, closeCookieBar'
+                'CookieWarning' => 'warningMessage',
+            ]
+        );
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'Pixelant.PxaCookieBar',
+            'jsCookieWarningSettings',
+            [
+                'CookieWarning' => 'getJsCookieWarningSettings',
+            ]
+        );
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'Pixelant.PxaCookieBar',
+            'closeCookieBar',
+            [
+                'CookieWarning' => 'closeCookieBar'
             ]
         );
 

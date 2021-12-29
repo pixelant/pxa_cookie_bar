@@ -52,7 +52,7 @@ page.11905 = USER
 page.11905 {
     userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
     extensionName = PxaCookieBar
-    pluginName = Pi1
+    pluginName = warningMessage
     vendorName = Pixelant
 
     settings =< plugin.tx_pxacookiebar.settings
@@ -75,13 +75,8 @@ page.headerData.84 {
     20 = COA
     20 {
         10 < page.11905
-        10 {
-            switchableControllerActions {
-                CookieWarning {
-                    1 = getJsCookieWarningSettings
-                }
-            }
-        }
+        10.pluginName = jsCookieWarningSettings
+
         wrap = <script>PxaCookieBarHelper.setSettings(|);PxaCookieBarHelper.init();</script>
     }
 }
@@ -92,10 +87,4 @@ cookieWarningCloseCookie.config.disableAllHeaderCode = 1
 cookieWarningCloseCookie.config.debug = 0
 
 cookieWarningCloseCookie.5 < page.11905
-cookieWarningCloseCookie.5 {
-    switchableControllerActions {
-        CookieWarning {
-            1 = closeCookieBar
-        }
-    }
-}
+cookieWarningCloseCookie.5.pluginName = closeCookieBar
