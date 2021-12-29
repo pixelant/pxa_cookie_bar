@@ -13,11 +13,6 @@ plugin.tx_pxacookiebar {
         }
     }
 
-    features {
-        # uncomment the following line to enable the new Property Mapper.
-        # rewrittenPropertyMapper = 1
-    }
-
     settings {
         showDefault = {$plugin.tx_pxacookiebar.settings.showDefault}
         activeConsent = {$plugin.tx_pxacookiebar.settings.activeConsent}
@@ -42,9 +37,9 @@ page {
 }
 
 # Required styling
-plugin.tx_pxacookiebar._CSS_DEFAULT_STYLE (
-    #pxa-cookie-bar{display:none;}.visible-cookie-warning #pxa-cookie-bar{display:block;}
-)
+#plugin.tx_pxacookiebar._CSS_DEFAULT_STYLE (
+#    pxa-cookie-bar{display:none;}.visible-cookie-warning #pxa-cookie-bar{display:block;}
+#)
 
 # Render message at the very end
 page.11905 = USER
@@ -76,7 +71,7 @@ page.headerData.84 {
         10 < page.11905
         10 {
             switchableControllerActions {
-                CookieWarning {
+                \Pixelant\PxaCookieBar\Controller\CookieWarningController {
                     1 = getJsCookieWarningSettings
                 }
             }
@@ -93,7 +88,7 @@ cookieWarningCloseCookie.config.debug = 0
 cookieWarningCloseCookie.5 < page.11905
 cookieWarningCloseCookie.5 {
     switchableControllerActions {
-        CookieWarning {
+        \Pixelant\PxaCookieBar\Controller\CookieWarningController {
             1 = closeCookieBar
         }
     }

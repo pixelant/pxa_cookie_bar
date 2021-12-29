@@ -7,16 +7,9 @@ call_user_func(
             'Pixelant.PxaCookieBar',
             'Pi1',
             [
-                'CookieWarning' => 'warningMessage, getJsCookieWarningSettings, closeCookieBar'
+                \Pixelant\PxaCookieBar\Controller\CookieWarningController::class => 'warningMessage, getJsCookieWarningSettings, closeCookieBar'
             ]
         );
-
-        if (TYPO3_MODE === 'FE') {
-            $hook = \Pixelant\PxaCookieBar\Hooks\ContentPostProcessor::class . '->process';
-            // @codingStandardsIgnoreStart
-            $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-output']['pxa_cookie_bar'] = $hook;
-            // @codingStandardsIgnoreEnd
-        }
     }
 
 );

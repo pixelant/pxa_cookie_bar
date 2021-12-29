@@ -13,6 +13,9 @@
     width: 100%;
 }
 
+/*html#pxa-cookie-bar{display:none;}
+html.visible-cookie-warning#pxa-cookie-bar{display:block;}*/
+
 #pxa-cookie-bar p {
     color: #82787d;
     margin: 0;

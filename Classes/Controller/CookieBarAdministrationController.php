@@ -37,6 +37,7 @@ use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Page\PageRenderer;
+use TYPO3\CMS\Core\Type\Bitmask\Permission;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -226,13 +227,12 @@ class CookieBarAdministrationController extends ActionController
         $dbList->allFields = 1;
         $dbList->localizationView = 1;
         $dbList->clickTitleMode = 'edit';
-        $dbList->calcPerms = $this->getBackendUser()->calcPerms($this->pageRow);
+        $dbList->calcPerms = GeneralUtility::makeInstance(Permission::class);
         $dbList->showClipboard = 0;
         $dbList->disableSingleTableView = 1;
         $dbList->pageRow = $this->pageRow;
         $dbList->displayFields = [];
         $dbList->dontShowClipControlPanels = true;
-        $dbList->counter++;
         $pointer = MathUtility::forceIntegerInRange(GeneralUtility::_GP('pointer'), 0);
 
         $dbList->start(
@@ -241,9 +241,7 @@ class CookieBarAdministrationController extends ActionController
             $pointer
         );
 
-        $dbList->generateList();
-
-        return $dbList->HTMLcode;
+        return $dbList->generateList();
     }
 
     /**

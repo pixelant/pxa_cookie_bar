@@ -28,6 +28,8 @@ namespace Pixelant\PxaCookieBar\Controller;
 use Pixelant\PxaCookieBar\Domain\Model\CookieWarning;
 use Pixelant\PxaCookieBar\Domain\Repository\CookieWarningRepository;
 use Pixelant\PxaCookieBar\Utility\CookieUtility;
+use Pixelant\PxaCookieBar\Utility\RegistryHandler;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
@@ -39,11 +41,15 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
  */
 class CookieWarningController extends ActionController
 {
-
     /**
      * @var \Pixelant\PxaCookieBar\Domain\Repository\CookieWarningRepository
      */
     protected $cookieWarningRepository;
+
+    /**
+     * @var RegistryHandler
+     */
+    protected $registryHandler;
 
     /**
      * @param CookieWarningRepository $cookieWarningRepository
@@ -51,6 +57,11 @@ class CookieWarningController extends ActionController
     public function injectCookieWarningRepository(CookieWarningRepository $cookieWarningRepository)
     {
         $this->cookieWarningRepository = $cookieWarningRepository;
+    }
+
+    public function __construct()
+    {
+        $this->registryHandler = GeneralUtility::makeInstance(RegistryHandler::class);
     }
 
     /**
@@ -76,8 +87,8 @@ class CookieWarningController extends ActionController
                 (bool)($cookieWarning ? $cookieWarning->isOneTimeVisible() : $this->settings['oneTimeVisible'])
         ];
 
-        // Save settings for later ContentPostProcessor hook
-        CookieUtility::setSettings($settings);
+        // Save settings in TYPO3 System Registry for usage in HTTP Middleware
+        $this->registryHandler->saveSettings($settings);
 
         return json_encode($settings);
     }

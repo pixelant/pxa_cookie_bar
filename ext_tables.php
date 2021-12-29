@@ -17,7 +17,7 @@ if (TYPO3_MODE === 'BE') {
         'mod1',
         '',
         [
-            'CookieBarAdministration' => 'index'
+            \Pixelant\PxaCookieBar\Controller\CookieBarAdministrationController::class => 'index'
         ],
         [
             'access' => 'user,group',

@@ -11,7 +11,6 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
  */
 class CookieUtility
 {
-
     /**
      * Extension settings
      *
@@ -46,19 +45,21 @@ class CookieUtility
      */
     public static function removeAllCookies()
     {
-        $cookies = GeneralUtility::trimExplode(';', $_SERVER['HTTP_COOKIE'], true);
-        $host = GeneralUtility::getIndpEnv('TYPO3_HOST_ONLY');
+        if (isset($_SERVER['HTTP_COOKIE'])) {
+            $cookies = GeneralUtility::trimExplode(';', $_SERVER['HTTP_COOKIE'], true);
+            $host = GeneralUtility::getIndpEnv('TYPO3_HOST_ONLY');
 
-        foreach ($cookies as $cookie) {
-            $parts = GeneralUtility::trimExplode('=', $cookie, true);
+            foreach ($cookies as $cookie) {
+                $parts = GeneralUtility::trimExplode('=', $cookie, true);
 
-            if ($parts[0] !== 'be_typo_user') {
-                setcookie($parts[0], '', time() - 1000);
-                setcookie($parts[0], '', time() - 1000, '/');
+                if ($parts[0] !== 'be_typo_user') {
+                    setcookie($parts[0], '', time() - 1000);
+                    setcookie($parts[0], '', time() - 1000, '/');
+                }
             }
-        }
 
-        self::removeFEUserCookie($host);
+            self::removeFEUserCookie($host);
+        }
     }
 
     /**
