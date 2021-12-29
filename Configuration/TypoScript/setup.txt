@@ -23,6 +23,7 @@ plugin.tx_pxacookiebar {
         activeConsent = {$plugin.tx_pxacookiebar.settings.activeConsent}
         oneTimeVisible = {$plugin.tx_pxacookiebar.settings.oneTimeVisible}
         detailPageUid = {$plugin.tx_pxacookiebar.settings.detailPageUid}
+        position = {$plugin.tx_pxacookiebar.settings.position}
 
         closeCookiePageType = 314638125
     }
@@ -51,7 +52,7 @@ page.11905 = USER
 page.11905 {
     userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
     extensionName = PxaCookieBar
-    pluginName = Pi1
+    pluginName = warningMessage
     vendorName = Pixelant
 
     settings =< plugin.tx_pxacookiebar.settings
@@ -74,13 +75,8 @@ page.headerData.84 {
     20 = COA
     20 {
         10 < page.11905
-        10 {
-            switchableControllerActions {
-                CookieWarning {
-                    1 = getJsCookieWarningSettings
-                }
-            }
-        }
+        10.pluginName = jsCookieWarningSettings
+
         wrap = <script>PxaCookieBarHelper.setSettings(|);PxaCookieBarHelper.init();</script>
     }
 }
@@ -91,17 +87,4 @@ cookieWarningCloseCookie.config.disableAllHeaderCode = 1
 cookieWarningCloseCookie.config.debug = 0
 
 cookieWarningCloseCookie.5 < page.11905
-cookieWarningCloseCookie.5 {
-    switchableControllerActions {
-        CookieWarning {
-            1 = closeCookieBar
-        }
-    }
-}
-
-# Position of bar
-[globalVar = LIT:bottom={$plugin.tx_pxacookiebar.settings.position}]
-    plugin.tx_pxacookiebar.settings.wrapperClasses = bottom-message-wrap
-[else]
-    plugin.tx_pxacookiebar.settings.wrapperClasses = top-message-wrap
-[global]
+cookieWarningCloseCookie.5.pluginName = closeCookieBar
