@@ -23,6 +23,7 @@ plugin.tx_pxacookiebar {
         activeConsent = {$plugin.tx_pxacookiebar.settings.activeConsent}
         oneTimeVisible = {$plugin.tx_pxacookiebar.settings.oneTimeVisible}
         detailPageUid = {$plugin.tx_pxacookiebar.settings.detailPageUid}
+        position = {$plugin.tx_pxacookiebar.settings.position}
 
         closeCookiePageType = 314638125
     }
@@ -98,10 +99,3 @@ cookieWarningCloseCookie.5 {
         }
     }
 }
-
-# Position of bar
-[globalVar = LIT:bottom={$plugin.tx_pxacookiebar.settings.position}]
-    plugin.tx_pxacookiebar.settings.wrapperClasses = bottom-message-wrap
-[else]
-    plugin.tx_pxacookiebar.settings.wrapperClasses = top-message-wrap
-[global]
