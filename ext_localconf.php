@@ -2,28 +2,28 @@
 defined('TYPO3_MODE') || die('Access denied.');
 
 call_user_func(
-    function () {
+    function (string $extKey) {
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'Pixelant.PxaCookieBar',
+            $extKey,
             'warningMessage',
             [
-                'CookieWarning' => 'warningMessage',
+                \Pixelant\PxaCookieBar\Controller\CookieWarningController::class => 'warningMessage',
             ]
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'Pixelant.PxaCookieBar',
+            $extKey,
             'jsCookieWarningSettings',
             [
-                'CookieWarning' => 'getJsCookieWarningSettings',
+                \Pixelant\PxaCookieBar\Controller\CookieWarningController::class => 'getJsCookieWarningSettings',
             ]
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'Pixelant.PxaCookieBar',
+            $extKey,
             'closeCookieBar',
             [
-                'CookieWarning' => 'closeCookieBar'
+                \Pixelant\PxaCookieBar\Controller\CookieWarningController::class => 'closeCookieBar'
             ]
         );
 
@@ -33,6 +33,6 @@ call_user_func(
             $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-output']['pxa_cookie_bar'] = $hook;
             // @codingStandardsIgnoreEnd
         }
-    }
-
+    },
+    'PxaCookieBar'
 );
