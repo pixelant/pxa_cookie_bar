@@ -1,63 +1,64 @@
 {
-  "name": "pixelant/pxa-cookie-bar",
-  "description": "Easily configure your site's cookie warning.",
-  "type": "typo3-cms-extension",
-  "license": "GPL-2.0+",
-  "authors": [
-    {
-      "name": "Pixelant",
-      "email": "info@pixelant.net",
-      "homepage": "https://www.pixelant.net",
-      "role": "Developer"
-    }
-  ],
-  "require": {
-    "php": "^7.2 || ^8.0",
-    "typo3/cms-core": "^10.4 || ^11.5.2",
-    "typo3/cms-extbase": "^10.4 || ^11.5.2",
-    "typo3/cms-fluid": "^10.4 || ^11.5.2",
-    "typo3/cms-frontend": "^10.4 || ^11.5.2"
-  },
-  "require-dev": {
-    "typo3/cms-core": "^10.4 || ^11.5.2",
-    "typo3/cms-extbase": "^10.4 || ^11.5.2",
-    "typo3/cms-fluid": "^10.4 || ^11.5.2",
-    "typo3/cms-frontend": "^10.4 || ^11.5.2",
-    "squizlabs/php_codesniffer": "^3.7.1",
-    "phpunit/phpunit": "^8.5.27",
-    "typo3/testing-framework": "^6.16.5"
-  },
-  "autoload": {
-    "psr-4": {
-      "Pixelant\\PxaCookieBar\\": "Classes"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Pixelant\\PxaCookieBar\\Tests\\": "Tests/"
-    }
-  },
-  "replace": {
-    "typo3-ter/pxa-cookie-bar": "self.version"
-  },
-  "config": {
-    "vendor-dir": ".Build/vendor",
-    "bin-dir": ".Build/bin"
-  },
-  "scripts": {
-    "post-autoload-dump": [
-      "mkdir -p .Build/Web/typo3conf/ext/",
-      "[ -L .Build/Web/typo3conf/ext/pxa_cookie_bar ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/pxa_cookie_bar"
-    ]
-  },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "0.0.x-dev"
-    },
-    "typo3/cms": {
-      "extension-key": "pxa_cookie_bar",
-      "cms-package-dir": "{$vendor-dir}/typo3/cms",
-      "web-dir": ".Build/Web"
-    }
-  }
+	"name": "pixelant/pxa-cookie-bar",
+	"description": "Easily configure your site's cookie warning.",
+	"type": "typo3-cms-extension",
+	"license": "GPL-2.0+",
+	"authors": [
+		{
+			"name": "Pixelant",
+			"email": "info@pixelant.net",
+			"homepage": "https://www.pixelant.net",
+			"role": "Developer"
+		}
+	],
+	"require": {
+		"php": "^7.2 || ^8.0",
+		"typo3/cms-core": "^10.4 || ^11.5.2",
+		"typo3/cms-extbase": "^10.4 || ^11.5.2",
+		"typo3/cms-fluid": "^10.4 || ^11.5.2",
+		"typo3/cms-frontend": "^10.4 || ^11.5.2",
+		"ext-json": "*"
+	},
+	"require-dev": {
+		"typo3/cms-core": "^10.4 || ^11.5.2",
+		"typo3/cms-extbase": "^10.4 || ^11.5.2",
+		"typo3/cms-fluid": "^10.4 || ^11.5.2",
+		"typo3/cms-frontend": "^10.4 || ^11.5.2",
+		"squizlabs/php_codesniffer": "^3.7.1",
+		"phpunit/phpunit": "^8.5.27",
+		"typo3/testing-framework": "^6.16.5"
+	},
+	"autoload": {
+		"psr-4": {
+			"Pixelant\\PxaCookieBar\\": "Classes"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Pixelant\\PxaCookieBar\\Tests\\": "Tests/"
+		}
+	},
+	"replace": {
+		"typo3-ter/pxa-cookie-bar": "self.version"
+	},
+	"config": {
+		"vendor-dir": ".Build/vendor",
+		"bin-dir": ".Build/bin"
+	},
+	"scripts": {
+		"post-autoload-dump": [
+			"mkdir -p .Build/Web/typo3conf/ext/",
+			"[ -L .Build/Web/typo3conf/ext/pxa_cookie_bar ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/pxa_cookie_bar"
+		]
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "0.0.x-dev"
+		},
+		"typo3/cms": {
+			"extension-key": "pxa_cookie_bar",
+			"cms-package-dir": "{$vendor-dir}/typo3/cms",
+			"web-dir": ".Build/Web"
+		}
+	}
 }

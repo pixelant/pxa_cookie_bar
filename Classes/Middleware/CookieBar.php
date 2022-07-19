@@ -30,7 +30,7 @@ class CookieBar implements MiddlewareInterface
         $registryHandler = GeneralUtility::makeInstance(RegistryHandler::class);
         $settings = $registryHandler->getSavedSettings();
 
-        if (!isset($_COOKIE['pxa_cookie_warning']) && $settings['activeConsent']) {
+        if (($_COOKIE['pxa_cookie_warning'] ?? false) && ($settings['activeConsent'] ?? false)) {
             if (session_id()) {
                 setcookie(session_name(), session_id(), time() - 60 * 60 * 24, '/');
                 session_unset();
