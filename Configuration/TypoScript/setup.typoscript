@@ -37,11 +37,6 @@ page {
     }
 }
 
-# Required styling
-plugin.tx_pxacookiebar._CSS_DEFAULT_STYLE (
-    #pxa-cookie-bar{display:none;}.visible-cookie-warning #pxa-cookie-bar{display:block;}
-)
-
 # Render message at the very end
 page.11905 = USER
 page.11905 {
